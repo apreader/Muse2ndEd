@@ -1,0 +1,244 @@
+{
+  "Common Biomorphs": {},
+  "Flat": {
+    "Cost": 0,
+    "Avail": 30,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 45
+  },
+  "Insight 0, Moxie 0, Vigor 0, Flex 0": {
+    "Movement Rate": "Walker 4/20",
+    "Common Extras": "Many have the Genetic Defect trait"
+  },
+  "Splicer": {
+    "Cost": 1,
+    "Avail": 90,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 45
+  },
+  "Insight 0, Moxie 0, Vigor 0, Flex 1": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Cortical Stack",
+      "Mesh Inserts"
+    ]
+  },
+  "Exalt": {
+    "Cost": 2,
+    "Avail": 70,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53
+  },
+  "Insight 1, Moxie 1, Vigor 1, Flex 0": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Cortical Stack",
+      "Mesh Inserts"
+    ]
+  },
+  "Neotenic": {
+    "Cost": 2,
+    "Avail": 50,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 45
+  },
+  "Insight 2, Moxie 1, Vigor 1, Flex 0": {
+    "Movement Rate": "Walker 4/12",
+    "Ware": [
+      "Biomods",
+      "Circadian Regulation",
+      "Cortical Stack",
+      "Mesh Inserts"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Small size"
+  },
+  "Ruster": {
+    "Cost": 3,
+    "Avail": 70,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53
+  },
+  "Insight 0, Moxie 1, Vigor 1, Flex 1": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Cold Tolerance",
+      "Cortical Stack",
+      "Enhanced Respiration",
+      "Mesh Inserts",
+      "Radiation Sense"
+    ],
+    "Common Extras": "Many have the Planned Obsolescence trait"
+  },
+  "Bouncer": {
+    "Cost": 4,
+    "Avail": 60,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53
+  },
+  "Insight 1, Moxie 0, Vigor 1, Flex 2": {
+    "Movement Rate": "Walker 4/12",
+    "Ware": [
+      "Biomods",
+      "Cold Tolerance",
+      "Cortical Stack",
+      "Grip Pads",
+      "Mesh Inserts",
+      "Oxygen Reserve",
+      "Prehensile Feet"
+    ],
+    "Morph Traits": "Limberness (Level 1)"
+  },
+  "Futura": {
+    "Cost": 4,
+    "Avail": 25,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53
+  },
+  "Insight 2, Moxie 4, Vigor 1, Flex 0": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Cortical Stack",
+      "Mesh Inserts"
+    ]
+  },
+  "Hibernoid": {
+    "Cost": 4,
+    "Avail": 70,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53
+  },
+  "Insight 1, Moxie 1, Vigor 0, Flex 2": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Circadian Regulation",
+      "Clean Metabolism",
+      "Cold Tolerance",
+      "Cortical Stack",
+      "Hibernation",
+      "Mesh Inserts"
+    ]
+  },
+  "Menton": {
+    "Cost": 4,
+    "Avail": 60,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53
+  },
+  "Insight 3, Moxie 1, Vigor 1, Flex 1": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Cortical Stack",
+      "Mesh Inserts",
+      "Mnemonics"
+    ]
+  },
+  "Olympian": {
+    "Cost": 4,
+    "Avail": 60,
+    "WT": 8,
+    "DUR": 40,
+    "DR": 60
+  },
+  "Insight 1, Moxie 1, Vigor 3, Flex 1": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Cortical Stack",
+      "Mesh Inserts"
+    ]
+  },
+  "Sylph": {
+    "Cost": 4,
+    "Avail": 60,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 45
+  },
+  "Insight 1, Moxie 3, Vigor 1, Flex 1": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Clean Metabolism",
+      "Cortical Stack",
+      "Enhanced Pheromones",
+      "Mesh Inserts"
+    ],
+    "Common Extras": "Many have the Striking Looks trait"
+  },
+  "Fury": {
+    "Cost": 6,
+    "Avail": 40,
+    "WT": 10,
+    "DUR": 50,
+    "DR": 75
+  },
+  "Insight 1, Moxie 1, Vigor 4, Flex 2": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Bioweave Armor (+2/+3)",
+      "Claws",
+      "Cortical Stack",
+      "Enhanced Vision",
+      "Mesh Inserts"
+    ],
+    "Morph Traits": "Enhanced Behavior (Aggressiveness, Level 2; Cooperation, Level 2)",
+    "Common Extras": "Many are equipped with neurachem, hardened skeleton, toxin filters"
+  },
+  "Ghost": {
+    "Cost": 6,
+    "Avail": 40,
+    "WT": 9,
+    "DUR": 45,
+    "DR": 68
+  },
+  "Insight 2, Moxie 1, Vigor 3, Flex 2": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Chameleon Skin",
+      "Cortical Stack",
+      "Grip Pads",
+      "Mesh Inserts"
+    ],
+    "Morph Traits": "Enhanced Behavior (Patience, Level 2)",
+    "Common Extras": "Many are equipped with adrenal surge, skinflex"
+  },
+  "Remade": {
+    "Cost": 7,
+    "Avail": 30,
+    "WT": 9,
+    "DUR": 45,
+    "DR": 68
+  },
+  "Insight 2, Moxie 2, Vigor 2, Flex 2": {
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Biomods",
+      "Circadian Regulation",
+      "Clean Metabolism",
+      "Cold Tolerance",
+      "Cortical Stack",
+      "Enhanced Respiration",
+      "Enhanced Vision",
+      "Mesh Inserts"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)"
+  }
+}
