@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Agender",
+    "description": "A person who does not identify with any gender.",
+    "pronouns": ["they/them"]
+  },
+  {
+    "name": "Bigender",
+    "description": "A person who identifies as two genders, either simultaneously or switching between them.",
+    "pronouns": ["they/them", "he/him", "she/her"]
+  },
+  {
+    "name": "Cisgender",
+    "description": "A person whose gender identity aligns with the sex they were assigned at birth.",
+    "pronouns": ["he/him", "she/her"]
+  },
+  {
+    "name": "Demiboy",
+    "description": "Someone who partially identifies as a boy or man.",
+    "pronouns": ["he/him", "they/them"]
+  },
+  {
+    "name": "Demigirl",
+    "description": "Someone who partially identifies as a girl or woman.",
+    "pronouns": ["she/her", "they/them"]
+  },
+  {
+    "name": "Genderfluid",
+    "description": "A person whose gender identity shifts or changes over time.",
+    "pronouns": ["they/them", "she/her", "he/him"]
+  },
+  {
+    "name": "Genderqueer",
+    "description": "A gender identity that exists outside the binary of male and female.",
+    "pronouns": ["they/them"]
+  },
+  {
+    "name": "Maverique",
+    "description": "A nonbinary gender characterized by autonomy and inner conviction, not tied to masculinity or femininity.",
+    "pronouns": ["they/them"]
+  },
+  {
+    "name": "Neutrois",
+    "description": "A neutral or null gender identity often associated with a desire to minimize gendered expression.",
+    "pronouns": ["they/them"]
+  },
+  {
+    "name": "Nonbinary",
+    "description": "An umbrella term for gender identities outside the male/female binary.",
+    "pronouns": ["they/them"]
+  },
+  {
+    "name": "Pangender",
+    "description": "A person who identifies with many or all genders.",
+    "pronouns": ["they/them", "she/her", "he/him"]
+  },
+  {
+    "name": "Two-Spirit",
+    "description": "A sacred, culturally specific identity used by some Indigenous North American peoples to describe a person with both masculine and feminine spirit.",
+    "pronouns": ["they/them", "he/him", "she/her"]
+  },
+  {
+    "name": "Male",
+    "description": "A man or someone who identifies with masculinity.",
+    "pronouns": ["he/him"]
+  },
+  {
+    "name": "Female",
+    "description": "A woman or someone who identifies with femininity.",
+    "pronouns": ["she/her"]
+  }
+]
