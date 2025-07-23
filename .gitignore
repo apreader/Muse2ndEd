@@ -13,3 +13,6 @@ __pycache__/
 *.env
 
 #misc
+characters/
+utilities/
+archive/

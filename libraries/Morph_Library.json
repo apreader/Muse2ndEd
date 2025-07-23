@@ -1,244 +1,833 @@
 {
-  "Common Biomorphs": {},
-  "Flat": {
-    "Cost": 0,
-    "Avail": 30,
-    "WT": 6,
-    "DUR": 30,
-    "DR": 45
+  "Common Biomorphs": {
+    "Flat": {
+      "Description": "Flats are baseline unmodified humans, born with all of the natural defects, hereditary diseases, and other genetic mutations that evolution so lovingly applies. Flats are increasingly rare outside bioconservative enclaves — most died off with the rest of humanity during the Fall.",
+      "Cost": 0,
+      "Avail": 30,
+      "WT": 6,
+      "DUR": 30,
+      "DR": 45,
+      "Insight": 0,
+      "Moxie": 0,
+      "Vigor": 0,
+      "Flex": 0,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": "Many have the Genetic Defect trait ▶78."
+    },
+    "Splicer": {
+      "Description": "Splicers are genefixed humans. Their genome cleansed of hereditary diseases and optimized for looks and health, but not otherwise substantially upgraded. Splicers make up the majority of transhumanity.",
+      "Cost": 1,
+      "Avail": 90,
+      "WT": 6,
+      "DUR": 30,
+      "DR": 45,
+      "Insight": 0,
+      "Moxie": 0,
+      "Vigor": 0,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Cortical Stack",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Exalt": {
+      "Description": "Exalts are the common, non-specialized “enhanced human” model. They are genetically upgraded to make them healthier, smarter, and more attractive (based on ever-evolving beauty standards). A modified metabolism keeps them fit and athletic for the duration of an extended lifespan.",
+      "Cost": 2,
+      "Avail": 70,
+      "WT": 7,
+      "DUR": 35,
+      "DR": 53,
+      "Insight": 1,
+      "Moxie": 1,
+      "Vigor": 1,
+      "Flex": 0,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Cortical Stack",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Neotenic": {
+      "Description": "Neotenics are transhumans modified to retain a child-like form. They are smaller, more agile, inquisitive, and less resource-depleting, making them ideal for habitat living and spacecraft. Some people find neotenic sleeves distasteful, especially when employed in certain media and sex work capacities, but most are designed to be neuter-gendered.",
+      "Cost": 2,
+      "Avail": 50,
+      "WT": 6,
+      "DUR": 30,
+      "DR": 45,
+      "Insight": 2,
+      "Moxie": 1,
+      "Vigor": 1,
+      "Flex": 0,
+      "Movement Rate": "Walker 4/12",
+      "Ware": [
+        "Biomods",
+        "Circadian Regulation",
+        "Cortical Stack",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [
+        {
+          "Trait": "Exotic Morphology",
+          "Level": 1
+        }
+      ],
+      "Notes": "Small size ▶227",
+      "Common Extras": null
+    },
+    "Ruster": {
+      "Description": "Adapted for survival with minimum gear in the not-fully-terraformed Martian environment, these transgenic morphs feature insulated skin for more effective thermoregulation and respiratory system improvements to require less oxygen and filter carbon dioxide, among other mods.",
+      "Cost": 3,
+      "Avail": 70,
+      "WT": 7,
+      "DUR": 35,
+      "DR": 53,
+      "Insight": 0,
+      "Moxie": 1,
+      "Vigor": 1,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Cold Tolerance",
+        "Cortical Stack",
+        "Enhanced Respiration",
+        "Mesh Inserts",
+        "Radiation Sense"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": "Many have the Planned Obsolescence trait ▶79."
+    },
+    "Bouncer": {
+      "Description": "Bouncers are genetically adapted for microgravity. Their legs are more limber and their feet can grasp as well as their hands. They can tolerate the cold temperatures of beehive tunnels and have an oxygen reserve in case they are exposed to vacuum. Bouncers are very common in the outer system and zero-g habitats.",
+      "Cost": 4,
+      "Avail": 60,
+      "WT": 7,
+      "DUR": 35,
+      "DR": 53,
+      "Insight": 1,
+      "Moxie": 0,
+      "Vigor": 1,
+      "Flex": 2,
+      "Movement Rate": "Walker 4/12",
+      "Ware": [
+        "Biomods",
+        "Cold Tolerance",
+        "Cortical Stack",
+        "Grip Pads",
+        "Mesh Inserts",
+        "Oxygen Reserve",
+        "Prehensile Feet"
+      ],
+      "Morph Traits": [
+        {
+          "Trait": "Limberness",
+          "Level": 1
+        }
+      ],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Futura": {
+      "Description": "Futura morphs were specially crafted for the “Lost Generation” of accelerated-growth children. Adjusted for confidence, self-reliance, and adaptability, futuras were intended to help transhumanity regain its foothold. These programs proved disastrous and the line was discontinued, but some models and various spin-offs remain, viewed by some with distaste and others as collectibles or exotic oddities.",
+      "Cost": 4,
+      "Avail": 25,
+      "WT": 7,
+      "DUR": 35,
+      "DR": 53,
+      "Insight": 2,
+      "Moxie": 4,
+      "Vigor": 1,
+      "Flex": 0,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Cortical Stack",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Hibernoid": {
+      "Description": "Hibernoids are transgenic-modified humans with heavily altered sleep patterns and metabolic processes. Hibernoids have a decreased need for sleep, requiring only 1–2 hours a day on average. They can also trigger a form of voluntary hibernation, effectively halting their metabolism and need for oxygen. Hibernoids make excellent long-duration space travelers, but these morphs are also favored by personal aides and hypercapitalists with non-stop lifestyles.",
+      "Cost": 4,
+      "Avail": 70,
+      "WT": 7,
+      "DUR": 35,
+      "DR": 53,
+      "Insight": 1,
+      "Moxie": 1,
+      "Vigor": 0,
+      "Flex": 2,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Circadian Regulation",
+        "Clean Metabolism",
+        "Cold Tolerance",
+        "Cortical Stack",
+        "Hibernation",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Menton": {
+      "Description": "Mentons are genetically modified to increase cognitive abilities, particularly learning ability, creativity, attentiveness, and memory. They are favored by academics, intellectuals, scientists, and engineers.",
+      "Cost": 4,
+      "Avail": 60,
+      "WT": 7,
+      "DUR": 35,
+      "DR": 53,
+      "Insight": 3,
+      "Moxie": 1,
+      "Vigor": 1,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Cortical Stack",
+        "Mesh Inserts",
+        "Mnemonics"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Olympian": {
+      "Description": "Olympians are human upgrades with improved athletic capabilities like endurance, hand-eye coordination, and cardiovascular functions. Olympians are common among athletes, dancers, freerunners, gatecrashers, and soldiers.",
+      "Cost": 4,
+      "Avail": 60,
+      "WT": 8,
+      "DUR": 40,
+      "DR": 60,
+      "Insight": 1,
+      "Moxie": 1,
+      "Vigor": 3,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Cortical Stack",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Sylph": {
+      "Description": "Sylph morphs are ideal for media icons, elite socialites, XP stars, models, and narcissists. Sylph gene sequences are tailored for distinctive good looks, ethereal and elfin features, and slim and lithe bodies. Their metabolism has also been sanitized to eliminate unpleasant bodily odors and their pheromones adjusted for universal appeal.",
+      "Cost": 4,
+      "Avail": 60,
+      "WT": 6,
+      "DUR": 30,
+      "DR": 45,
+      "Insight": 1,
+      "Moxie": 3,
+      "Vigor": 1,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Clean Metabolism",
+        "Cortical Stack",
+        "Enhanced Pheromones",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": "Many have the Striking Looks trait ▶75."
+    },
+    "Fury": {
+      "Description": "Furies are combat morphs. These transgenic humans are upgraded for endurance, strength, reflexes, and capacity to handle physical trauma. Behavioral modifications for aggressiveness are offset by gene sequences promoting pack mentalities and cooperation, and they tend to be biologically female.",
+      "Cost": 6,
+      "Avail": 40,
+      "WT": 10,
+      "DUR": 50,
+      "DR": 75,
+      "Insight": 1,
+      "Moxie": 1,
+      "Vigor": 4,
+      "Flex": 2,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Bioweave Armor (+2/+3)",
+        "Claws",
+        "Cortical Stack",
+        "Enhanced Vision",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [
+        {
+          "Trait": "Enhanced Behavior (Aggressiveness)",
+          "Level": 2
+        },
+        {
+          "Trait": "Enhanced Behavior (Cooperation)",
+          "Level": 2
+        }
+      ],
+      "Notes": null,
+      "Common Extras": "Many are equipped with neurachem ▶322, hardened skeleton ▶322, toxin filters ▶323."
+    },
+    "Ghost": {
+      "Description": "Ghosts are partially designed for combat applications, but their primary focus is stealth and infiltration. Their genetic profile encourages speed, agility, and reflexes, and their minds are modified for patience and problem-solving.",
+      "Cost": 6,
+      "Avail": 40,
+      "WT": 9,
+      "DUR": 45,
+      "DR": 68,
+      "Insight": 2,
+      "Moxie": 1,
+      "Vigor": 3,
+      "Flex": 2,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Chameleon Skin",
+        "Cortical Stack",
+        "Grip Pads",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [
+        {
+          "Trait": "Enhanced Behavior (Patience)",
+          "Level": 2
+        }
+      ],
+      "Notes": null,
+      "Common Extras": "Many are equipped with adrenal surge ▶322, skinflex ▶321."
+    },
+    "Remade": {
+      "Description": "The remade are completely redesigned: humans 2.0. Their cardiovascular system is stronger, their digestive tract sanitized and restructured, and they have been optimized for health, intelligence, and longevity with numerous transgenic mods. They look close to human, but are different in very noticeable and sometimes eerie ways: taller, lack of hair, slightly larger craniums, wider eyes, smaller noses, smaller teeth, and elongated digits. The remade are popular with the Ultimates faction.",
+      "Cost": 7,
+      "Avail": 30,
+      "WT": 9,
+      "DUR": 45,
+      "DR": 68,
+      "Insight": 2,
+      "Moxie": 2,
+      "Vigor": 2,
+      "Flex": 2,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Biomods",
+        "Circadian Regulation",
+        "Clean Metabolism",
+        "Cold Tolerance",
+        "Cortical Stack",
+        "Enhanced Respiration",
+        "Enhanced Vision",
+        "Mesh Inserts"
+      ],
+      "Morph Traits": [
+        {
+          "Trait": "Exotic Morphology",
+          "Level": 1
+        }
+      ],
+      "Notes": null,
+      "Common Extras": null
+     }
   },
-  "Insight 0, Moxie 0, Vigor 0, Flex 0": {
-    "Movement Rate": "Walker 4/20",
-    "Common Extras": "Many have the Genetic Defect trait"
+
+  "Pod Biomorphs": {
+    "Basic Pod": {
+
+      "Description": "Basic Pods are simple, inexpensive sleeves designed for short-term use or low-intensity tasks. They have minimal biological systems and limited longevity, primarily suited for disposable operations or temporary bodies.",
+      "Cost": 1,
+      "Avail": 58,
+      "WT": 3,
+      "DUR": 15,
+      "DR": 25,
+      "Insight": 0,
+      "Moxie": 0,
+      "Vigor": 0,
+      "Flex": 0,
+      "Movement Rate": "Walker 2/12",
+      "Ware": [],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Novacrab": {
+      "Description": "Novacrabs are aquatic pods designed to function underwater and in aquatic environments. They possess aquatic adaptations such as gills and hydrodynamic shapes, making them suitable for deep-sea exploration and underwater labor.",
+      "Cost": 4,
+      "Avail": 58,
+      "WT": 5,
+      "DUR": 30,
+      "DR": 50,
+      "Insight": 0,
+      "Moxie": 0,
+      "Vigor": 2,
+      "Flex": 1,
+      "Movement Rate": "Swimmer 6/18",
+      "Ware": [],
+      "Morph Traits": [
+        {
+          "Trait": "Aquatic Adaptation",
+          "Level": 1
+        }
+      ],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Pleasure Pod": {
+      "Description": "Pleasure Pods are morphs designed specifically for recreational and intimate purposes. They often have enhanced sensory systems and biofeedback mechanisms to optimize pleasure experiences, commonly used in leisure and sex industries.",
+      "Cost": 4,
+      "Avail": 59,
+      "WT": 4,
+      "DUR": 25,
+      "DR": 40,
+      "Insight": 0,
+      "Moxie": 2,
+      "Vigor": 0,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/15",
+      "Ware": [
+        "Sensory Enhancements",
+        "Biofeedback Implants"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Security Pod": {
+      "Description": "Security Pods are rugged sleeves outfitted for protective roles. They have reinforced bio-armor and enhanced strength to serve as bodyguards, enforcers, or security personnel.",
+      "Cost": 5,
+      "Avail": 59,
+      "WT": 8,
+      "DUR": 40,
+      "DR": 70,
+      "Insight": 1,
+      "Moxie": 0,
+      "Vigor": 3,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/18",
+      "Ware": [
+        "Reinforced Bio-armor",
+        "Strength Enhancements"
+      ],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Shaper Pod": {
+      "Description": "Shaper Pods are specialized morphs with adaptive biological systems, allowing limited self-modification and shape-changing abilities. They are prized in research, exploration, and covert operations.",
+      "Cost": 5,
+      "Avail": 59,
+      "WT": 6,
+      "DUR": 35,
+      "DR": 55,
+      "Insight": 2,
+      "Moxie": 1,
+      "Vigor": 2,
+      "Flex": 3,
+      "Movement Rate": "Walker 4/20",
+      "Ware": [
+        "Adaptive Biology",
+        "Shape Modulation Systems"
+      ],
+      "Morph Traits": [
+        {
+          "Trait": "Shape-changing Ability",
+          "Level": 1
+        }
+      ],
+      "Notes": null,
+      "Common Extras": null
+    },
+    "Worker Pod": {
+      "Description": "Worker Pods are optimized for labor and industrial work. They feature durable musculature and simplified biological systems for efficiency and endurance in harsh environments.",
+      "Cost": 3,
+      "Avail": 58,
+      "WT": 7,
+      "DUR": 40,
+      "DR": 60,
+      "Insight": 0,
+      "Moxie": 0,
+      "Vigor": 3,
+      "Flex": 1,
+      "Movement Rate": "Walker 4/18",
+      "Ware": [],
+      "Morph Traits": [],
+      "Notes": null,
+      "Common Extras": null
+    }
   },
-  "Splicer": {
-    "Cost": 1,
-    "Avail": 90,
-    "WT": 6,
-    "DUR": 30,
-    "DR": 45
-  },
-  "Insight 0, Moxie 0, Vigor 0, Flex 1": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
+
+  "Uplift Biomorphs": {
+    "Neo-Avian": {
+      "Cost": 0,
+      "Avail": 50,
+      "WT": 5,
+      "DUR": 25,
+      "DR": 38,
+      "Movement Rate": "Walker 2/8, Winged 8/40",
+      "Ware": [
       "Biomods",
-      "Cortical Stack",
-      "Mesh Inserts"
-    ]
-  },
-  "Exalt": {
-    "Cost": 2,
-    "Avail": 70,
-    "WT": 7,
-    "DUR": 35,
-    "DR": 53
-  },
-  "Insight 1, Moxie 1, Vigor 1, Flex 0": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Cortical Stack",
-      "Mesh Inserts"
-    ]
-  },
-  "Neotenic": {
-    "Cost": 2,
-    "Avail": 50,
-    "WT": 6,
-    "DUR": 30,
-    "DR": 45
-  },
-  "Insight 2, Moxie 1, Vigor 1, Flex 0": {
-    "Movement Rate": "Walker 4/12",
-    "Ware": [
-      "Biomods",
-      "Circadian Regulation",
-      "Cortical Stack",
-      "Mesh Inserts"
-    ],
-    "Morph Traits": "Exotic Morphology (Level 1)",
-    "Notes": "Small size"
-  },
-  "Ruster": {
-    "Cost": 3,
-    "Avail": 70,
-    "WT": 7,
-    "DUR": 35,
-    "DR": 53
-  },
-  "Insight 0, Moxie 1, Vigor 1, Flex 1": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Cold Tolerance",
-      "Cortical Stack",
-      "Enhanced Respiration",
-      "Mesh Inserts",
-      "Radiation Sense"
-    ],
-    "Common Extras": "Many have the Planned Obsolescence trait"
-  },
-  "Bouncer": {
-    "Cost": 4,
-    "Avail": 60,
-    "WT": 7,
-    "DUR": 35,
-    "DR": 53
-  },
-  "Insight 1, Moxie 0, Vigor 1, Flex 2": {
-    "Movement Rate": "Walker 4/12",
-    "Ware": [
-      "Biomods",
-      "Cold Tolerance",
-      "Cortical Stack",
-      "Grip Pads",
-      "Mesh Inserts",
-      "Oxygen Reserve",
-      "Prehensile Feet"
-    ],
-    "Morph Traits": "Limberness (Level 1)"
-  },
-  "Futura": {
-    "Cost": 4,
-    "Avail": 25,
-    "WT": 7,
-    "DUR": 35,
-    "DR": 53
-  },
-  "Insight 2, Moxie 4, Vigor 1, Flex 0": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Cortical Stack",
-      "Mesh Inserts"
-    ]
-  },
-  "Hibernoid": {
-    "Cost": 4,
-    "Avail": 70,
-    "WT": 7,
-    "DUR": 35,
-    "DR": 53
-  },
-  "Insight 1, Moxie 1, Vigor 0, Flex 2": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Circadian Regulation",
-      "Clean Metabolism",
-      "Cold Tolerance",
-      "Cortical Stack",
-      "Hibernation",
-      "Mesh Inserts"
-    ]
-  },
-  "Menton": {
-    "Cost": 4,
-    "Avail": 60,
-    "WT": 7,
-    "DUR": 35,
-    "DR": 53
-  },
-  "Insight 3, Moxie 1, Vigor 1, Flex 1": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Cortical Stack",
-      "Mesh Inserts",
-      "Mnemonics"
-    ]
-  },
-  "Olympian": {
-    "Cost": 4,
-    "Avail": 60,
-    "WT": 8,
-    "DUR": 40,
-    "DR": 60
-  },
-  "Insight 1, Moxie 1, Vigor 3, Flex 1": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Cortical Stack",
-      "Mesh Inserts"
-    ]
-  },
-  "Sylph": {
-    "Cost": 4,
-    "Avail": 60,
-    "WT": 6,
-    "DUR": 30,
-    "DR": 45
-  },
-  "Insight 1, Moxie 3, Vigor 1, Flex 1": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Clean Metabolism",
-      "Cortical Stack",
-      "Enhanced Pheromones",
-      "Mesh Inserts"
-    ],
-    "Common Extras": "Many have the Striking Looks trait"
-  },
-  "Fury": {
-    "Cost": 6,
-    "Avail": 40,
-    "WT": 10,
-    "DUR": 50,
-    "DR": 75
-  },
-  "Insight 1, Moxie 1, Vigor 4, Flex 2": {
-    "Movement Rate": "Walker 4/20",
-    "Ware": [
-      "Biomods",
-      "Bioweave Armor (+2/+3)",
       "Claws",
       "Cortical Stack",
-      "Enhanced Vision",
-      "Mesh Inserts"
+      "Direction"
+      ],
+      "Morph Traits": "Exotic Morphology (Level 3)",
+     "Notes": "Beak/Claw Attack (DV 2d6)"
+   },
+   "Neo-Bonobo/Chimp": {
+     "Cost": 1,
+     "Avail": 45,
+     "WT": 7,
+     "DUR": 35,
+     "DR": 53,
+     "Movement Rate": "Walker 4/20",
+     "Ware": [
+       "Biomods",
+       "Cortical Stack",
+       "Mesh Inserts"
+     ],
+     "Morph Traits": "Exotic Morphology (Level 1)",
+     "Notes": "Enhanced Manipulation"
+    },
+   "Neo-Gorilla": {
+     "Cost": 3,
+     "Avail": 40,
+     "WT": 9,
+     "DUR": 45,
+     "DR": 68,
+     "Movement Rate": "Walker 4/12",
+     "Ware": [
+       "Biomods",
+       "Cortical Stack",
+       "Enhanced Smell"
+     ],
+     "Morph Traits": "Exotic Morphology (Level 1)"
+    },
+   "Neo-Neanderthal": {
+     "Cost": 2,
+     "Avail": 35,
+     "WT": 7,
+     "DUR": 35,
+     "DR": 53,
+     "Movement Rate": "Walker 4/20",
+     "Ware": [
+       "Biomods",
+       "Cortical Stack",
+       "Mesh Inserts"
+     ],
+     "Morph Traits": "Non-Human Biochemistry"
+    },
+  "Neo-Octopus": {
+    "Cost": 3,
+    "Avail": 35,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 45,
+    "Movement Rate": "Swim 4/20",
+    "Ware": [
+      "360-Degree Vision",
+      "Biomods",
+      "Chameleon"
     ],
-    "Morph Traits": "Enhanced Behavior (Aggressiveness, Level 2; Cooperation, Level 2)",
-    "Common Extras": "Many are equipped with neurachem, hardened skeleton, toxin filters"
+    "Morph Traits": "Exotic Morphology (Level 3)",
+    "Notes": "8 prehensile arms, Beak Attack"
   },
-  "Ghost": {
+  "Neo-Orangutan": {
+   "Cost": 3,
+    "Avail": 35,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 53,
+    "Movement Rate": "Walker 4/12",
+    "Ware": [
+      "Biomods",
+      "Cortical Stack",
+      "Enhanced Smell"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Reach (+10)"
+    }
+},
+
+ "Synthmorphs": {
+  "Case": {
+    "Cost": 0,
+    "Avail": 100,
+    "WT": 5,
+    "DUR": 25,
+    "DR": 50,
+    "Movement Rate": "Walker 4/12",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Cyberbrain"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Light Frame (Armor 6/4)"
+  },
+  "Spare": {
+    "Cost": 0,
+    "Avail": 80,
+    "WT": 3,
+    "DUR": 15,
+    "DR": 30,
+    "Movement Rate": "Walker 4/12",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack (optional)"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 3)",
+    "Notes": "Light Frame (Armor 6/4), Small size ▶227 Dragonfly"
+  },
+  "Dragonfly": {
+    "Cost": 1,
+    "Avail": 70,
+    "WT": 5,
+    "DUR": 25,
+    "DR": 50,
+    "Movement Rate": "Walker 2/8, Winged 8/32",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Cyberbrain"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 3)",
+    "Notes": "Light Frame (Armor 6/4), Small size ▶227"
+  },
+  "Swarmanoid": {
+    "Cost": 3,
+    "Avail": 60,
+    "DUR": 50,
+    "DR": 100,
+    "Movement Rate": "Hopper 4/12, Rotor 4/20",
+    "Ware": [
+      "360-Degree Vision",
+      "Access Jacks",
+      "Cortical"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 3)",
+    "Notes": "Swarm Attack (DV 1d6, ignores armor)"
+  },
+  "Synth": {
+    "Cost": 3,
+    "Avail": 80,
+    "WT": 8,
+    "DUR": 40,
+    "DR": 80,
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Cyberbrain"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Light Frame (Armor 6/4)"
+  },
+  "Savant": {
+    "Cost": 4,
+    "Avail": 50,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 70,
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Cyberbrain"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Light Frame (Armor 6/4) Galatea"
+  },
+  "Galatea": {
+    "Cost": 5,
+    "Avail": 50,
+    "WT": 8,
+    "DUR": 40,
+    "DR": 80,
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Chameleon"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Light Frame (Armor 6/4) Slitheroid"
+  },
+  "Slitheroid": {
+    "Cost": 5,
+    "Avail": 50,
+    "WT": 9,
+    "DUR": 45,
+    "DR": 90,
+    "Movement Rate": "Roller 8/32, Snake 4/12",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Cyberbrain"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 2)",
+    "Notes": "Medium Frame (Armor 8/6)"
+  },
+  "Steel": {
+    "Cost": 5,
+    "Avail": 50,
+    "WT": 8,
+    "DUR": 40,
+    "DR": 80,
+    "Movement Rate": "Walker 4/20",
+    "Ware": [
+      "Access Jacks",
+      "Cortical Stack",
+      "Cyberbrain"
+    ],
+    "Morph Traits": "Exotic Morphology (Level 1)",
+    "Notes": "Medium Frame (Armor 8/6) Arachnoid"
+  },
+  "Arachnoid": {
     "Cost": 6,
     "Avail": 40,
-    "WT": 9,
-    "DUR": 45,
-    "DR": 68
-  },
-  "Insight 2, Moxie 1, Vigor 3, Flex 2": {
-    "Movement Rate": "Walker 4/20",
+    "WT": 11,
+    "DUR": 55,
+    "DR": 110,
+    "Movement Rate": "Hopper 4/12, Thrust Vector (Gas Jet) 8/40",
     "Ware": [
-      "Biomods",
-      "Chameleon Skin",
+      "Access Jacks",
       "Cortical Stack",
-      "Grip Pads",
-      "Mesh Inserts"
+      "Cyberbrain"
     ],
-    "Morph Traits": "Enhanced Behavior (Patience, Level 2)",
-    "Common Extras": "Many are equipped with adrenal surge, skinflex"
+    "Morph Traits": "Exotic Morphology (Level 3)",
+    "Notes": "Medium Frame (Armor 8/6) Reaper"
   },
-  "Remade": {
-    "Cost": 7,
-    "Avail": 30,
-    "WT": 9,
-    "DUR": 45,
-    "DR": 68
-  },
-  "Insight 2, Moxie 2, Vigor 2, Flex 2": {
-    "Movement Rate": "Walker 4/20",
+  "Reaper": {
+    "Cost": 12,
+    "Avail": 10,
+    "WT": 12,
+    "DUR": 60,
+    "DR": 120,
+    "Movement Rate": "Hopper 4/20, Ionic 8/40",
     "Ware": [
-      "Biomods",
-      "Circadian Regulation",
-      "Clean Metabolism",
-      "Cold Tolerance",
-      "Cortical Stack",
-      "Enhanced Respiration",
-      "Enhanced Vision",
-      "Mesh Inserts"
+      "360-Degree Vision",
+      "Access Jacks",
+      "Anti-"
     ],
-    "Morph Traits": "Exotic Morphology (Level 1)"
+    "Morph Traits": "Exotic Morphology (Level 3)",
+    "Notes": "Heavy Frame (Armor 12/10)"
   }
+},
+
+   "Flexbot": {
+  "Crafter": {
+    "Cost": 2,
+    "Avail": 60,
+    "WT": 4,
+    "DUR": 20,
+    "DR": 40,
+    "Ware": [
+      "Engineer Swarm Hive",
+      "Fixer Swarm Hive"
+    ]
+  },
+  "Fighter": {
+    "Cost": 3,
+    "Avail": 60,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 60,
+    "Ware": [
+      "Pneumatics",
+      "Weapon Mount (2)"
+    ]
+  },
+  "Rogue": {
+    "Cost": 2,
+    "Avail": 60,
+    "WT": 4,
+    "DUR": 20,
+    "DR": 40,
+    "Ware": [
+      "Chameleon Skin",
+      "Radar Absorbent"
+    ]
+  },
+  "Wizard": {
+    "Cost": 2,
+    "Avail": 60,
+    "WT": 4,
+    "DUR": 20,
+    "DR": 40,
+    "Ware": [
+      "Radio Booster",
+      "Sniffer App",
+      "Tracker App"
+    ]
+  }
+},
+
+ "Infomorphs": {
+  "Ikon": {
+    "Cost": 1,
+    "Avail": 100,
+    "WT": 6,
+    "DUR": 30,
+    "DR": 60,
+    "Ware": [
+      "Copylock",
+      "Memory Lock",
+      "Mnemonics"
+    ],
+    "Morph Traits": "Digital Speed, Exotic Morphology (Level 3)"
+  },
+  "Agent": {
+    "Cost": 2,
+    "Avail": 100,
+    "WT": 8,
+    "DUR": 40,
+    "DR": 80,
+    "Ware": [
+      "Enhanced Security",
+      "E-Veil",
+      "Mnemonics"
+    ],
+    "Morph Traits": "Digital Speed, Exotic Morphology (Level 3)"
+  },
+  "Operator": {
+    "Cost": 2,
+    "Avail": 100,
+    "WT": 7,
+    "DUR": 35,
+    "DR": 70,
+    "Ware": [
+      "Drone Rig",
+      "Mnemonics",
+      "Oracles"
+    ],
+    "Morph Traits": "Digital Speed, Exotic Morphology (Level 3)"
+  },
+  "Digimorph": {
+    "Cost": 0,
+    "Avail": 80,
+    "WT": 5,
+    "DUR": 20,
+    "DR": 50,
+    "Ware": [
+      "Copylock",
+      "Memory Lock"
+    ],
+    "Morph Traits": "Digital Speed"
+  }
+ }
 }
