@@ -17,6 +17,27 @@ class LibraryManager:
 
     def load_morph_library_json(self):
         self.load_library("Morphs", "Morph_Library.json")
+    
+    def load_faction_library_json(self):
+        filename = "Faction_Library.json"
+        self.load_library("Factions", filename)
+
+    def get_random_faction(self):
+        if "Factions" not in self.libraries:
+            raise ValueError("Factions library not loaded")
+        factions = self.libraries["Factions"]
+        if not factions:
+            raise ValueError("Factions library is empty")
+        faction = random.choice(factions)
+        return faction["Name"], faction
+
+    def get_faction_by_name(self, name):
+        if "Factions" not in self.libraries:
+            raise ValueError("Factions library not loaded")
+        for faction in self.libraries["Factions"]:
+            if faction.get("Name") == name:
+                return faction
+        return None
 
     def get_random_morph(self):
         if "Morphs" not in self.libraries:

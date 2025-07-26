@@ -43,7 +43,6 @@ def save_character_to_file(character):
         if morph_data.get('Notes'):
             f.write(morph_data['Notes'].strip() + "\n\n")
 
-
         # Damage and Pools
         f.write(f"Damage Taken: {character.get('Damage Taken', 0)}\n")
         f.write(f"Wounds Taken: {character.get('Wounds Taken', 0)}\n")
@@ -92,16 +91,40 @@ def save_character_to_file(character):
             f.write(f"  {rep}: {score}\n")
 
 def generate_random_character(char_name, lm):
-    
     sex = random.choices(
         population=["Male", "Female", "Intersex"],
-        weights=[49, 49, 2],
+        weights=[45, 45, 10],
         k=1
-        )[0]
+    )[0]
+
     # Random morph and background
     morph_name, morph_category, morph_data = lm.get_random_morph()
     background_name, background_data = lm.get_random_background()
     gender, pronouns = lm.select_gender_and_pronouns()
+
+    # Pick a faction at random from loaded factions
+    faction_name, faction_data = lm.get_random_entry("Factions")
+
+    # Faction-based motivation as "+[FactionName] Interests"
+    faction_motivation = f"+{faction_name} Interests"
+
+    # Extract motivations list
+    motivations = faction_data.get("Motivations", [])
+
+    # Separate positive and negative motivations
+    positive_motivations = [m for m in motivations if m.endswith("+") and m != faction_motivation]
+    negative_motivations = [m for m in motivations if m.endswith("-")]
+
+    # Pick one positive and one negative motivation if available
+    chosen_positive = random.choice(positive_motivations) if positive_motivations else None
+    chosen_negative = random.choice(negative_motivations) if negative_motivations else None
+
+    # Compose character motivations list
+    character_motivations = [faction_motivation]
+    if chosen_positive:
+        character_motivations.append(chosen_positive)
+    if chosen_negative:
+        character_motivations.append(chosen_negative)
 
     # Random aptitudes
     aptitudes = {apt: random.randint(5, 15) for apt in ["COG", "INT", "REF", "SAV", "SOM", "WIL"]}
@@ -132,14 +155,14 @@ def generate_random_character(char_name, lm):
     return {
         "Name": char_name,
         "Aliases": [],
-        "Motivations": ["+Knowledge", "-Authority"],
+        "Motivations": character_motivations,
         "Languages": ["English"],
         "Ego Traits": ["Optimistic"],
         "Background": background_name,
         "Background Data": background_data,
         "Career": "Freelancer",
         "Interest": "Ancient Tech",
-        "Faction": "Autonomist",
+        "Faction": faction_name,
         "Gender": f"{gender} ({pronouns})",
         "Sex": sex,
         "Age": "35",
@@ -186,6 +209,7 @@ def main():
     try:
         lm.load_morph_library_json()
         lm.load_background_library_json()
+        lm.load_library("Factions", "Faction_Library.json")  # Make sure your faction JSON file is named exactly this
     except FileNotFoundError as e:
         print(e)
         return
