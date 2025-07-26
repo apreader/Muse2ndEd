@@ -1,0 +1,261 @@
+{
+  "Anarchist": {
+    "Description": "You believe power is corrupt and favor voluntary, non-hierarchical organizations based on direct democracy.",
+    "Motivations": [
+      "Anarchism+",
+      "Autonomy+",
+      "Freedom+",
+      "Equality+",
+      "Anti-authoritarian+",
+      "Power-",
+      "Hierarchy-",
+      "Wealth-",
+      "Control-",
+      "Tradition-",
+      "Stability-"
+    ]
+  },
+  "Argonaut": {
+    "Description": "You seek technoprogressive solutions to transhumanity’s injustices and inequalities.",
+    "Motivations": [
+      "Knowledge+",
+      "Secrecy-",
+      "Autonomy+",
+      "Power-",
+      "Progress+",
+      "Tradition-",
+      "Uplift+",
+      "Supremacy-",
+      "Equality+",
+      "Profit-",
+      "Security+",
+      "Chaos-"
+    ]
+  },
+  "Barsoomian": {
+    "Description": "You wish to see Mars liberated from hypercorp control.",
+    "Motivations": [
+      "Martian Liberation+",
+      "Autonomy+",
+      "Survival+",
+      "Socialism+",
+      "Hypercapitalism-",
+      "Tradition-",
+      "Wealth-"
+    ]
+  },
+  "Brinker": {
+    "Description": "You belong to a cult, commune, or other group that seeks isolation from the rest of transhumanity.",
+    "Motivations": [
+      "Escape+",
+      "Independence+",
+      "Self-Reliance+",
+      "Tradition+",
+      "Reconnect with Transhumanity-",
+      "Fame Recognition-"
+    ]
+  },
+  "Criminal": {
+    "Description": "You are associated with the underworld, either part of a large cartel, smaller gang, or as an independent operator.",
+    "Motivations": [
+      "Wealth+",
+      "Power+",
+      "Survival+",
+      "Transparency-",
+      "Philanthropy-",
+      "Tradition-"
+    ]
+  },
+  "Extropian": {
+    "Description": "You believe in unrestricted free markets and that taking proactive risks with technology is better than playing it safe.",
+    "Motivations": [
+      "Autonomy+",
+      "Wealth+",
+      "Technoprogressivism+",
+      "Open Source+",
+      "Tradition-",
+      "Socialism-",
+      "Stability-"
+    ]
+  },
+  "Hypercorp": {
+    "Description": "You support hypercapitalist expansion and competitive-economics-driven social order. You accept that certain liberties must be restricted for security and freedom.",
+    "Motivations": [
+      "Wealth+",
+      "Leadership+",
+      "Power+",
+      "Stability+",
+      "Philanthropy-",
+      "Socialism-",
+      "Technoprogressivism-"
+    ]
+  },
+  "Jovian": {
+    "Description": "You are a bioconservative concerned about out-of-control transhuman technologies.",
+    "Motivations": [
+      "Bioconservatism+",
+      "Security+",
+      "Tradition+",
+      "Transhumanism-",
+      "Technoprogressivism-",
+      "Morphological Freedom-"
+    ]
+  },
+  "Lunar/Orbital": {
+    "Description": "You support the conservative economics, Earth-tied nationalism, and traditionalism of the Lunar-Lagrange Alliance.",
+    "Motivations": [
+      "Tradition+",
+      "Stability+",
+      "Fame/Recognition+",
+      "Socialism-",
+      "Technoprogressivism-",
+      "Alien Contact-"
+    ]
+  },
+  "Mercurial": {
+    "Description": "You oppose the assimilation and oppression of AGIs and uplifts, supporting self-determination for your kind.",
+    "Motivations": [
+      "AGI Personhood+",
+      "Uplift Rights+",
+      "Morphological Freedom+",
+      "Neurodiversity+",
+      "Bioconservatism-",
+      "Tradition-",
+      "Reclaim Earth-"
+    ]
+  },
+  "Reclaimer": {
+    "Description": "You believe transhumanity should be focused on reclaiming, terraforming, and repopulating Earth.",
+    "Motivations": [
+      "Reclaim Earth+",
+      "Reconnect with Transhumanity+",
+      "Tradition+",
+      "Exploration+",
+      "Escape-",
+      "Alien Contact-"
+    ]
+  },
+  "Scum": {
+    "Description": "You push the boundaries of the experimental, fully testing what it means to be transhuman.",
+    "Motivations": [
+      "Hedonism+",
+      "Anarchism+",
+      "Thrill-Seeking+",
+      "Creative Expression+",
+      "Tradition-",
+      "Stability-",
+      "Religion-"
+    ]
+  },
+  "Socialite": {
+    "Description": "You are a part of the glitterati, defining and defined by inner-system media culture.",
+    "Motivations": [
+      "Fame/Recognition+",
+      "Leadership+",
+      "Wealth+",
+      "Acceptance+",
+      "Transparency-",
+      "Tradition-",
+      "Escape-"
+    ]
+  },
+  "Titanian": {
+    "Description": "You are a technosocialist, believing that science and technology can provide for the well-being of all.",
+    "Motivations": [
+      "Technoprogressivism+",
+      "Socialism+",
+      "Scientific Discovery+",
+      "Open Source+",
+      "Philanthropy+",
+      "Education+",
+      "Autonomy+",
+      "Stability+",
+      "Wealth-",
+      "Bioconservatism-",
+      "Power-",
+      "Tradition-",
+      "Hedonism-"
+    ]
+  },
+  "Venusian": {
+    "Description": "You adhere to the Morningstar Constellation’s vision for a more socialized, friendlier hypercapitalism.",
+    "Motivations": [
+      "Venusian Sovereignty+",
+      "Socialism+",
+      "Philanthropy+",
+      "Acceptance+",
+      "Wealth+",
+      "Technoprogressivism+",
+      "Tradition-",
+      "Bioconservatism-"
+    ]
+  },
+  "Solarian": {
+    "Description": "You are invested in the culture, prosperity, and security of the inner Solar System's core habitats and planets.",
+    "Motivations": [
+      "Stability+",
+      "Wealth+",
+      "Security+",
+      "Tradition+",
+      "Exploration-",
+      "Anarchism-",
+      "Reclaim Earth+"
+    ]
+  },
+  "Sifter": {
+    "Description": "You belong to the Sifters, skilled salvagers and scavengers who thrive in the debris fields and ruins across the Solar System.",
+    "Motivations": [
+      "Survival+",
+      "Independence+",
+      "Wealth+",
+      "Thrill-Seeking+",
+      "Order-",
+      "Authority-",
+      "Stability-"
+    ]
+  },
+  "Belter": {
+    "Description": "You are a resident of the asteroid belt, focused on mining, trade, and independence from inner system control.",
+    "Motivations": [
+      "Autonomy+",
+      "Wealth+",
+      "Exploration+",
+      "Power-",
+      "Tradition-",
+      "Bioconservatism-"
+    ]
+  },
+  "Europan": {
+    "Description": "You hail from Europa or its habitats, dedicated to advancing life and society in the harsh Jovian environs.",
+    "Motivations": [
+      "Exploration+",
+      "Survival+",
+      "Scientific Discovery+",
+      "Independence+",
+      "Capitalism-",
+      "Hypercorp-"
+    ]
+  },
+  "Ringer": {
+    "Description": "You live in the rings of Saturn, forming close-knit communities among the floating habitats and resource nodes.",
+    "Motivations": [
+      "Community+",
+      "Stability+",
+      "Trade+",
+      "Wealth+",
+      "Anarchism-",
+      "Chaos-"
+    ]
+  },
+  "Skimmer": {
+    "Description": "You are part of the scattered communities skimming the outer Solar System, adaptable and resilient in the frontier.",
+    "Motivations": [
+      "Freedom+",
+      "Adaptability+",
+      "Survival+",
+      "Exploration+",
+      "Security-",
+      "Central Authority-"
+    ]
+  }
+}
