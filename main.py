@@ -3,6 +3,61 @@ import os
 from library_manager import LibraryManager
 import random
 
+def generate_aptitudes(morph_data):
+    templates = {
+        "Actioneer":  {"COG": 10, "INT": 15, "REF": 20, "SAV": 10, "SOM": 20, "WIL": 15},
+        "Extrovert":  {"COG": 10, "INT": 20, "REF": 15, "SAV": 20, "SOM": 15, "WIL": 10},
+        "Facilitator":{"COG": 15, "INT": 15, "REF": 10, "SAV": 20, "SOM": 10, "WIL": 20},
+        "Factotum":   {"COG": 15, "INT": 15, "REF": 15, "SAV": 15, "SOM": 15, "WIL": 15},
+        "Inquirer":   {"COG": 20, "INT": 20, "REF": 10, "SAV": 15, "SOM": 10, "WIL": 15},
+        "Survivor":   {"COG": 15, "INT": 10, "REF": 15, "SAV": 10, "SOM": 20, "WIL": 20},
+        "Thrill Seeker":{"COG": 20, "INT": 10, "REF": 20, "SAV": 15, "SOM": 15, "WIL": 10},
+    }
+
+    chosen_name = random.choice(list(templates.keys()))
+    aptitudes = templates[chosen_name].copy()
+
+    # Apply morph bonus (expect {"Aptitude": "COG", "Amount": 5} or similar)
+    morph_bonus = morph_data.get("Bonus", {})
+    if morph_bonus:
+        apt = morph_bonus.get("Aptitude")
+        amount = morph_bonus.get("Amount", 0)
+        if apt in aptitudes:
+            aptitudes[apt] = min(30, aptitudes[apt] + amount)
+
+    # Clamp all aptitudes between 5 and 30 (mostly precaution)
+    for apt in aptitudes:
+        aptitudes[apt] = max(5, min(30, aptitudes[apt]))
+
+    return chosen_name, aptitudes
+
+
+def select_languages(aptitudes):
+    language_pool = [
+        "Arabic", "Cantonese", "English", "French", "Hindi",
+        "Japanese", "Mandarin", "Portuguese", "Russian", "Skandinavíska", "Spanish"
+    ]
+
+    known_languages = set()
+    known_languages.add("English")  # Default common language
+
+    # Add a second base language
+    known_languages.add(random.choice([lang for lang in language_pool if lang != "English"]))
+
+    cog_int = aptitudes.get("COG", 0) + aptitudes.get("INT", 0)
+
+    if cog_int >= 45:
+        known_languages.update(random.sample(
+            [lang for lang in language_pool if lang not in known_languages], 2
+        ))
+    elif cog_int >= 35:
+        known_languages.add(random.choice(
+            [lang for lang in language_pool if lang not in known_languages]
+        ))
+
+    return list(known_languages)
+
+
 def save_character_to_file(character):
     folder = "characters"
 
@@ -127,7 +182,9 @@ def generate_random_character(char_name, lm):
         character_motivations.append(chosen_negative)
 
     # Random aptitudes
-    aptitudes = {apt: random.randint(5, 15) for apt in ["COG", "INT", "REF", "SAV", "SOM", "WIL"]}
+    template_name, aptitudes = generate_aptitudes(morph_data)
+
+
 
     # Derived stats (simplified)
     derived = {
@@ -156,7 +213,7 @@ def generate_random_character(char_name, lm):
         "Name": char_name,
         "Aliases": [],
         "Motivations": character_motivations,
-        "Languages": ["English"],
+        "Languages": select_languages(aptitudes),
         "Ego Traits": ["Optimistic"],
         "Background": background_name,
         "Background Data": background_data,
