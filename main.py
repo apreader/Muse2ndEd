@@ -3,6 +3,30 @@ import os
 import random
 from library_manager import LibraryManager
 
+# Standard skill → aptitude mapping for base skill bonuses
+# Keys here are prefixes to match skill names starting with these strings
+SKILL_APTITUDE_MAP = {
+    "Athletics": "SOM",
+    "Deceive": "SAV",
+    "Fray": "REF",
+    "Free Fall": "SOM",
+    "Guns": "REF",
+    "Hardware": "COG",
+    "Infosec": "COG",
+    "Infiltrate": "REF",
+    "Interface": "COG",
+    "Kinesics": "SAV",
+    "Medicine": "COG",
+    "Melee": "SOM",
+    "Perceive": "INT",
+    "Persuade": "SAV",
+    "Pilot": "REF",
+    "Program": "COG",
+    "Provoke": "SAV",
+    "Psi": "WIL",
+    "Research": "INT",
+    "Survival": "INT",
+}
 
 def generate_aptitudes(morph_data):
     templates = {
@@ -54,6 +78,75 @@ def select_languages(aptitudes):
     return list(known_languages)
 
 
+def combine_skills(background_skills, career_skills, interest_skills, faction_name):
+    combined = {}
+
+    # Add all skills from background, career, interest
+    for skill_dict in (background_skills, career_skills, interest_skills):
+        for skill, val in skill_dict.items():
+            # Skip nested dicts for "Know": {"Choose One": 40} or similar
+            if isinstance(val, dict):
+                continue
+            combined[skill] = combined.get(skill, 0) + val
+
+    # Add faction knowledge: "Faction Knowledge" skill with 30 points
+    knowledge_skill = f"Faction Knowledge: {faction_name}"
+    combined[knowledge_skill] = 30
+
+    # Cap skills at 80 and roll over points over 80 to next highest skill below 80
+    sorted_skills = sorted(combined.items(), key=lambda x: x[1], reverse=True)
+    skills_dict = dict(sorted_skills)
+
+    overflow_pool = 0
+
+    for skill, val in skills_dict.items():
+        if val > 80:
+            overflow = val - 80
+            skills_dict[skill] = 80
+            overflow_pool += overflow
+
+    while overflow_pool > 0:
+        below_80 = [(s, v) for s, v in skills_dict.items() if v < 80]
+        if not below_80:
+            break
+        below_80.sort(key=lambda x: x[1], reverse=True)
+
+        for skill, val in below_80:
+            add = min(80 - val, overflow_pool)
+            skills_dict[skill] += add
+            overflow_pool -= add
+            if overflow_pool <= 0:
+                break
+
+    return skills_dict
+
+
+def add_aptitude_to_skills(skills, aptitudes):
+    final_skills = skills.copy()
+
+    for skill_name, apt in SKILL_APTITUDE_MAP.items():
+        base_val = aptitudes.get(apt, 0)
+        # Fray and Perceive have base values × 2
+        if skill_name == "Fray" or skill_name == "Perceive":
+            base_val *= 2
+
+        # Find all skills that start with this skill_name prefix and add aptitude base
+        for skill in final_skills.keys():
+            if skill.startswith(skill_name):
+                final_skills[skill] += base_val
+
+        # If no matching skill found, add the skill with base aptitude value
+        if not any(skill.startswith(skill_name) for skill in final_skills.keys()):
+            final_skills[skill_name] = base_val
+
+    # Cap all skills at 80 just in case
+    for skill in final_skills:
+        if final_skills[skill] > 80:
+            final_skills[skill] = 80
+
+    return final_skills
+
+
 def save_character_to_file(character):
     folder = "characters"
     os.makedirs(folder, exist_ok=True)
@@ -75,11 +168,12 @@ def save_character_to_file(character):
 
         f.write(f"Career: {character['Career']}\n")
         f.write(f"Interest: {character['Interest']}\n")
-        skills = character["Interest Data"].get("Skills", {})
-        skills_str = ", ".join(f"{name} {value}" for name, value in skills.items())
-        f.write(f"Interest Skills: {skills_str}\n")
-
-
+        skills = character.get("Final Skills", {})
+        if skills:
+            f.write("Final Skills:\n")
+            for skill, val in sorted(skills.items()):
+                f.write(f"  {skill}: {val}\n")
+            f.write("\n")
 
         f.write(f"Faction: {character['Faction']}\n")
         f.write(f"Gender: {character['Gender']}\n")
@@ -113,6 +207,8 @@ def save_character_to_file(character):
         if isinstance(notes, str):
             f.write(f"Notes:\n{notes.strip()}\n")
 
+        f.write(f"{character['Aptitude Package']}\n")
+
         f.write("\nAptitudes:\n")
         for apt, val in character['Aptitudes'].items():
             f.write(f"  {apt}: {val}\n")
@@ -120,11 +216,6 @@ def save_character_to_file(character):
         f.write("\nDerived Stats:\n")
         for key, val in character['Derived Stats'].items():
             f.write(f"  {key}: {val}\n")
-
-        f.write("\nActive Skills:\n")
-        for skill in character['Active Skills']:
-            extra = f" ({skill.get('Field', '')})" if "Field" in skill else ""
-            f.write(f"  {skill['Skill']}{extra:<20} APT: {skill['Aptitude']:<5} TYPE: {skill['Type']:<10} TOTAL: {skill['Total']}\n")
 
         f.write("\nReputation Scores:\n")
         for rep, score in character['Reputation'].items():
@@ -143,14 +234,15 @@ def generate_random_character(char_name, lm):
     positives = [m for m in motivations if m.endswith("+") and m != faction_motivation]
     negatives = [m for m in motivations if m.endswith("-")]
     chosen_motivations = [faction_motivation]
-    
-    if positives: chosen_motivations.append(random.choice(positives))
-    if negatives: chosen_motivations.append(random.choice(negatives))
+    package_name, aptitudes = generate_aptitudes(morph_data)
 
-    # Get career properly here:
+    if positives:
+        chosen_motivations.append(random.choice(positives))
+    if negatives:
+        chosen_motivations.append(random.choice(negatives))
+
     career_name, career_data = lm.get_random_career()
 
-    _, aptitudes = generate_aptitudes(morph_data)
     derived = {
         "Initiative": aptitudes["REF"] + aptitudes["INT"],
         "Lucidity": aptitudes["WIL"] * 2,
@@ -164,12 +256,12 @@ def generate_random_character(char_name, lm):
     moxie = {"SAV": aptitudes["SAV"], "WIL": aptitudes["WIL"], "REP": 0}
     vigor = {"REF": aptitudes["REF"], "SOM": aptitudes["SOM"]}
 
-    skills = [
-        {"Skill": "Fray", "Aptitude": "REFx2", "Type": "Combat", "Total": random.randint(30, 60)},
-        {"Skill": "Guns", "Aptitude": "REF", "Type": "Combat", "Total": random.randint(40, 70)},
-        {"Skill": "Infosec", "Aptitude": "COG", "Type": "Technical", "Total": random.randint(20, 60)},
-        {"Skill": "Persuade", "Aptitude": "SAV", "Type": "Social", "Total": random.randint(30, 60)},
-    ]
+    background_skills = background_data.get("Skills", {})
+    career_skills = career_data.get("Skills", {})
+    interest_skills = interest_data.get("Skills", {})
+
+    combined_skills = combine_skills(background_skills, career_skills, interest_skills, faction_name)
+    final_skills = add_aptitude_to_skills(combined_skills, aptitudes)
 
     return {
         "Name": char_name,
@@ -180,8 +272,8 @@ def generate_random_character(char_name, lm):
         "Background": background_name,
         "Background Data": background_data,
         "Career": career_name,
-        "Interest": interest_name,               # Set interest to the random interest name      
-        "Interest Data": interest_data,          # Optionally store full interest data for detail
+        "Interest": interest_name,
+        "Interest Data": interest_data,
         "Faction": faction_name,
         "Gender": f"{gender} ({pronouns})",
         "Sex": sex,
@@ -204,9 +296,10 @@ def generate_random_character(char_name, lm):
         "Ware": morph_data.get("Ware", []),
         "Morph Traits": morph_data.get("Traits", []),
         "Notes": morph_data.get("Notes", ""),
+        "Aptitude Package": package_name,
         "Aptitudes": aptitudes,
         "Derived Stats": derived,
-        "Active Skills": skills,
+        "Final Skills": final_skills,
         "Reputation": {
             "@-REP": 10, "C-REP": 5, "F-REP": 0,
             "G-REP": 0, "I-REP": 0, "R-REP": 0, "X-REP": 0
