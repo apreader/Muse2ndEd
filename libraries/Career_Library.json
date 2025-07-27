@@ -1,0 +1,183 @@
+{
+  "Academic": {
+    "Description": "You devote your efforts to the pursuit of knowledge.",
+    "Skills": {
+      "Interface": 30,
+      "Research": 60
+    },
+    "Know Choices": [
+      {"Points": 60},
+      {"Points": 40},
+      {"Points": 30}
+    ],
+    "Common Fields": [
+      "Administration",
+      "Instruction",
+      "Lab Ops"
+    ]
+  },
+  "Covert Operative": {
+    "Description": "You are a spy, infiltrator, thief, or undercover agent, skilled at accessing places you don’t belong.",
+    "Skills": {
+      "Deceive": 40,
+      "Infiltrate": 60,
+      "Infosec": 30
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Security Ops", "Smuggling", "Spycraft"]},
+      {"Points": 30, "Common Fields": ["Black Markets", "Current Events", "Politics"]}
+    ]
+  },
+  "Enforcer": {
+    "Description": "You’re a thug, whether you’re wielding force for a hypercorp, cartel, habitat overseer, or autonomist militia.",
+    "Skills": {
+      "Fray": 30,
+      "Guns": 20,
+      "Melee": 50,
+      "Provoke": 30
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Bodyguarding", "Racketeering", "Security Ops"]},
+      {"Points": 30, "Common Fields": ["Cartel Politics", "Gambling", "Night Clubs"]}
+    ]
+  },
+  "Explorer": {
+    "Description": "You’ve walked on alien worlds and seen things with your own eyes that others wouldn’t believe.",
+    "Skills": {
+      "Athletics": 30,
+      "Medicine: Paramedic": 20,
+      "Survival": 60
+    },
+    "Pilot Choices": {
+      "Points": 20,
+      "Common Fields": ["Air", "Ground", "Nautical", "Space"]
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["First-Contact Ops", "Gatecrashing", "Surveying"]},
+      {"Points": 30, "Common Fields": ["Astrobiology", "Geology", "Xenoarcheology"]}
+    ]
+  },
+  "Face": {
+    "Description": "You excel at convincing others, even when it’s not in their best interest.",
+    "Skills": {
+      "Deceive": 40,
+      "Kinesics": 30,
+      "Persuade": 60
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Fencing", "Police Ops", "Smuggling"]},
+      {"Points": 30, "Common Fields": ["Black Markets", "Drugs", "Underground XP"]}
+    ]
+  },
+  "Genehacker": {
+    "Description": "DNA is your artistic medium, proteins your weapon of choice.",
+    "Skills": {
+      "Medicine: Biotech": 60,
+      "Medicine: Pharmacology": 40,
+      "Program": 30
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Biology", "Genetics", "Physiology"]},
+      {"Points": 30, "Common Fields": ["Lab Ops", "Medical Services", "Morph Design"]}
+    ]
+  },
+  "Hacker": {
+    "Description": "Software heeds your beck and call, whether you seek to exploit systems or protect them.",
+    "Skills": {
+      "Infosec": 60,
+      "Interface": 40,
+      "Program": 30
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Computer Science", "Cryptography", "Mathematics"]},
+      {"Points": 30, "Common Fields": ["Data Processing", "Network Engineering", "System Administration"]}
+    ]
+  },
+  "Investigator": {
+    "Description": "Few details escape your scrutiny, whether you are a journalist, private investigator, detective, or insurance claims investigator.",
+    "Skills": {
+      "Kinesics": 30,
+      "Perceive": 40,
+      "Research": 60
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Ego Hunting", "Investigation", "Journalism"]},
+      {"Points": 30, "Common Fields": ["Black Markets", "Current Events", "Cartels"]}
+    ]
+  },
+  "Medic": {
+    "Description": "You have a background in medicine and experience as a physician, surgeon, paramedic, body bank tech, or other type of medical specialist.",
+    "Skills": {
+      "Kinesics": 30,
+      "Medicine: Paramedic": 60,
+      "Medicine: Biotech": 40
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Biology", "Genetics", "Psychology"]},
+      {"Points": 30, "Common Fields": ["Body Bank Ops", "Emergency Services", "Surgical Ops"]}
+    ]
+  },
+  "Mindhacker": {
+    "Description": "You meld and shape minds and memories. You might be a therapist, memeticist, or psychosurgeon pushing the bounds of cognition.",
+    "Skills": {
+      "Infosec": 30,
+      "Medicine: Pharmacology": 40,
+      "Medicine: Psychosurgery": 60
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Cognitive Science", "Memetics", "Psychology"]},
+      {"Points": 30, "Common Fields": ["Body Bank Ops", "Medical Services", "Social Services"]}
+    ]
+  },
+  "Scavenger": {
+    "Description": "You scrounge through wrecks and ruins of the Fall, seeking value in the destruction.",
+    "Skills": {
+      "Hardware": 60,
+      "Hardware: Demolitions": 40
+    },
+    "Pilot Choices": {
+      "Points": 30,
+      "Common Fields": ["Air", "Ground", "Nautical", "Space"]
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Flight Crew Ops", "Scavenging", "Smuggling"]},
+      {"Points": 30, "Common Fields": ["Black Markets", "Spacecraft", "TITAN Machines"]}
+    ]
+  },
+  "Scientist": {
+    "Description": "You seek to understand how the universe works — or at least certain elements of it.",
+    "Skills": {
+      "Hardware": 40,
+      "Program": 30,
+      "Research": 60
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Astrobiology", "Memetics", "Physics"]},
+      {"Points": 30, "Common Fields": ["Field Science", "Investigation", "Lab Ops"]}
+    ]
+  },
+  "Soldier": {
+    "Description": "You serve a habitat polity, hypercorp, or mercenary outfit.",
+    "Skills": {
+      "Fray": 40,
+      "Guns": 60,
+      "Melee": 30
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Bodyguarding", "Military Ops", "Security Ops"]},
+      {"Points": 30, "Common Fields": ["Conflict Zones", "Gambling", "Mercenary Groups"]}
+    ]
+  },
+  "Techie": {
+    "Description": "You make and fix things. You might be a roboticist, habitat tech, or artifex nano-engineer.",
+    "Skills": {
+      "Hardware": 60,
+      "Infosec": 40,
+      "Program": 30
+    },
+    "Know Choices": [
+      {"Points": 60, "Common Fields": ["Construction", "Habitat Ops", "Mining", "Nanofacturing"]},
+      {"Points": 30, "Common Fields": ["Computer Science", "Engineering", "Nanotechnology"]}
+    ]
+  }
+}
