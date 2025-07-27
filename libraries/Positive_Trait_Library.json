@@ -1,0 +1,332 @@
+[
+  {
+    "name": "Acumen",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2, 3],
+      "MP": [1, 2, 3]
+    },
+    "description": "You have a keen intellect. Add +5 per level to your COG Checks."
+  },
+  {
+    "name": "Adaptability",
+    "type": ["ego"],
+    "cost": {
+      "CP": [2, 4]
+    },
+    "description": "You adjust to new morphs quickly. Apply a +10 modifier per level for Integration and Resleeving Stress Tests."
+  },
+  {
+    "name": "Allies",
+    "type": ["ego"],
+    "cost": {
+      "CP": 4
+    },
+    "description": "You are either part of or have a relationship with a group that has your back. Once per session, you may rely on this group for support (as a moderate rep favor). This relationship is mutual and may involve obligations. GMs should use this for plot hooks."
+  },
+  {
+    "name": "Animal Empathy",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "You have an instinctive feel for handling and working with non-sapient animals. Apply a +10 modifier to Exotic Skill: Animal Handling and similar tests."
+  },
+  {
+    "name": "Common Sense",
+    "type": ["ego"],
+    "cost": {
+      "CP": 2
+    },
+    "description": "Once per session, you may ask the GM what course of action your character would think best. Alternatively, the GM may use this trait to warn you of a disastrous choice."
+  },
+  {
+    "name": "Composure",
+    "type": ["ego"],
+    "cost": {
+      "CP": 2
+    },
+    "description": "+5 Lucidity, +1 Trauma Threshold, +10 Insanity Rating."
+  },
+  {
+    "name": "Contact",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "+10 to rep tests with one specific network when using the contact. May be taken multiple times with different contacts."
+  },
+  {
+    "name": "Danger Sense",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "+10 to Perceive Tests to avoid surprise."
+  },
+  {
+    "name": "Digital Speed",
+    "type": ["morph"],
+    "cost": {
+      "MP": 1
+    },
+    "description": "Infomorphs only. Reduces mesh task action timeframes by 25%."
+  },
+  {
+    "name": "Direction Sense",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "Always know directional orientation. +10 to navigation and related spatial orientation tasks."
+  },
+  {
+    "name": "Dominant Strain",
+    "type": ["ego"],
+    "cost": {
+      "CP": 2
+    },
+    "description": "Asyncs only. +10 to resist exsurgent virus infection (+20 at Infection Rating 33+, +30 at 66+)."
+  },
+  {
+    "name": "Drone Affinity",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "No Integration Tests required when jamming drones."
+  },
+  {
+    "name": "Empathy",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2, 3],
+      "MP": [1, 2, 3]
+    },
+    "description": "+5 per level to SAV Checks."
+  },
+  {
+    "name": "Expert Training",
+    "type": ["ego"],
+    "cost": {
+      "CP": 2
+    },
+    "description": "Allows one skill to be raised over 80, up to 90 max, during character creation."
+  },
+  {
+    "name": "Fitness",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2, 3],
+      "MP": [1, 2, 3]
+    },
+    "description": "+5 per level to SOM Checks."
+  },
+  {
+    "name": "Good Instincts",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2, 3],
+      "MP": [1, 2, 3]
+    },
+    "description": "+5 per level to INT Checks."
+  },
+  {
+    "name": "Hardening",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "Immune to stress from one category (alienation, helplessness, unknown, or violence). –10 to WIL and Persuade Tests. May be taken multiple times."
+  },
+  {
+    "name": "Hyper Linguistics",
+    "type": ["ego"],
+    "cost": {
+      "CP": [1, 2, 3]
+    },
+    "description": "+10 per level to INT Checks to understand unfamiliar spoken languages (not written or non-verbal)."
+  },
+  {
+    "name": "Improved Immune System",
+    "type": ["morph"],
+    "cost": {
+      "MP": [1, 2]
+    },
+    "description": "Biomorphs only. +10 per level to resist chemicals, diseases, drugs, and toxins."
+  },
+  {
+    "name": "Innocuous Looks",
+    "type": ["morph"],
+    "cost": {
+      "MP": 1
+    },
+    "description": "−10 to be spotted, identified, or remembered by appearance. Does not affect psi or mesh searches. Not available for morphs with Availability < 50."
+  },
+  {
+    "name": "Lethal",
+    "type": ["morph"],
+    "cost": {
+      "MP": 1
+    },
+    "description": "+1d6 DV to melee damage rolls."
+  },
+  {
+    "name": "Limberness",
+    "type": ["morph"],
+    "cost": {
+      "MP": [1, 2]
+    },
+    "description": "+10 per level to escape bonds, contort, or fit into small spaces."
+  },
+  {
+    "name": "Morph Familiarity",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "No Integration Tests when sleeving into one chosen morph type. May be taken multiple times for different types."
+  },
+  {
+    "name": "Natural Immunity",
+    "type": ["morph"],
+    "cost": {
+      "MP": 1
+    },
+    "description": "Biomorphs only. Immune to one specific drug, chemical, or toxin. Does not apply to nanodrugs or nanotoxins."
+  },
+  {
+    "name": "Pain Tolerance",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [2, 4],
+      "MP": [2, 4]
+    },
+    "description": "Ignore the −10 modifier for 1 wound per level, up to a maximum of 3 wounds."
+  },
+  {
+    "name": "Patron",
+    "type": ["ego"],
+    "cost": {
+      "CP": 6
+    },
+    "description": "You have a powerful ally who offers one free major favor per story arc. The relationship should be defined with the GM and can include obligations."
+  },
+
+  {
+    "name": "Psi",
+    "type": ["ego"],
+    "cost": {
+      "CP": [2, 4]
+    },
+    "description": "You are infected with the Watts-MacLeod strain of the exsurgent virus, which allows use of the Psi skill and sleights. Level 1 grants psi-chi sleights; Level 2 grants both psi-chi and psi-gamma sleights. You must also take a required negative trait based on your sub-strain at no CP bonus. This required trait does not count against trait CP limits."
+  },
+  {
+    "name": "Psi Camouflage",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2],
+      "MP": [1, 2]
+    },
+    "description": "Harder to detect with psi. Apply −10 modifier per level to any attempt to detect you via psi sleights. Morph version only available to biological brains."
+  },
+  {
+    "name": "Psi Defense",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2],
+      "MP": [1, 2]
+    },
+    "description": "Apply +10 modifier per level to defense rolls against psi sleights. Morph version only available to biological brains."
+  },
+  {
+    "name": "Quickness",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2, 3],
+      "MP": [1, 2, 3]
+    },
+    "description": "Apply +5 per level to REF Checks."
+  },
+  {
+    "name": "Rapid Healing",
+    "type": ["morph"],
+    "cost": {
+      "MP": 1
+    },
+    "description": "Biomorphs only. Morph heals naturally at twice the normal rate (not including healing aids)."
+  },
+  {
+    "name": "Resolve",
+    "type": ["ego", "morph"],
+    "cost": {
+      "CP": [1, 2, 3],
+      "MP": [1, 2, 3]
+    },
+    "description": "+5 per level to WIL Checks. Represents mental resolve and determination."
+  },
+  {
+    "name": "Resources",
+    "type": ["ego"],
+    "cost": {
+      "CP": [2, 4, 6, 8]
+    },
+    "description": "You possess wealth/assets. Grants bonus Morph/Gear Points and allows purchases during missions. At higher levels, grants access to rarer items and narrative control benefits. Also grants +10 modifier per level to relevant social/economic rolls."
+  },
+  {
+    "name": "Situational Awareness",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "You do not suffer the Distracted modifier on Perceive Tests even while engaged in other tasks or during combat quick Perceive Tests."
+  },
+  {
+    "name": "Skill Artifact",
+    "type": ["morph"],
+    "cost": {
+      "MP": [1, 2]
+    },
+    "description": "Morph contains latent skill memory. +10 per level to one GM-chosen skill (usually based on morph’s highest pool). May be taken multiple times for different skills."
+  },
+  {
+    "name": "Spatial Visualization",
+    "type": ["ego"],
+    "cost": {
+      "CP": 2
+    },
+    "description": "+10 to Know or Technical skill tests involving 3D visualization, shapes, volume, or spatial reasoning."
+  },
+  {
+    "name": "Stalwart",
+    "type": ["ego"],
+    "cost": {
+      "CP": [1, 2, 3]
+    },
+    "description": "Apply +10 per level to WIL Checks and other fear-resistance rolls, such as Provoke Tests against intimidation or certain psi/stress effects."
+  },
+  {
+    "name": "Striking Looks",
+    "type": ["morph"],
+    "cost": {
+      "MP": [1, 2]
+    },
+    "description": "+10 per level to Persuade and Provoke Tests where appearance is influential."
+  },
+  {
+    "name": "Superior Numeracy",
+    "type": ["ego"],
+    "cost": {
+      "CP": [2, 4]
+    },
+    "description": "+10 per level to Know and Technical Tests involving mathematics, calculations, or quantitative reasoning."
+  },
+  {
+    "name": "Zoosemiotics",
+    "type": ["ego"],
+    "cost": {
+      "CP": 1
+    },
+    "description": "You suffer no penalty when using psi sleights on non-sapient or semi-sapient animals."
+  }
+]

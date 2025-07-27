@@ -4,9 +4,13 @@
     "Skills": {
       "Free Fall": 40,
       "Interface": 30,
-      "Survival": 30
+      "Survival": 30,
+      "Hardware: (Choose One)": 40,
+      "Pilot: (Choose One)": 30,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Industrial Pilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space 60 Common Fields: Administration, Flight Crew Ops, Hab Ops 30 Common Fields: Botany, Chemistry, Engineering, Physics"
+    "Notes": "Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Industrial\nPilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space\nKnow (Choose One) 60 Common Fields: Administration, Flight Crew Ops, Hab Ops\nKnow (Choose One) 30 Common Fields: Botany, Chemistry, Engineering, Physics"
   },
   "Enclaver": {
     "Description": "On Earth, you lived a life of precarious but protected stability in a defended enclave.",
@@ -16,9 +20,11 @@
       "Kinesics": 30,
       "Persuade": 20,
       "Pilot: Ground": 20,
-      "Program": 20
+      "Program": 20,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Celebrity Gossip, Pop Culture, Sports 30 Common Fields: Economics, Education, Psychology"
+    "Notes": "Know (Choose One) 60 Common Fields: Celebrity Gossip, Pop Culture, Sports\nKnow (Choose One) 30 Common Fields: Economics, Education, Psychology"
   },
   "Freelancer": {
     "Description": "You were a cog in the wheels of hypercapitalism, taking whatever gigs came your way.",
@@ -27,9 +33,11 @@
       "Kinesics": 20,
       "Persuade": 40,
       "Program": 30,
-      "Research": 40
+      "Research": 40,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Accounting, Data Processing, Freelancing 30 Common Fields: Craft Beers, Martian Techno, Sports"
+    "Notes": "Know (Choose One) 60 Common Fields: Accounting, Data Processing, Freelancing\nKnow (Choose One) 30 Common Fields: Craft Beers, Martian Techno, Sports"
   },
   "Hyperelite": {
     "Description": "You lived in the top percent, with abundant wealth and resources.",
@@ -38,9 +46,11 @@
       "Deceive": 30,
       "Kinesics": 50,
       "Persuade": 30,
-      "Provoke": 30
+      "Provoke": 30,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Fine Art, Hypercorp Politics, Stock Market 30 Common Fields: Economics, Law, Political Science"
+    "Notes": "Know (Choose One) 60 Common Fields: Fine Art, Hypercorp Politics, Stock Market\nKnow (Choose One)30 Common Fields: Economics, Law, Political Science"
   },
   "Indenture": {
     "Description": "With nothing to lose, you sold yourself into a work contract for the off-world hypercorps.",
@@ -48,9 +58,12 @@
       "Fray or Melee": 20,
       "Free Fall": 40,
       "Interface": 40,
-      "Perceive": 20
+      "Perceive": 20,
+      "Hardware: (Choose One)": 50,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "Hardware: (Choose One) 50 Common Fields: Groundcraft, Industrial, Robotics 60 Common Fields: Asteroid Mining, Habitat Ops, Terraforming 30 Common Fields: Black Markets, Gambling, XP Dealers"
+    "Notes": "Hardware: (Choose One) 50 Common Fields: Groundcraft, Industrial, Robotics\nKnow (Choose One) 60 Common Fields: Asteroid Mining, Habitat Ops, Terraforming\nKnow (Choose One) 30 Common Fields: Black Markets, Gambling, XP Dealers"
   },
   "Infolife": {
     "Description": "You are an AGI, a digital consciousness born of software code.",
@@ -58,9 +71,11 @@
       "Infosec": 50,
       "Interface": 50,
       "Program": 50,
-      "Research": 20
+      "Research": 20,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Accounting, Administration, System Administration 30 Common Fields: Computer Science, Cryptography, Psychometrics"
+    "Notes": "Know (Choose One) 60 Common Fields: Accounting, Administration, System Administration\nKnow (Choose One) 30 Common Fields: Computer Science, Cryptography, Psychometrics"
   },
   "Isolate": {
     "Description": "You eked out a self-exiled existence in a remote habitat or ship on the fringes of occupied space.",
@@ -68,9 +83,13 @@
       "Free Fall": 40,
       "Guns": 20,
       "Medicine: Paramedic": 20,
-      "Survival": 20
+      "Survival": 20,
+      "Hardware: (Choose One)": 40,
+      "Pilot: (Choose One)": 30,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Robotics Pilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space 60 Common Fields: Flight Crew Ops, Gas Mining, Habitat Ops 30 Common Fields: Bioconservativism, Conspiracies, Religion"
+    "Notes": "Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Robotics\nPilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space\nKnow (Choose One) 60 Common Fields: Flight Crew Ops, Gas Mining, Habitat Ops\nKnow (Choose One) 30 Common Fields: Bioconservativism, Conspiracies, Religion"
   },
   "Lost": {
     "Description": "You are a legacy of the doomed Lost Generation, undergoing an accelerated-growth childhood that left most others sociopathic or insane. You must purchase the Psi trait in Step 10.",
@@ -79,9 +98,11 @@
       "Infiltrate": 20,
       "Kinesics": 40,
       "Perceive": 20,
-      "Psi": 50
+      "Psi": 50,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Biology, Psychology, Sociology 30 Common Fields: Privacy, Serial Killers, Mind Hacks"
+    "Notes": "Know (Choose One) 60 Common Fields: Biology, Psychology, Sociology\nKnow (Choose One) 30 Common Fields: Privacy, Serial Killers, Mind Hacks"
   },
   "Underclass": {
     "Description": "You are a veteran of the slums, favelas, ghettoes, and flooded cities of Earth. You used whatever means necessary to get by.",
@@ -91,9 +112,11 @@
       "Guns or Melee": 40,
       "Kinesics": 40,
       "Perceive": 20,
-      "Persuade": 20
+      "Persuade": 20,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Black Markets, Drugs, Triads 30 Common Fields: Con Artistry, Police Ops, Smuggling"
+    "Notes": "Know (Choose One)  60 Common Fields: Black Markets, Drugs, Triads\nKnow (Choose One) 30 Common Fields: Con Artistry, Police Ops, Smuggling"
   },
   "Uplift": {
     "Description": "You are an uplift: the latest generation of bonobo, cetacean, chimpanzee, corvid, gorilla, neanderthal, octopus, orangutan, or parrot raised to human levels of intelligence.",
@@ -103,9 +126,11 @@
       "Kinesics": 30,
       "Perceive": 40,
       "Provoke": 20,
-      "Survival": 20
+      "Survival": 20,
+      "Know: (Choose One)": 60,
+      "Know: (Choose One)": 30
     },
-    "Notes": "60 Common Fields: Uplift Culture, Uplift Rights 30 Common Fields: Genetics, Sociology, Zoology"
+    "Notes": "Know (Choose One) 60 Common Fields: Uplift Culture, Uplift Rights\nKnow (Choose One) 30 Common Fields: Genetics, Sociology, Zoology"
   },
   "RandomBackgroundRoll": {
     "1": "Colonist",

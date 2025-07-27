@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import re
 
 class LibraryManager:
     def __init__(self, library_folder='libraries'):
@@ -13,7 +14,6 @@ class LibraryManager:
             "Genders": [],
             "Interests": {}
         }
-
 
     def load_all_libraries(self):
         self.load_library("Morphs", "Morph_Library.json")
@@ -28,7 +28,43 @@ class LibraryManager:
         if not os.path.exists(filepath):
             raise FileNotFoundError(f"{filename} not found in {self.library_folder}")
         with open(filepath, 'r', encoding='utf-8') as f:
-            self.libraries[key_name] = json.load(f)
+            data = json.load(f)
+
+        # Parse choice skills from Notes field for Backgrounds
+        if key_name == "Backgrounds":
+            for bg_name, bg_data in data.items():
+                notes = bg_data.get("Notes", "")
+                choice_skills = self._parse_choice_skills_from_notes(notes)
+                bg_data["ChoiceSkills"] = choice_skills
+
+        self.libraries[key_name] = data
+
+    def _parse_choice_skills_from_notes(self, notes_text):
+        """
+        Parses the Notes string for skill choice categories with '(Choose One)'
+        and returns a list of dicts describing each choice category with skill name,
+        rating, and common fields.
+        """
+        choice_skills = []
+
+        # Normalize whitespace and line breaks
+        norm_notes = notes_text.replace("\n", " ").replace("\r", " ")
+
+        # Regex to find patterns like: SkillCategory: (Choose One) Rating Common Fields: field1, field2, ...
+        pattern = re.compile(r"(\w+): \(Choose One\)\s*(\d+)\s*Common Fields:\s*([^\.]+)")
+        
+        for match in pattern.finditer(norm_notes):
+            skill_cat = match.group(1).strip()
+            rating = int(match.group(2).strip())
+            fields_str = match.group(3).strip()
+            common_fields = [field.strip() for field in fields_str.split(",")]
+            choice_skills.append({
+                "SkillCategory": skill_cat,
+                "Rating": rating,
+                "CommonFields": common_fields
+            })
+
+        return choice_skills
 
     def load_gender_library(self):
         gender_file = os.path.join(self.library_folder, "Gender_Library.json")
@@ -45,7 +81,7 @@ class LibraryManager:
             raise ValueError(f"Library '{library_name}' is empty.")
         key = random.choice(list(lib.keys()))
         return key, lib[key]
-    
+
     def get_random_interest(self):
         interests = self.libraries.get("Interests", {})
         if not interests:
@@ -55,7 +91,6 @@ class LibraryManager:
         if not random_interest_entry:
             raise ValueError("Random Interest entry missing from Interests library")
 
-        # Roll 1d10 to decide group
         roll = random.randint(1, 10)
         if roll <= 5:
             group_name = "Group 1"
@@ -68,13 +103,10 @@ class LibraryManager:
 
         group = groups[group_name]
 
-        # For Group 2, handle "9-10" re-roll case
         while True:
-            # Choose a random roll key from group keys
             keys = [k for k in group.keys() if k != "9-10"]
             chosen_roll = random.choice(keys)
             if chosen_roll == "9-10":
-                # re-roll
                 continue
             interest_name = group[chosen_roll]
             if interest_name not in interests:
@@ -153,3 +185,47 @@ class LibraryManager:
             gender = gender_entry["name"]
             pronouns = random.choice(gender_entry["pronouns"])
             return gender, pronouns
+
+    # Optional: helper to get parsed choice skills for a background by name
+    def get_choice_skills_for_background(self, background_name):
+        backgrounds = self.libraries.get("Backgrounds", {})
+        bg = backgrounds.get(background_name)
+        if not bg:
+            raise ValueError(f"Background '{background_name}' not found")
+        return bg.get("ChoiceSkills", [])
+
+    # New helper: given a skills dict with '(Choose One)' entries, select and replace them using stored choice skills
+    def select_skills_from_choice(self, skills_dict, choice_skills_list):
+        """
+        skills_dict: dict of skill names to rating, may contain keys like 'Know: (Choose One)'
+        choice_skills_list: list of dicts with keys SkillCategory, Rating, CommonFields extracted from Notes
+        Returns a new dict with '(Choose One)' replaced by a randomly selected skill name from common fields.
+        """
+        # Build a lookup by SkillCategory for quick access
+        choice_lookup = {cs["SkillCategory"]: cs for cs in choice_skills_list}
+        new_skills = {}
+
+        for skill, rating in skills_dict.items():
+            if "(Choose One)" in skill:
+                # Extract category (e.g. 'Know' from 'Know: (Choose One)')
+                cat_match = re.match(r"(\w+)", skill)
+                if not cat_match:
+                    new_skills[skill] = rating
+                    continue
+                category = cat_match.group(1)
+                choice_entry = choice_lookup.get(category)
+                if choice_entry:
+                    chosen_field = random.choice(choice_entry["CommonFields"])
+                    # Use special formatting: 'Knowledge' instead of 'Know'
+                    if category.lower() == "know":
+                        new_key = f"Knowledge {chosen_field}"
+                    else:
+                        new_key = f"{category} {chosen_field}"
+                    new_skills[new_key] = rating
+                else:
+                    # No matching choice info, keep original
+                    new_skills[skill] = rating
+            else:
+                new_skills[skill] = rating
+
+        return new_skills

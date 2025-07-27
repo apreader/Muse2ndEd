@@ -1,0 +1,269 @@
+
+[
+{
+    "name": "Addiction",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 4],
+    "description": "You have a pathological reliance on a drug, stimulus, or activity. Comes in mental (ego) and physical (morph) forms. Indulge regularly or suffer withdrawal penalties. Higher levels require more frequent indulgence and inflict larger penalties. Withdrawal may cause −10 per level and other effects. Can be overcome with WIL Checks and abstention. Persists across resleeving/forks (mental) or stays with morph (physical)."
+  },
+
+  {
+    "name": "Age",
+    "type": ["morph"],
+    "cp_mp_bonus": 4,
+    "description": "Only for flats and splicers. The morph is old and unrejuvenated. Apply −10 to all physical actions."
+  },
+  {
+    "name": "Bad Luck",
+    "type": ["ego"],
+    "cp_mp_bonus": 6,
+    "description": "You may not use pools to flip-flop dice rolls. The universe seems to punish you frequently."
+  },
+  {
+    "name": "Black Mark",
+    "type": ["ego"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "You have a −10 modifier per level to rep net interactions and social skill tests with one faction. May be taken multiple times for different factions."
+  },
+  {
+    "name": "Blocklisted Rep",
+    "type": ["ego"],
+    "cp_mp_bonus": [1, 4],
+    "description": "You are blocklisted in a reputation network. Level 1: rep net outside your faction. Level 2: your faction’s main rep net. Cannot have rep higher than 0. Can be taken multiple times for different networks."
+  },
+  {
+    "name": "Combat Paralysis",
+    "type": ["ego"],
+    "cp_mp_bonus": 4,
+    "description": "You must pass a WIL Check each action turn during combat or emergencies to act. If you fail, you lose your action."
+  },
+  {
+    "name": "Dominant Limb",
+    "type": ["morph"],
+    "cp_mp_bonus": 1,
+    "description": "The morph is one-handed or similarly dominant. −20 modifier to actions using non-dominant limbs."
+  },
+  {
+    "name": "Edited Memories",
+    "type": ["ego"],
+    "cp_mp_bonus": 1,
+    "description": "Significant memories have been erased or lost. Evidence or NPCs with the truth may exist. GMs may use this as narrative hooks."
+  },
+  {
+    "name": "Enemy",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "You have a personal enemy who may interfere with you. Work with GM to define details."
+  },
+  {
+    "name": "Enhanced Behavior",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 4],
+    "description": "You are conditioned to exhibit or crave a specific behavior or emotion. −10 per level if restrained. Higher levels require WIL Checks or cause SV 1d6 if blocked. Can be taken multiple times."
+  },
+  {
+    "name": "Exotic Morphology",
+    "type": ["morph"],
+    "cp_mp_bonus": [2, 4, 6],
+    "description": "The morph’s structure is highly non-humanoid. −10 per level to Integration Tests. Required for morphs where this is standard. Not applicable to original morph of uplifts/infolifes."
+  },
+  {
+    "name": "Feebleness",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "Apply −5 per level to SOM Checks."
+  },
+  {
+    "name": "Frailty",
+    "type": ["morph"],
+    "cp_mp_bonus": [2, 4],
+    "description": "Morph is less resilient. Durability reduced by 5, affecting Wound Threshold and Death Rating."
+  },
+  {
+    "name": "Genetic Defect",
+    "type": ["morph"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Only for flats. Has a genetic disorder. Level 1: minor/moderate. Level 2: significant impairment. Apply impairment modifiers as appropriate."
+  },
+  {
+    "name": "Hypersensitivity",
+    "type": ["morph"],
+    "cp_mp_bonus": 3,
+    "description": "Only for biomorphs. Morph rejects all non-standard implants. No bioware, cyberware, or nanoware may be added."
+  },
+  {
+    "name": "Identity Crisis",
+    "type": ["ego"],
+    "cp_mp_bonus": 1,
+    "description": "You are stuck identifying with your original morph and have trouble adapting to new forms. May suffer −10 to applicable actions. Roleplay this trait accordingly."
+  },
+  {
+    "name": "Indifference",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "You lack social awareness. −5 per level to SAV Checks."
+  },
+  {
+    "name": "Infection Risk",
+    "type": ["morph"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Only for biomorphs. −10 per level to resist biological exsurgent infection."
+  },
+  {
+    "name": "Inherent Flaws",
+    "type": ["morph"],
+    "cp_mp_bonus": 2,
+    "description": "Only for synthmorphs. On a critical failure, 10% chance to also acquire a wound."
+  },
+  {
+    "name": "Instability",
+    "type": ["ego"],
+    "cp_mp_bonus": [2, 4],
+    "description": "Reduce Lucidity by 5 per level. Also reduces Trauma Threshold by 1 and Insanity Rating by 10 per level."
+  },
+  {
+    "name": "Low Pain Tolerance",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": 4,
+    "description": "Additional −10 per wound. Also −30 to SOM Checks and other tests involving pain resistance. Morph version only for biomorphs."
+  },
+  {
+    "name": "Memory Artifact",
+    "type": ["morph"],
+    "cp_mp_bonus": 1,
+    "description": "Past ego’s memory resurfaces once per session. Make a COG Check or suffer SV 1d6. GM may use as plot device."
+  },
+  {
+    "name": "Mental Disorder",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "You have a disorder from trauma. Choose from disorders listed on page 224. May be taken multiple times."
+  },
+  {
+    "name": "Morphing Disorder",
+    "type": ["ego"],
+    "cp_mp_bonus": [2, 4, 6],
+    "description": "−10 per level to Integration and Resleeving Stress Tests."
+  },
+  {
+    "name": "Neural Damage",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "Permanent neurological issue affecting your ego. Examples: Amusica, Color Blindness, Synaesthesia, etc. Choose effects with GM. Apply −10 modifiers as appropriate. May be taken multiple times."
+  },
+  {
+    "name": "No Backup Insurance",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "No backups exist. Reinstantiation depends on circumstance. May result in permadeath or lost MP."
+  },
+  {
+    "name": "Non-Human Biochemistry",
+    "type": ["morph"],
+    "cp_mp_bonus": [2, 4],
+    "description": "Only for biomorphs. Level 1: non-human morph. Level 2: non-mammalian. −10 per level to Medicine Tests. Incompatible with some treatments."
+  },
+  {
+    "name": "Obliviousness",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "−10 to Perceive Tests vs surprise, −30 distracted modifier."
+  },
+  {
+    "name": "Obtuseness",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "Apply −5 per level to COG Checks."
+  },
+  {
+    "name": "Planned Obsolescence",
+    "type": ["morph"],
+    "cp_mp_bonus": 1,
+    "description": "Morph needs monthly service. Skipping causes pool reduction and then wounds. Four wounds = incapacitation."
+  },
+  {
+    "name": "Poor Coordination",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "−5 per level to REF Checks."
+  },
+  {
+    "name": "Poor Instincts",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "−5 per level to INT Checks."
+  },
+  {
+    "name": "Proprietary Tech",
+    "type": ["morph"],
+    "cp_mp_bonus": 2,
+    "description": "Only for synthmorphs. Hardware: Robotics −20. Fixer nanos don’t work. Requires proprietary support."
+  },
+
+    {
+    "name": "Psi Vulnerability",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Psi sleights are more effective against you. Apply −10 per level when resisting psi. Morph version only applies to morphs with biological brains."
+  },
+  {
+    "name": "Real World Naiveté",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "You lack real-world experience or common sense. Once per session, the GM may intentionally mislead your interpretation of events or interactions. Roleplay accordingly."
+  },
+  {
+    "name": "Restricted Behavior",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 4],
+    "description": "You are conditioned to avoid a specific behavior or emotion. −10 per level when exposed. Level 1: discouraged. Level 2: blocked, requires WIL Check to override. Level 3: incapable, causes SV 1d6 if forced. Can be taken multiple times."
+  },
+  {
+    "name": "Sensitive",
+    "type": ["ego"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Apply −10 per level to INT Checks to resist basilisk hacks. Your brain is vulnerable to exploit via sensory input."
+  },
+  {
+    "name": "Severe Allergy",
+    "type": ["morph"],
+    "cp_mp_bonus": [2, 4],
+    "description": "Only for biomorphs. Severe anaphylactic reaction to a specific allergen. −30 modifier while exposed and 10 minutes after. Must make SOM Check or go into shock. Requires medical intervention to survive. Choose allergen with GM."
+  },
+  {
+    "name": "Skill Glitch",
+    "type": ["morph"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Unfixable glitch affects one skill (chosen or random). −10 per level to that skill’s use."
+  },
+  {
+    "name": "Timidity",
+    "type": ["ego", "morph"],
+    "cp_mp_bonus": [1, 2, 3],
+    "description": "Apply −5 per level to WIL Checks. You are easily intimidated or hesitant."
+  },
+  {
+    "name": "Unattractiveness",
+    "type": ["morph"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Only for uplifts/synthmorphs (Level 1) or humanoid biomorphs (Level 2). Apply −10 to Persuade and Provoke Tests where appearance matters."
+  },
+  {
+    "name": "VR Vertigo",
+    "type": ["ego"],
+    "cp_mp_bonus": 2,
+    "description": "You suffer vertigo and nausea from VR and XP. −30 to all actions while interfacing with VR/XP, −10 in AR. Must pass SOM Check after 1 hour or be incapacitated for 10 minutes."
+  },
+  {
+    "name": "Weak Immune System",
+    "type": ["morph"],
+    "cp_mp_bonus": [1, 2],
+    "description": "Only for biomorphs. Apply −10 per level when resisting diseases, drugs, toxins, or chemicals."
+  },
+  {
+    "name": "Zero-G Nausea",
+    "type": ["morph"],
+    "cp_mp_bonus": 2,
+    "description": "Only for biomorphs. Suffer −10 modifier in microgravity. Must make SOM Check to avoid 1-hour incapacitation upon initial movement or acclimation in zero-g."
+  }
+]
