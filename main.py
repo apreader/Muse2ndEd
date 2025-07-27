@@ -75,6 +75,12 @@ def save_character_to_file(character):
 
         f.write(f"Career: {character['Career']}\n")
         f.write(f"Interest: {character['Interest']}\n")
+        skills = character["Interest Data"].get("Skills", {})
+        skills_str = ", ".join(f"{name} {value}" for name, value in skills.items())
+        f.write(f"Interest Skills: {skills_str}\n")
+
+
+
         f.write(f"Faction: {character['Faction']}\n")
         f.write(f"Gender: {character['Gender']}\n")
         f.write(f"Sex: {character['Sex']}\n")
@@ -131,13 +137,13 @@ def generate_random_character(char_name, lm):
     background_name, background_data = lm.get_random_background()
     gender, pronouns = lm.select_gender_and_pronouns()
     faction_name, faction_data = lm.get_random_entry("Factions")
-
+    interest_name, interest_data = lm.get_random_interest()
     motivations = faction_data.get("Motivations", [])
     faction_motivation = f"+{faction_name} Interests"
     positives = [m for m in motivations if m.endswith("+") and m != faction_motivation]
     negatives = [m for m in motivations if m.endswith("-")]
-
     chosen_motivations = [faction_motivation]
+    
     if positives: chosen_motivations.append(random.choice(positives))
     if negatives: chosen_motivations.append(random.choice(negatives))
 
@@ -174,7 +180,8 @@ def generate_random_character(char_name, lm):
         "Background": background_name,
         "Background Data": background_data,
         "Career": career_name,
-        "Interest": career_data.get("Interest", "Unknown"),
+        "Interest": interest_name,               # Set interest to the random interest name      
+        "Interest Data": interest_data,          # Optionally store full interest data for detail
         "Faction": faction_name,
         "Gender": f"{gender} ({pronouns})",
         "Sex": sex,

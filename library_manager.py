@@ -10,8 +10,10 @@ class LibraryManager:
             "Backgrounds": {},
             "Factions": {},
             "Careers": {},
-            "Genders": []
+            "Genders": [],
+            "Interests": {}
         }
+
 
     def load_all_libraries(self):
         self.load_library("Morphs", "Morph_Library.json")
@@ -19,6 +21,7 @@ class LibraryManager:
         self.load_library("Factions", "Faction_Library.json")
         self.load_library("Careers", "Career_Library.json")
         self.load_gender_library()
+        self.load_library("Interests", "Interest_Library.json")
 
     def load_library(self, key_name, filename):
         filepath = os.path.join(self.library_folder, filename)
@@ -42,6 +45,42 @@ class LibraryManager:
             raise ValueError(f"Library '{library_name}' is empty.")
         key = random.choice(list(lib.keys()))
         return key, lib[key]
+    
+    def get_random_interest(self):
+        interests = self.libraries.get("Interests", {})
+        if not interests:
+            raise ValueError("Interests library is not loaded or empty.")
+
+        random_interest_entry = interests.get("Random Interest")
+        if not random_interest_entry:
+            raise ValueError("Random Interest entry missing from Interests library")
+
+        # Roll 1d10 to decide group
+        roll = random.randint(1, 10)
+        if roll <= 5:
+            group_name = "Group 1"
+        else:
+            group_name = "Group 2"
+
+        groups = random_interest_entry.get("Groups")
+        if not groups or group_name not in groups:
+            raise ValueError(f"Groups missing or {group_name} not found in Random Interest")
+
+        group = groups[group_name]
+
+        # For Group 2, handle "9-10" re-roll case
+        while True:
+            # Choose a random roll key from group keys
+            keys = [k for k in group.keys() if k != "9-10"]
+            chosen_roll = random.choice(keys)
+            if chosen_roll == "9-10":
+                # re-roll
+                continue
+            interest_name = group[chosen_roll]
+            if interest_name not in interests:
+                raise ValueError(f"Interest '{interest_name}' not found in Interests library")
+            interest_data = interests[interest_name]
+            return interest_name, interest_data
 
     def get_entry(self, library_name, key):
         return self.libraries.get(library_name, {}).get(key, None)

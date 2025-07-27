@@ -1,0 +1,205 @@
+{
+  "Animal Handler": {
+    "Description": "You’ve learned to raise, train, and care for animals, particularly partially uplifted smart animals.",
+    "Skills": {
+      "Animal Handling": 40,
+      "Medicine: Veterinary": 40,
+      "Provoke": 20,
+      "Know: Smart Animals": 40
+    }
+  },
+  "Artist/Icon": {
+    "Description": "You are a musician, performer, celebrity, or other type of creative or public figure.",
+    "Skills": {
+      "Deceive": 40,
+      "Kinesics": 20,
+      "Provoke": 40,
+      "Know": {
+        "Choose One": 40,
+        "Common Fields": ["Dance", "Music", "Sculpture"]
+      }
+    }
+  },
+  "Async": {
+    "Description": "You are infected with the Watts-MacLeod strain of the exsurgent virus, which gives you a number of unique mental talents and disadvantages. You must purchase the Psi trait in Step 10.",
+    "Skills": {
+      "Deceive": 40,
+      "Perceive": 20,
+      "Psi": 40,
+      "Know": {
+        "Choose One": 40
+      }
+    }
+  },
+  "Commander": {
+    "Description": "You are accustomed to leadership roles as an executive, officer, elected official, or autonomist organizer.",
+    "Skills": {
+      "Interface": 20,
+      "Persuade": 40,
+      "Provoke": 40,
+      "Know: Administration": 40
+    }
+  },
+  "Fighter": {
+    "Description": "You’ve picked up some self-defense and offensive capabilities along the way.",
+    "Skills": {
+      "Fray": 20,
+      "Guns": 40,
+      "Melee": 40,
+      "Know: Security Ops": 40
+    }
+  },
+  "Forensics Specialist": {
+    "Description": "You’ve trained to analyze crime scenes and perform autopsies.",
+    "Skills": {
+      "Medicine: Forensics": 40,
+      "Perceive": 40,
+      "Research": 20,
+      "Know: Physiology": 40
+    }
+  },
+  "Jack-of-All-Trades": {
+    "Description": "You’ve seen and done a little bit of everything.",
+    "Skills": {
+      "Guns": 25,
+      "Infosec": 25,
+      "Persuade": 25,
+      "Research": 25,
+      "Know": {
+        "Choose One": 40
+      }
+    }
+  },
+  "Jammer": {
+    "Description": "You’re a drone operator, with a talent for manipulating machines.",
+    "Skills": {
+      "Hardware: Robotics": 40,
+      "Interface": 20,
+      "Pilot": {
+        "Choose One": 40
+      },
+      "Know: Bot Models": 40
+    }
+  },
+  "Networker": {
+    "Description": "You know how to engage and connect with people.",
+    "Skills": {
+      "Deceive": 30,
+      "Persuade": 40,
+      "Provoke": 30,
+      "Know: Rep Nets": 40
+    }
+  },
+  "Paramedic": {
+    "Description": "You have picked up some first aid training.",
+    "Skills": {
+      "Fray": 20,
+      "Kinesics": 40,
+      "Medicine: Paramedic": 40,
+      "Know: Emergency Services": 40
+    }
+  },
+  "Pilot": {
+    "Description": "You prefer to do the driving yourself, no matter how skilled the AI is.",
+    "Skills": {
+      "Hardware": {
+        "Choose One": 30
+      },
+      "Pilot": [
+        {
+          "Choose One": 30
+        },
+        {
+          "Choose One": 40
+        }
+      ],
+      "Know: Flight Crew Ops": 40
+    }
+  },
+  "Rogue": {
+    "Description": "You are as shifty as you need to be.",
+    "Skills": {
+      "Deceive": 40,
+      "Fray": 20,
+      "Infiltrate": 40,
+      "Know": {
+        "Choose One": 40
+      }
+    }
+  },
+  "Slacker": {
+    "Description": "You prefer to enjoy the good things in life.",
+    "Skills": {
+      "Interface": 40,
+      "Persuade": 30,
+      "Research": 30,
+      "Know": {
+        "Choose One": 40
+      }
+    }
+  },
+  "Spacer": {
+    "Description": "You’ve spent your fair share of time in ships and smaller habitats.",
+    "Skills": {
+      "Free Fall": 40,
+      "Hardware": {
+        "Choose One": 40,
+        "Common Fields": ["Electronics", "Industrial", "Robotics"]
+      },
+      "Interface": 20,
+      "Know": {
+        "Choose One": 40,
+        "Common Fields": ["Astronomy", "Flight Crew Ops", "Gas Mining"]
+      }
+    }
+  },
+  "Student": {
+    "Description": "You are in the process of learning.",
+    "Skills": {
+      "Interface": 40,
+      "Program": 20,
+      "Research": 40,
+      "Know": {
+        "Choose One": 40
+      }
+    }
+  },
+  "Survivalist": {
+    "Description": "The Fall reinforced the notion that you need to be prepared.",
+    "Skills": {
+      "Guns": 40,
+      "Medicine: Paramedic": 30,
+      "Survival": 30,
+      "Know": {
+        "Choose One": 40
+      }
+    }
+  },
+  "Random Interest": {
+    "Description": "If you’d rather determine your interest randomly, roll 1d10:",
+    "RandomRolls": {
+      "1-5": "Roll on Group 1",
+      "6-10": "Roll on Group 2"
+    },
+    "Groups": {
+      "Group 1": {
+        "1": "Animal Handler",
+        "2": "Artist/Icon",
+        "3": "Async",
+        "4": "Commander",
+        "5": "Fighter"
+      },
+      "Group 2": {
+        "1": "Networker",
+        "2": "Paramedic",
+        "3": "Pilot",
+        "4": "Rogue",
+        "5": "Slacker",
+        "6": "Forensics Specialist",
+        "7": "Jack-of-All-Trades",
+        "8": "Jammer",
+        "9-10": "Re-roll"
+      }
+    }
+  }
+}
