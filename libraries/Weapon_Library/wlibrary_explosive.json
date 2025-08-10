@@ -1,0 +1,137 @@
+[
+  {
+    "Name": "Dazzler",
+    "Area-Effect Type (Radius)": "Uniform (50 m)",
+    "Damage": "\u2014",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "Mod/R/2",
+    "Notes": "Blinding",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "EMP",
+    "Area-Effect Type (Radius)": "Uniform (50 m)",
+    "Damage": "3d10 [16]",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "Maj/R/3",
+    "Notes": "Disables radios (nanoswarms only)",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Gas/Smoke",
+    "Area-Effect Type (Radius)": "Uniform (20 m)",
+    "Damage": "\u2014",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "Min/1",
+    "Notes": "",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "HEAP",
+    "Area-Effect Type (Radius)": "Centered (~2 DV/m)",
+    "Damage": "3d10 + 12 [29]",
+    "Armor Used": "K",
+    "Complexity/GP (per 5)": "Maj/R/3",
+    "Notes": "Armor-Piercing, Knockdown",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Plasmaburst",
+    "Area-Effect Type (Radius)": "Uniform (10 m)",
+    "Damage": "3d10 + 10 [27]",
+    "Armor Used": "E",
+    "Complexity/GP (per 5)": "Maj/R/3",
+    "Notes": "Armor-Piercing",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Splash",
+    "Area-Effect Type (Radius)": "Uniform (10 m)",
+    "Damage": "\u2014",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "As payload",
+    "Notes": "",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Stun",
+    "Area-Effect Type (Radius)": "Uniform (10 m)",
+    "Damage": "1d6 + 2 [5]",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "Mod/2",
+    "Notes": "Blinding, Knockdown, Shock",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Overload",
+    "Area-Effect Type (Radius)": "Uniform (10 m)",
+    "Damage": "\u2014",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "\u2014",
+    "Notes": "Blinding, Pain",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Tactical Multipurpose (TMP)",
+    "Area-Effect Type (Radius)": "\u2014",
+    "Damage": "\u2014",
+    "Armor Used": "\u2014",
+    "Complexity/GP (per 5)": "Mod/R/2",
+    "Notes": "",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Frag",
+    "Area-Effect Type (Radius)": "Centered (~2 DV/m)",
+    "Damage": "3d10 + 6 [23]",
+    "Armor Used": "K",
+    "Complexity/GP (per 5)": "\u2014",
+    "Notes": "Knockdown (5 meter radius)",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "High-Explosive",
+    "Area-Effect Type (Radius)": "Centered (~2 DV/m)",
+    "Damage": "3d10 + 10 [27]",
+    "Armor Used": "E",
+    "Complexity/GP (per 5)": "\u2014",
+    "Notes": "Knockdown (10 meter radius)",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Thermobaric",
+    "Area-Effect Type (Radius)": "Uniform (10 m)",
+    "Damage": "2d10 + 6 [16]",
+    "Armor Used": "E",
+    "Complexity/GP (per 5)": "Maj/R/3",
+    "Notes": "Armor-Piercing, Knockdown",
+    "Type": "Grenade"
+  },
+  {
+    "Name": "Standard Grenade",
+    "Area-Effect Type (Radius)": "x2 (Uniform)",
+    "Damage": "+1d10 [+5] (Centered)",
+    "Armor Used": "As above",
+    "Complexity/GP": "Per 3",
+    "Notes": "As above",
+    "Type": "Size Modifier"
+  },
+  {
+    "Name": "Minimissile",
+    "Area-Effect Type (Radius)": "x1.5 (Centered)",
+    "Damage": "+1d10 [+5] (Centered)",
+    "Armor Used": "As above",
+    "Complexity/GP": "Per 3",
+    "Notes": "As above",
+    "Type": "Size Modifier"
+  },
+  {
+    "Name": "Standard Missile",
+    "Area-Effect Type (Radius)": "x2 (Uniform)",
+    "Damage": "+2d10 [+11] (Centered)",
+    "Armor Used": "As above",
+    "Complexity/GP": "Per 1",
+    "Notes": "As above",
+    "Type": "Size Modifier"
+  }
+]

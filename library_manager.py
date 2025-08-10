@@ -15,6 +15,13 @@ class LibraryManager:
             "Interests": {}
         }
 
+    def pick_choice_skill_fields(self, choice_skills):
+        chosen_fields = []
+        for choice in choice_skills:
+            chosen_field = random.choice(choice["CommonFields"])
+            chosen_fields.append(chosen_field)
+        return chosen_fields
+
     def load_all_libraries(self):
         self.load_library("Morphs", "Morph_Library.json")
         self.load_library("Backgrounds", "Background_Library.json")
@@ -30,7 +37,6 @@ class LibraryManager:
         with open(filepath, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # Parse choice skills from Notes field for Backgrounds
         if key_name == "Backgrounds":
             for bg_name, bg_data in data.items():
                 notes = bg_data.get("Notes", "")
@@ -40,19 +46,10 @@ class LibraryManager:
         self.libraries[key_name] = data
 
     def _parse_choice_skills_from_notes(self, notes_text):
-        """
-        Parses the Notes string for skill choice categories with '(Choose One)'
-        and returns a list of dicts describing each choice category with skill name,
-        rating, and common fields.
-        """
         choice_skills = []
-
-        # Normalize whitespace and line breaks
         norm_notes = notes_text.replace("\n", " ").replace("\r", " ")
-
-        # Regex to find patterns like: SkillCategory: (Choose One) Rating Common Fields: field1, field2, ...
         pattern = re.compile(r"(\w+): \(Choose One\)\s*(\d+)\s*Common Fields:\s*([^\.]+)")
-        
+
         for match in pattern.finditer(norm_notes):
             skill_cat = match.group(1).strip()
             rating = int(match.group(2).strip())
@@ -86,23 +83,15 @@ class LibraryManager:
         interests = self.libraries.get("Interests", {})
         if not interests:
             raise ValueError("Interests library is not loaded or empty.")
-
         random_interest_entry = interests.get("Random Interest")
         if not random_interest_entry:
             raise ValueError("Random Interest entry missing from Interests library")
-
         roll = random.randint(1, 10)
-        if roll <= 5:
-            group_name = "Group 1"
-        else:
-            group_name = "Group 2"
-
+        group_name = "Group 1" if roll <= 5 else "Group 2"
         groups = random_interest_entry.get("Groups")
         if not groups or group_name not in groups:
             raise ValueError(f"Groups missing or {group_name} not found in Random Interest")
-
         group = groups[group_name]
-
         while True:
             keys = [k for k in group.keys() if k != "9-10"]
             chosen_roll = random.choice(keys)
@@ -113,9 +102,6 @@ class LibraryManager:
                 raise ValueError(f"Interest '{interest_name}' not found in Interests library")
             interest_data = interests[interest_name]
             return interest_name, interest_data
-
-    def get_entry(self, library_name, key):
-        return self.libraries.get(library_name, {}).get(key, None)
 
     def get_random_morph(self):
         morph_library = self.libraries.get("Morphs", {})
@@ -144,20 +130,6 @@ class LibraryManager:
             raise ValueError(f"Background data for '{background_name}' not found")
         return background_name, background_data
 
-    def get_random_faction(self):
-        factions = self.libraries.get("Factions", [])
-        if not factions:
-            raise ValueError("Factions library is not loaded or empty.")
-        faction = random.choice(factions)
-        return faction["Name"], faction
-
-    def get_faction_by_name(self, name):
-        factions = self.libraries.get("Factions", [])
-        for faction in factions:
-            if faction.get("Name") == name:
-                return faction
-        return None
-
     def get_random_career(self):
         careers = self.libraries.get("Careers", {})
         if not careers:
@@ -165,14 +137,10 @@ class LibraryManager:
         career_name = random.choice(list(careers.keys()))
         return career_name, careers[career_name]
 
-    def get_career(self, career_name):
-        return self.libraries.get("Careers", {}).get(career_name)
-
     def select_gender_and_pronouns(self):
         gender_list = self.libraries.get("Genders", [])
         weighted_main = ["Male", "Female", "Nonbinary"]
         alt_genders = [g for g in gender_list if g["name"] not in weighted_main]
-
         while True:
             roll = random.randint(1, 4)
             if roll <= 3:
@@ -186,7 +154,6 @@ class LibraryManager:
             pronouns = random.choice(gender_entry["pronouns"])
             return gender, pronouns
 
-    # Optional: helper to get parsed choice skills for a background by name
     def get_choice_skills_for_background(self, background_name):
         backgrounds = self.libraries.get("Backgrounds", {})
         bg = backgrounds.get(background_name)
@@ -194,38 +161,19 @@ class LibraryManager:
             raise ValueError(f"Background '{background_name}' not found")
         return bg.get("ChoiceSkills", [])
 
-    # New helper: given a skills dict with '(Choose One)' entries, select and replace them using stored choice skills
-    def select_skills_from_choice(self, skills_dict, choice_skills_list):
-        """
-        skills_dict: dict of skill names to rating, may contain keys like 'Know: (Choose One)'
-        choice_skills_list: list of dicts with keys SkillCategory, Rating, CommonFields extracted from Notes
-        Returns a new dict with '(Choose One)' replaced by a randomly selected skill name from common fields.
-        """
-        # Build a lookup by SkillCategory for quick access
-        choice_lookup = {cs["SkillCategory"]: cs for cs in choice_skills_list}
-        new_skills = {}
 
-        for skill, rating in skills_dict.items():
-            if "(Choose One)" in skill:
-                # Extract category (e.g. 'Know' from 'Know: (Choose One)')
-                cat_match = re.match(r"(\w+)", skill)
-                if not cat_match:
-                    new_skills[skill] = rating
-                    continue
-                category = cat_match.group(1)
-                choice_entry = choice_lookup.get(category)
-                if choice_entry:
-                    chosen_field = random.choice(choice_entry["CommonFields"])
-                    # Use special formatting: 'Knowledge' instead of 'Know'
-                    if category.lower() == "know":
-                        new_key = f"Knowledge {chosen_field}"
-                    else:
-                        new_key = f"{category} {chosen_field}"
-                    new_skills[new_key] = rating
-                else:
-                    # No matching choice info, keep original
-                    new_skills[skill] = rating
-            else:
-                new_skills[skill] = rating
-
-        return new_skills
+def fill_skill_placeholders(skills_dict, choice_skills_list):
+    updated_skills = {}
+    choice_index = 0
+    placeholder_pattern = re.compile(r"(\w+)\sChoice\s(\d+)")
+    for skill_key, value in skills_dict.items():
+        match = placeholder_pattern.match(skill_key)
+        if match and choice_index < len(choice_skills_list):
+            base_skill = match.group(1)  # e.g., "Hardware", "Pilot", "Know"
+            chosen_field = choice_skills_list[choice_index]
+            choice_index += 1
+            new_skill_key = f"{base_skill} ({chosen_field})"
+            updated_skills[new_skill_key] = value
+        else:
+            updated_skills[skill_key] = value
+    return updated_skills

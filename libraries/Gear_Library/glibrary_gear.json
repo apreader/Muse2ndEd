@@ -1,0 +1,489 @@
+{
+  "Survival Tools": [
+    {
+      "Name": "Electrogravitics Net",
+      "Complexity/GP": "Min/1",
+      "Description": "Slows falls w/electric fields. Reduce distance by 50 m."
+    },
+    {
+      "Name": "Electronic Rope",
+      "Complexity/GP": "Min/1",
+      "Description": "Controllable rope."
+    },
+    {
+      "Name": "Emergency Bubble",
+      "Complexity/GP": "Maj/3",
+      "Description": "Inflatable pressurized bubble/dome."
+    },
+    {
+      "Name": "Pressure Tent",
+      "Complexity/GP": "Mod/2",
+      "Description": "Self-erecting shelter for 4, built-in breather."
+    },
+    {
+      "Name": "Smart Anchors",
+      "Complexity/GP": "Min/1",
+      "Description": "Harness deploys cables to prevent accidents."
+    },
+    {
+      "Name": "Spindle",
+      "Complexity/GP": "Mod/2",
+      "Description": "Fullerene cable fabber, supports 5,000 kg."
+    },
+    {
+      "Name": "Spindle Climber",
+      "Complexity/GP": "Min/1",
+      "Description": "Launcher and powered ascender, Movement 12."
+    }
+  ],
+  "Vacsuits": [
+    {
+      "Name": "Light Vacsuit",
+      "Complexity/GP": "Mod/2",
+      "Description": "As Smart Clothing >317, protects from vacuum, 8 hours air, AV 5/2."
+    },
+    {
+      "Name": "Standard Vacsuit",
+      "Complexity/GP": "Maj/3",
+      "Description": "As Smart Clothing >317, protects from vacuum, 48 hours air, AV 8/6."
+    }
+  ],
+  "Exploration Tools": [
+    {
+      "Name": "Blue Box",
+      "Complexity/GP": "Rare/\u2014",
+      "Description": "Portable pandora gate interface."
+    },
+    {
+      "Name": "Mapping Missile",
+      "Complexity/GP": "Mod/2",
+      "Description": "Maps planet from low polar orbit in 24\u201348 hours."
+    },
+    {
+      "Name": "Scout Missile",
+      "Complexity/GP": "Mod/2",
+      "Description": "Maps 5 km radius or 10 km one direction in 20 minutes, Perceive 60."
+    }
+  ],
+  "Salvage Tools": [
+    {
+      "Name": "Disassembly Tools",
+      "Complexity/GP": "Mod/2",
+      "Description": "Heavy and smart tools for taking things apart."
+    },
+    {
+      "Name": "Superthermite Charge",
+      "Complexity/GP": "Maj/R/3 (per 5 charges)",
+      "Description": "Nanometal explosive. DV 6d10 + 10 [43], set/shaped with Hardware: Demolitions."
+    }
+  ],
+  "Science Tools": [
+    {
+      "Name": "Adaptive Interface",
+      "Complexity/GP": "Maj/3",
+      "Description": "Smart connectors for accessing/analyzing relics. Interface 60, more."
+    },
+    {
+      "Name": "Fractal Gloves",
+      "Complexity/GP": "Mod/2",
+      "Description": "Function as fractal digits and nanoscopic vision."
+    },
+    {
+      "Name": "Pocket Lab",
+      "Complexity/GP": "Mod/2",
+      "Description": "Analyze gases, liquids, materials, Know: Chemistry 60."
+    },
+    {
+      "Name": "Portable SolArchive",
+      "Complexity/GP": "Min/1",
+      "Description": "Enable Research Tests related to one Know skill while isolated from mesh."
+    },
+    {
+      "Name": "Specimen Container",
+      "Complexity/GP": "Min/1",
+      "Description": "Holds samples in stasis conditions."
+    }
+  ],
+  "Espionage Gear": [
+    {
+      "Name": "Brainprint Scanner",
+      "Complexity/GP": "Min/1",
+      "Description": "Scans brainprint in 5 minutes."
+    },
+    {
+      "Name": "Bugzapper Strips",
+      "Complexity/GP": "Mod/2",
+      "Description": "Portal EMP field, DV 3d10 [16] to nanoswarms/microswarms."
+    },
+    {
+      "Name": "Chameleon Cloak",
+      "Complexity/GP": "Mod/2",
+      "Description": "Camouflage, +10 Infiltrate, +30 stationary."
+    },
+    {
+      "Name": "Covert Operations Tool",
+      "Complexity/GP": "Maj/R/3",
+      "Description": "Bypasses locks, cuts/repairs holes, Hardware: Electronics 60 vs. electronic locks, more."
+    },
+    {
+      "Name": "Cuffband",
+      "Complexity/GP": "Min/1",
+      "Description": "Electronic handcuffs, remote operation, Shock DV 1d6 [4]."
+    },
+    {
+      "Name": "Dazzler",
+      "Complexity/GP": "Mod/2",
+      "Description": "Blinds cameras w/in 200 m, REF Check or \u221230 Perceive for synthmorphs, bots, vehicles."
+    },
+    {
+      "Name": "Disabler",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Disables morphs with cyberbrain when plugged into access jacks."
+    },
+    {
+      "Name": "Fiber Eye",
+      "Complexity/GP": "Min/1",
+      "Description": "Flexible fiberoptic with camera and viewer."
+    },
+    {
+      "Name": "Gray Box",
+      "Complexity/GP": "Min/1",
+      "Description": "Establishes a wireless mesh link."
+    },
+    {
+      "Name": "ID Scanner",
+      "Complexity/GP": "Min/1",
+      "Description": "Scans nanotat IDs."
+    },
+    {
+      "Name": "Invisibility Cloak",
+      "Complexity/GP": "Min/R/3",
+      "Description": "Metamaterial cloak, makes invisible, \u221260 Perceive to spot."
+    },
+    {
+      "Name": "Microbug",
+      "Complexity/GP": "Min/1",
+      "Description": "Micro-sized camera/audio recorder."
+    },
+    {
+      "Name": "Prisoner Mask",
+      "Complexity/GP": "Min/1",
+      "Description": "Blocks enhanced vision/hearing, jams mesh/radio."
+    },
+    {
+      "Name": "Privacy Pod",
+      "Complexity/GP": "Maj/3",
+      "Description": "Blocks sound/mesh signals, includes bug zapper, guardian swarm, life support (24 hours)."
+    },
+    {
+      "Name": "Psi Jammer",
+      "Complexity/GP": "Mod/2",
+      "Description": "Jams brainwave frequencies w/in 20 m, \u221230 Psi Tests."
+    },
+    {
+      "Name": "Quantum Computer",
+      "Complexity/GP": "Maj/3",
+      "Description": "Used for codebreaking >247 EP2."
+    },
+    {
+      "Name": "Ripper",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "EMP pulse every 5 turns, DV 3d10 [16] to nanoswarms/microswarms."
+    },
+    {
+      "Name": "Shroud",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Blocks ID methods, mesh signals."
+    },
+    {
+      "Name": "Traction Pads",
+      "Complexity/GP": "Mod/2",
+      "Description": "+30 climbing Athletics Tests."
+    },
+    {
+      "Name": "White Noise Machine",
+      "Complexity/GP": "Min/1",
+      "Description": "Masks conversations from being recorded."
+    },
+    {
+      "Name": "X-Ray Emitter",
+      "Complexity/GP": "Min/1",
+      "Description": "Transmits x-rays for use with enhanced vision."
+    }
+  ],
+  "Quantum Farcasters": [
+    {
+      "Name": "Miniature Radio Farcaster",
+      "Complexity/GP": "Mod/2",
+      "Description": "Radio with encryption that cannot be broken/intercepted."
+    }
+  ],
+  "QE Comms Gear": [
+    {
+      "Name": "QE Comm",
+      "Complexity/GP": "Min/1",
+      "Description": "Small FTL communication device, requires qubits."
+    },
+    {
+      "Name": "Emergency Reservoir",
+      "Complexity/GP": "Mod/2",
+      "Description": "Very small-sized qubit reservoir pair, 1 minute video/1 hour voice."
+    },
+    {
+      "Name": "Qubit Reservoir",
+      "Complexity/GP": "Maj/3",
+      "Description": "Small-sized qubit reservoir pair, 10 hours video, 100 hours voice."
+    }
+  ],
+  "Mesh Hardware": [
+    {
+      "Name": "Fiberoptic Cable",
+      "Complexity/GP": "Min/1",
+      "Description": "Wired connection for devices."
+    },
+    {
+      "Name": "Motes",
+      "Complexity/GP": "Min/1",
+      "Description": "Create ad-hoc mesh and surveillance net over area."
+    },
+    {
+      "Name": "Host",
+      "Complexity/GP": "Min/1",
+      "Description": "Tablets, work stations, and terminals. Runs 1 infomorph."
+    },
+    {
+      "Name": "Server",
+      "Complexity/GP": "Mod/2",
+      "Description": "Larger computer. Runs VR and multiple infomorphs."
+    },
+    {
+      "Name": "Enhanced Server",
+      "Complexity/GP": "Maj/3",
+      "Description": "Faster and more secure servers. \u221210 Infosec to hack."
+    },
+    {
+      "Name": "Specialized Server",
+      "Complexity/GP": "Maj/3",
+      "Description": "Optimized for specific functions. +10 to one specific skill test."
+    }
+  ],
+  "Communications Gear": [
+    {
+      "Name": "Breadcrumb System",
+      "Complexity/GP": "Min/1",
+      "Description": "Leaves mote trail for meshing/positioning."
+    },
+    {
+      "Name": "Emergency Distress Beacon",
+      "Complexity/GP": "Min/1",
+      "Description": "Powerful radio transmitter, 50/500 km range."
+    },
+    {
+      "Name": "Laser/Microwave Link (Micro)",
+      "Complexity/GP": "Min/1",
+      "Description": "Tight-beam communication links, line-of-sight 500 m range."
+    },
+    {
+      "Name": "Laser/Microwave Link (Small)",
+      "Complexity/GP": "Mod/2",
+      "Description": "Tight-beam communication links, line-of-sight 50/500 km range."
+    },
+    {
+      "Name": "Mission Recorder",
+      "Complexity/GP": "Min/1",
+      "Description": "Backs up all mission data."
+    },
+    {
+      "Name": "Radio Booster",
+      "Complexity/GP": "Min/1",
+      "Description": "Extends radio ranges, 25/250km range."
+    },
+    {
+      "Name": "Satnet-in-a-Can",
+      "Complexity/GP": "Maj/3",
+      "Description": "Deploys satellites into orbit for GPS, imaging, comms relay, Know: Meteorology 60"
+    }
+  ],
+  "Neutrino Comms Gear": [
+    {
+      "Name": "Neutrino Receiver",
+      "Complexity/GP": "Maj/3",
+      "Description": "Receives neutrino comms, 100+ AU range."
+    },
+    {
+      "Name": "Neutrino Transceiver",
+      "Complexity/GP": "Rare/\u2014",
+      "Description": "Sends/receives neutrino comms."
+    }
+  ],
+  "Everyday Tech": [
+    {
+      "Name": "Breather",
+      "Complexity/GP": "Min/1",
+      "Description": "Converts CO\u2082 into oxygen or provides 2 hours of air."
+    },
+    {
+      "Name": "Cold Suit",
+      "Complexity/GP": "Min/1",
+      "Description": "Protects against \u2212100 \u00b0C."
+    },
+    {
+      "Name": "Ecto",
+      "Complexity/GP": "Min/1",
+      "Description": "External version of mesh inserts, minus the internal medical sensors."
+    },
+    {
+      "Name": "Grip Tape",
+      "Complexity/GP": "Min/1",
+      "Description": "Sticky nanotape used to adhere gear to any surface."
+    },
+    {
+      "Name": "Holographic Projector",
+      "Complexity/GP": "Min/1",
+      "Description": "Projects 3D, HD, ultra-realistic images/video. +20 to Perceive as fake w/in 20 m."
+    },
+    {
+      "Name": "Microgravity Shoes",
+      "Complexity/GP": "Min/1",
+      "Description": "Shoes w/ velcro or magnetics to walk in micrograv."
+    },
+    {
+      "Name": "Nuclear Battery",
+      "Complexity/GP": "Min/1",
+      "Description": "Power from radio-isotope decay for years."
+    },
+    {
+      "Name": "Portable Sensor",
+      "Complexity/GP": "Mod/2",
+      "Description": "Portable/wearable sensor system of one type (lidar, radar, x-ray, etc.)."
+    },
+    {
+      "Name": "Smart Clothing",
+      "Complexity/GP": "Min/1",
+      "Description": "Can change color, texture, and cut. +10 Infiltrate, +30 covered and stationary."
+    },
+    {
+      "Name": "Solar Charger",
+      "Complexity/GP": "Min/1",
+      "Description": "Portable unit unfolds into solar panels for (re)charging electronics/batteries."
+    },
+    {
+      "Name": "Specs",
+      "Complexity/GP": "Min/1",
+      "Description": "Glasses/goggles that provide enhanced vision. +10 Perceive."
+    },
+    {
+      "Name": "Standard Battery",
+      "Complexity/GP": "Min/1",
+      "Description": "Rechargeable, good for hundreds of hours."
+    },
+    {
+      "Name": "Tools (Kit)",
+      "Complexity/GP": "Min/1",
+      "Description": "Portable, applies to specific skill."
+    },
+    {
+      "Name": "Tools (Shop)",
+      "Complexity/GP": "Maj/2",
+      "Description": "Fits into large vehicle, applies to specific skill."
+    },
+    {
+      "Name": "Tools (Facility)",
+      "Complexity/GP": "Maj/3",
+      "Description": "Non-mobile, applies to specific skill."
+    },
+    {
+      "Name": "Utilitool",
+      "Complexity/GP": "Mod/2",
+      "Description": "All-purpose smart-material tool."
+    },
+    {
+      "Name": "Viewers",
+      "Complexity/GP": "Mod/2",
+      "Description": "Long-range version of specs. 50x magnification, directional microphone. +10 Perceive."
+    },
+    {
+      "Name": "Wireless Energy Transmitter",
+      "Complexity/GP": "Min/1",
+      "Description": "Charges devices within 20 m."
+    }
+  ],
+  "Nanotech Gear": [
+    {
+      "Name": "Ego Bridge",
+      "Complexity/GP": "Mod/2",
+      "Description": "Upload from/download to biological brains."
+    },
+    {
+      "Name": "Healing Spray",
+      "Complexity/GP": "Min/1",
+      "Description": "Heals 1d10 [6] damage an hour for 12 hours for biomorphs. Single use."
+    },
+    {
+      "Name": "Healing Vat",
+      "Complexity/GP": "Maj/3",
+      "Description": "Heal/cure biomorphs, customize/augment morph."
+    },
+    {
+      "Name": "Med Scanner",
+      "Complexity/GP": "Min/1",
+      "Description": "Scans health, diagnosis w/ Medicine: Forensics/Paramedic/Veterinary at 60, detect nanobots as nanodetector."
+    },
+    {
+      "Name": "Nanodetector",
+      "Complexity/GP": "Min/1",
+      "Description": "Detects nanobots, Exotic Skill: Nanobot Detection 40 (70 w/ active swarm), Know: Nanotech 60."
+    },
+    {
+      "Name": "Repair Spray",
+      "Complexity/GP": "Min/1",
+      "Description": "Heals 1d10 [6] damage an hour for 12 hours for synthmorphs. Single use."
+    }
+  ],
+  "Hives": [
+    {
+      "Name": "General Hive",
+      "Complexity/GP": "Maj/3",
+      "Description": "Can produce any swarm w/blueprints."
+    },
+    {
+      "Name": "Specialized Hive",
+      "Complexity/GP": "Mod/2 or Maj/3",
+      "Description": "Makes/maintains one swarm type."
+    }
+  ],
+  "Nanofabricators": [
+    {
+      "Name": "Small Fabber",
+      "Complexity/GP": "Min/1",
+      "Description": "Fab very small items."
+    },
+    {
+      "Name": "Medium Fabber",
+      "Complexity/GP": "Mod/2",
+      "Description": "Fab small items."
+    },
+    {
+      "Name": "Large Fabber",
+      "Complexity/GP": "Maj/3",
+      "Description": "Fab medium items."
+    },
+    {
+      "Name": "Minifac",
+      "Complexity/GP": "Rare/\u2014",
+      "Description": "Industrial-scale nanofab."
+    }
+  ],
+  "Specialized Fabbers": [
+    {
+      "Name": "Autocook",
+      "Complexity/GP": "Min/+1+",
+      "Description": "Fab food and drink only."
+    },
+    {
+      "Name": "Specialized Fabber",
+      "Complexity/GP": "Min/1",
+      "Description": "Fab 1 specific item type only."
+    }
+  ]
+}

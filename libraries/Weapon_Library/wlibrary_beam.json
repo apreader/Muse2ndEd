@@ -1,0 +1,82 @@
+[
+  {
+    "Name": "Battle Laser",
+    "Ware Type": "-",
+    "Damage": "3d10 + 4 [21]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "50",
+    "Range": "150",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "Fixed, Knockdown, Long"
+  },
+  {
+    "Name": "Hand Laser",
+    "Ware Type": "CH",
+    "Damage": "1d10 + 1d6 [9]",
+    "Firing Modes": "SA",
+    "Ammo": "10",
+    "Range": "75",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Laser Pulser (Lethal)",
+    "Ware Type": "-",
+    "Damage": "2d10 + 2 [13]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "30",
+    "Range": "100",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Knockdown, Long, Two-Handed"
+  },
+  {
+    "Name": "Laser Pulser (Stun)",
+    "Ware Type": "-",
+    "Damage": "1d6 [3]",
+    "Firing Modes": "SS",
+    "Ammo": "25",
+    "Range": "100",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Area Effect (uniform, 1 m), Long, Shock, Two-Handed"
+  },
+  {
+    "Name": "MW Agonizer (Pain)",
+    "Ware Type": "-",
+    "Damage": "—",
+    "Firing Modes": "SA",
+    "Ammo": "20",
+    "Range": "15",
+    "Complexity/GP": "Mod/2",
+    "Notes": "Pain (biomorphs only)"
+  },
+  {
+    "Name": "MW Agonizer (Roast)",
+    "Ware Type": "-",
+    "Damage": "2d10 [11]",
+    "Firing Modes": "SS",
+    "Ammo": "15",
+    "Range": "15",
+    "Complexity/GP": "Mod/2",
+    "Notes": "Armor-Piercing, Pain (biomorphs only)"
+  },
+  {
+    "Name": "Particle Beam Bolter",
+    "Ware Type": "-",
+    "Damage": "2d10 + 6 [17]",
+    "Firing Modes": "SA/BF",
+    "Ammo": "25",
+    "Range": "50",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "Knockdown, Long, Two-Handed"
+  },
+  {
+    "Name": "Stunner",
+    "Ware Type": "-",
+    "Damage": "1d6 [3]",
+    "Firing Modes": "SA",
+    "Ammo": "12",
+    "Range": "50",
+    "Complexity/GP": "Mod/2",
+    "Notes": "Shock"
+  }
+]

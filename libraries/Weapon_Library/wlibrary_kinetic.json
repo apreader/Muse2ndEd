@@ -1,0 +1,110 @@
+[
+  {
+    "Name": "Holdout",
+    "Damage": "1d10 + 1d6 [9]",
+    "Firing Modes": "SA/BF",
+    "Ammo": "9 + 1",
+    "Range": "25",
+    "Complexity/GP": "Min/R/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Medium Pistol",
+    "Damage": "2d10 [11]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "15 + 1",
+    "Range": "30",
+    "Complexity/GP": "Min/R/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Heavy Pistol",
+    "Damage": "2d10 + 2 [13]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "9 + 1",
+    "Range": "35",
+    "Complexity/GP": "Min/R/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Machine Pistol",
+    "Damage": "1d10 + 1d6 [9]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "30 + 1",
+    "Range": "25",
+    "Complexity/GP": "Min/R/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Submachine Gun",
+    "Damage": "2d10 [11]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "30 + 1",
+    "Range": "50",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Two-Handed"
+  },
+  {
+    "Name": "Assault Rifle",
+    "Damage": "2d10 + 2 [13]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "45 + 1",
+    "Range": "100",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Long, Two-Handed"
+  },
+  {
+    "Name": "Battle Rifle",
+    "Damage": "2d10 + 4 [15]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "30 + 1",
+    "Range": "200",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Long, Two-Handed"
+  },
+  {
+    "Name": "Machine Gun",
+    "Damage": "3d10 + 2 [19]",
+    "Firing Modes": "BF/FA",
+    "Ammo": "50 + 1",
+    "Range": "500",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "Fixed, Long"
+  },
+  {
+    "Name": "Sniper Rifle",
+    "Damage": "3d10 + 10 [26]",
+    "Firing Modes": "SA",
+    "Ammo": "9 + 1",
+    "Range": "500",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "Fixed, Long"
+  },
+  {
+    "Name": "Polygon Pistol",
+    "Damage": "As Pistol",
+    "Firing Modes": "As Pistol",
+    "Ammo": "As Pistol",
+    "Range": "As Pistol",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "As Pistol"
+  },
+  {
+    "Name": "Polygon Rifle",
+    "Damage": "As Rifle/SMG",
+    "Firing Modes": "As Rifle/SMG",
+    "Ammo": "As Rifle/SMG",
+    "Range": "As Rifle/SMG",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "As Rifle/SMG"
+  },
+  {
+    "Name": "Railguns",
+    "Damage": "As Above",
+    "Firing Modes": "As Above",
+    "Ammo": "x2",
+    "Range": "x1.5",
+    "Complexity/GP": "As Above",
+    "Notes": "As Above, Armor-Piercing"
+  }
+]

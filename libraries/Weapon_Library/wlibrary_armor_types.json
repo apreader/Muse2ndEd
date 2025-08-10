@@ -1,0 +1,226 @@
+[
+  {
+    "Name": "Armor Clothing",
+    "Ware Type": "-",
+    "Energy": "+1",
+    "Kinetic": "+3",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Armor Coat",
+    "Ware Type": "-",
+    "Energy": "3",
+    "Kinetic": "6",
+    "Complexity/GP": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Armor Vest (Heavy)",
+    "Ware Type": "-",
+    "Energy": "6",
+    "Kinetic": "12",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Armor Vest (Light)",
+    "Ware Type": "-",
+    "Energy": "4",
+    "Kinetic": "10",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Atlas Loader",
+    "Ware Type": "-",
+    "Energy": "10",
+    "Kinetic": "+12",
+    "Complexity/GP": "Rare",
+    "Notes": ""
+  },
+  {
+    "Name": "Ballistic Shield",
+    "Ware Type": "-",
+    "Energy": "+6",
+    "Kinetic": "+12",
+    "Complexity/GP": "Mod/2",
+    "Notes": "Two-Handed"
+  },
+  {
+    "Name": "Battlesuit",
+    "Ware Type": "-",
+    "Energy": "25",
+    "Kinetic": "25",
+    "Complexity/GP": "Rare/R",
+    "Notes": ""
+  },
+  {
+    "Name": "Bioweave",
+    "Ware Type": "B",
+    "Energy": "+2",
+    "Kinetic": "+3",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Body Armor",
+    "Ware Type": "-",
+    "Energy": "8",
+    "Kinetic": "14",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Combat Armor",
+    "Ware Type": "-",
+    "Energy": "12",
+    "Kinetic": "16",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": ""
+  },
+  {
+    "Name": "Crash Suit (Active)",
+    "Ware Type": "-",
+    "Energy": "3",
+    "Kinetic": "8",
+    "Complexity/GP": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Crash Suit (Inactive)",
+    "Ware Type": "-",
+    "Energy": "3",
+    "Kinetic": "2",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Dermal Armor",
+    "Ware Type": "B",
+    "Energy": "+4",
+    "Kinetic": "+5",
+    "Complexity/GP": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Envirosuit",
+    "Ware Type": "-",
+    "Energy": "25",
+    "Kinetic": "16",
+    "Complexity/GP": "Maj/3",
+    "Notes": ""
+  },
+  {
+    "Name": "Exowalker Frame",
+    "Ware Type": "-",
+    "Energy": "+0",
+    "Kinetic": "+2",
+    "Complexity/GP": "Maj/3",
+    "Notes": ""
+  },
+  {
+    "Name": "Hardsuit",
+    "Ware Type": "-",
+    "Energy": "20",
+    "Kinetic": "18",
+    "Complexity/GP": "Rare",
+    "Notes": ""
+  },
+  {
+    "Name": "Heavy Combat Armor",
+    "Ware Type": "H",
+    "Energy": "+16",
+    "Kinetic": "+14",
+    "Complexity/GP": "Maj/3",
+    "Notes": ""
+  },
+  {
+    "Name": "Helmet",
+    "Ware Type": "-",
+    "Energy": "+2",
+    "Kinetic": "+2",
+    "Complexity/GP": "Min/1",
+    "Notes": "AV 4/10 vs. head shots"
+  },
+  {
+    "Name": "High-Dive Suit",
+    "Ware Type": "-",
+    "Energy": "25",
+    "Kinetic": "8",
+    "Complexity/GP": "Maj/3",
+    "Notes": ""
+  },
+  {
+    "Name": "Industrial Armor",
+    "Ware Type": "H",
+    "Energy": "+6",
+    "Kinetic": "+4",
+    "Complexity/GP": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Light Combat Armor",
+    "Ware Type": "H",
+    "Energy": "+10",
+    "Kinetic": "+8",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Riot Shield",
+    "Ware Type": "-",
+    "Energy": "+3",
+    "Kinetic": "+4",
+    "Complexity/GP": "Min/1",
+    "Notes": "Shock, Touch-Only"
+  },
+  {
+    "Name": "Scale/Carapace Armor",
+    "Ware Type": "B",
+    "Energy": "+6",
+    "Kinetic": "+7",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Second Skin",
+    "Ware Type": "-",
+    "Energy": "+2",
+    "Kinetic": "+3",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Transporter Exoskeleton",
+    "Ware Type": "-",
+    "Energy": "+0",
+    "Kinetic": "+4",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Trike Exoskeleton",
+    "Ware Type": "-",
+    "Energy": "+0",
+    "Kinetic": "+4",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Vacsuit (Light)",
+    "Ware Type": "-",
+    "Energy": "5",
+    "Kinetic": "2",
+    "Complexity/GP": "Mod/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Vacsuit (Standard)",
+    "Ware Type": "-",
+    "Energy": "8",
+    "Kinetic": "6",
+    "Complexity/GP": "Maj/3",
+    "Notes": ""
+  }
+]

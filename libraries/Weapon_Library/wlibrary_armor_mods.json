@@ -1,0 +1,86 @@
+[
+  {
+    "Name": "Ablative",
+    "Energy": "+4",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "5 uses. Hive restores 1 use per hour."
+  },
+  {
+    "Name": "Chameleon",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "+30 Infiltrate when stationary or moving less than 2 m/turn."
+  },
+  {
+    "Name": "Fireproof",
+    "Energy": "+2",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "+10/+0 vs. fire/heat."
+  },
+  {
+    "Name": "Immunogenic",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "Negates dermal chem/drugs/toxins."
+  },
+  {
+    "Name": "Impact",
+    "Energy": "+0",
+    "Kinetic": "+3",
+    "Complexity/GP": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Lotus",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "Repels all liquids, +30 defending vs. liquid-based attacks."
+  },
+  {
+    "Name": "Medical/Repair",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "Heals/repairs 1d10 damage per hour, ignore 1 wound."
+  },
+  {
+    "Name": "Offensive",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "Shock effect if hit/touched."
+  },
+  {
+    "Name": "Reactive",
+    "Energy": "+3",
+    "Kinetic": "+3",
+    "Complexity/GP": "Min/1",
+    "Notes": "5 uses. Hits inflict DV 1 to wearer, DV 1d6 to melee attacker. Hive restores 1 use/hour."
+  },
+  {
+    "Name": "Refractive Glazing",
+    "Energy": "+3",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Self-Healing",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "Repairs 1d10 damage to armor per hour."
+  },
+  {
+    "Name": "Shock Proof",
+    "Energy": "+0",
+    "Kinetic": "+0",
+    "Complexity/GP": "Min/1",
+    "Notes": "+20 to SOM Checks vs. Shock."
+  }
+]

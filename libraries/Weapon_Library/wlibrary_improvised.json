@@ -1,0 +1,92 @@
+[
+  {
+    "Name": "Baseball",
+    "Damage": "1d6 + 1 [5]",
+    "Complexity": "Min",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Biomorph (Medium)",
+    "Damage": "1d6 [4]",
+    "Complexity": "Min",
+    "Notes": "Knockdown, Two-Handed"
+  },
+  {
+    "Name": "Bottle",
+    "Damage": "1d6 − 1 [3]",
+    "Complexity": "Min",
+    "Notes": ""
+  },
+  {
+    "Name": "Bottle (Broken)",
+    "Damage": "1d6 + 2 [6]",
+    "Complexity": "Min",
+    "Notes": ""
+  },
+  {
+    "Name": "Chain",
+    "Damage": "1d10 [6]",
+    "Complexity": "Min",
+    "Notes": "Reach"
+  },
+  {
+    "Name": "Chair",
+    "Damage": "1d10 + 2 [8]",
+    "Complexity": "Min",
+    "Notes": "Two-Handed"
+  },
+  {
+    "Name": "Helmet",
+    "Damage": "1d6 + 2 [6]",
+    "Complexity": "Min",
+    "Notes": ""
+  },
+  {
+    "Name": "Plasma Torch",
+    "Damage": "2d10 + 8 [19]",
+    "Complexity": "Min",
+    "Notes": "Armor-Piercing"
+  },
+  {
+    "Name": "Robot (Very Small)",
+    "Damage": "1d6 + 1 [5]",
+    "Complexity": "Min",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Rock",
+    "Damage": "1d6 + 2 [6]",
+    "Complexity": "Min",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Shiv",
+    "Damage": "1d10 − 1 [5]",
+    "Complexity": "Min",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Synthmorph (Small)",
+    "Damage": "1d6 [4]",
+    "Complexity": "Min",
+    "Notes": ""
+  },
+  {
+    "Name": "Synthmorph (Medium)",
+    "Damage": "2d6 [7]",
+    "Complexity": "Min",
+    "Notes": "Knockdown, Two-Handed"
+  },
+  {
+    "Name": "Utilitool",
+    "Damage": "1d10 [6]",
+    "Complexity": "Min",
+    "Notes": ""
+  },
+  {
+    "Name": "Wrench",
+    "Damage": "1d10 [6]",
+    "Complexity": "Min",
+    "Notes": ""
+  }
+]

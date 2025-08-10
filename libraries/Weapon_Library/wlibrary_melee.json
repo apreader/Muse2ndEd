@@ -1,0 +1,135 @@
+[
+  {
+    "Name": "Claws",
+    "Ware Type": "BCH",
+    "Damage": "2d6 [7]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Club",
+    "Ware Type": "-",
+    "Damage": "1d10 [6]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Reach"
+  },
+  {
+    "Name": "Densiplast Gloves",
+    "Ware Type": "-",
+    "Damage": "Unarmed + 2 [6/9]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Diamond Axe",
+    "Ware Type": "-",
+    "Damage": "2d10 + 3 [14]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Armor-Piercing, Reach, Two-Handed"
+  },
+  {
+    "Name": "Eelware",
+    "Ware Type": "BCH",
+    "Damage": "Unarmed [4/7]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable, Shock, Touch-Only"
+  },
+  {
+    "Name": "Extendable Baton",
+    "Ware Type": "-",
+    "Damage": "1d10 [6]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Flex Cutter",
+    "Ware Type": "-",
+    "Damage": "1d10 + 3 [9]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Knife",
+    "Ware Type": "-",
+    "Damage": "1d10 + 2 [8]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Monofilament Sword",
+    "Ware Type": "-",
+    "Damage": "2d10 + 2 [13]",
+    "Complexity/GP": "Min/R/1",
+    "Notes": "Armor-Piercing, Reach"
+  },
+  {
+    "Name": "Monowire Garrote",
+    "Ware Type": "-",
+    "Damage": "3d10 [17]",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Armor-Piercing, Fragile"
+  },
+  {
+    "Name": "Piston Spear",
+    "Ware Type": "-",
+    "Damage": "2d10 + 2* [13]",
+    "Complexity/GP": "Min/R/1*",
+    "Notes": "Armor-Piercing, Reach (+20), Two-Handed"
+  },
+  {
+    "Name": "Piston Spike",
+    "Ware Type": "CH",
+    "Damage": "2d10* [11]",
+    "Complexity/GP": "Min/1*",
+    "Notes": "Armor-Piercing, Concealable"
+  },
+  {
+    "Name": "Shock Baton",
+    "Ware Type": "-",
+    "Damage": "1d10 [6]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Reach, Shock, Touch-Only"
+  },
+  {
+    "Name": "Shock Glove",
+    "Ware Type": "-",
+    "Damage": "Unarmed [4/7]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Shock, Touch-Only"
+  },
+  {
+    "Name": "Spur",
+    "Ware Type": "CH",
+    "Damage": "2d6 + 3 [10]",
+    "Complexity/GP": "Min/R/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Unarmed (Biomorph)",
+    "Ware Type": "-",
+    "Damage": "1d6 [4]",
+    "Complexity/GP": "-",
+    "Notes": ""
+  },
+  {
+    "Name": "Unarmed (Shell)",
+    "Ware Type": "-",
+    "Damage": "2d6 [7]",
+    "Complexity/GP": "-",
+    "Notes": ""
+  },
+  {
+    "Name": "Vibroblade",
+    "Ware Type": "-",
+    "Damage": "1d10 + 1d6 [9]",
+    "Complexity/GP": "Min/1",
+    "Notes": "Armor-Piercing/+2d10 DV when sawing"
+  },
+  {
+    "Name": "Wasp Knife",
+    "Ware Type": "-",
+    "Damage": "1d10 + 2 [8]",
+    "Complexity/GP": "Min/R/1",
+    "Notes": "+2d10 DV in vac/deep sea w/superior success"
+  }
+]

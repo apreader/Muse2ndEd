@@ -1,0 +1,57 @@
+[
+  {
+    "Name": "Arm Slide",
+    "Complexity/GP": "Min/1",
+    "Description": "Draw and attack with single complex action."
+  },
+  {
+    "Name": "Extended Magazine",
+    "Complexity/GP": "Min/1",
+    "Description": "Increase ammo capacity +50%."
+  },
+  {
+    "Name": "Gyromount",
+    "Complexity/GP": "Mod/2",
+    "Description": "Negate movement modifiers."
+  },
+  {
+    "Name": "Imaging Scope",
+    "Complexity/GP": "Min/1",
+    "Description": "As specs, can target around corners."
+  },
+  {
+    "Name": "Flash Suppressor",
+    "Complexity/GP": "Min/1",
+    "Description": "-30 Perceive to locate by flash."
+  },
+  {
+    "Name": "Laser Sight",
+    "Complexity/GP": "Min/1",
+    "Description": "Assisted targeting."
+  },
+  {
+    "Name": "Safety System",
+    "Complexity/GP": "Min/1",
+    "Description": "Weapon requires biometric authorization to use."
+  },
+  {
+    "Name": "Shock Safety",
+    "Complexity/GP": "Mod/2",
+    "Description": "As safety system, Shock, DV 1d6 to unauthorized users."
+  },
+  {
+    "Name": "Silencer/Sound Suppressor",
+    "Complexity/GP": "Min/1",
+    "Description": "-30 Perceive to locate by sound."
+  },
+  {
+    "Name": "Smartlink",
+    "Complexity/GP": "Mod/2",
+    "Description": "Assisted targeting, enhanced weapon control."
+  },
+  {
+    "Name": "Smart Magazine",
+    "Complexity/GP": "Min/1",
+    "Description": "Select ammo with each shot, reduce ammo capacity -50%."
+  }
+]

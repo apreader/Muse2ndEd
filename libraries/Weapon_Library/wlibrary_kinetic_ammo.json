@@ -1,0 +1,98 @@
+[
+  {
+    "Name": "Accushot",
+    "Modifier": "\u2014",
+    "Complexity/GP (per 100)": "Min/R/1",
+    "Notes": "Steady"
+  },
+  {
+    "Name": "Armor-Piercing",
+    "Modifier": "-1d10",
+    "Complexity/GP (per 100)": "Min/R/1",
+    "Notes": "Armor-Piercing"
+  },
+  {
+    "Name": "Biter",
+    "Modifier": "+1d6",
+    "Complexity/GP (per 100)": "Mod/R/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Bug",
+    "Modifier": "\u2014",
+    "Complexity/GP (per 100)": "Min/R/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Capsule",
+    "Modifier": "\u00f72",
+    "Complexity/GP (per 100)": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Hollow-point",
+    "Modifier": "+1d6",
+    "Complexity/GP (per 100)": "Min/R/1",
+    "Notes": "Extra DV only vs. biomorphs"
+  },
+  {
+    "Name": "Homing",
+    "Modifier": "\u2014",
+    "Complexity/GP (per 100)": "Mod/R/2",
+    "Notes": "Indirect fire or +10 to hit"
+  },
+  {
+    "Name": "Jammer",
+    "Modifier": "No damage",
+    "Complexity/GP (per 100)": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Plastic",
+    "Modifier": "\u00f72",
+    "Complexity/GP (per 100)": "Min/1",
+    "Notes": "Stun (biomorphs only)"
+  },
+  {
+    "Name": "Proximity",
+    "Modifier": "+1d6",
+    "Complexity/GP (per 100)": "Mod/R/2",
+    "Notes": "DV 1d10 on miss"
+  },
+  {
+    "Name": "RAP",
+    "Modifier": "\u2014",
+    "Complexity/GP (per 100)": "Mod/R/2",
+    "Notes": "Armor-Piercing"
+  },
+  {
+    "Name": "Railgun",
+    "Modifier": "\u2014",
+    "Complexity/GP (per 100)": "Min/R/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Smart",
+    "Modifier": "As type",
+    "Complexity/GP (per 100)": "Mod/R/2",
+    "Notes": ""
+  },
+  {
+    "Name": "Splash",
+    "Modifier": "No damage",
+    "Complexity/GP (per 100)": "Min/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Standard",
+    "Modifier": "\u2014",
+    "Complexity/GP (per 100)": "Min/R/1",
+    "Notes": ""
+  },
+  {
+    "Name": "Zap",
+    "Modifier": "+2",
+    "Complexity/GP (per 100)": "Min/1",
+    "Notes": "Shock"
+  }
+]

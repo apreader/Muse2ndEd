@@ -5,10 +5,10 @@
       "Free Fall": 40,
       "Interface": 30,
       "Survival": 30,
-      "Hardware: (Choose One)": 40,
-      "Pilot: (Choose One)": 30,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Hardware Choice 40": 40,
+      "Pilot Choice 30": 30,
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Industrial\nPilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space\nKnow (Choose One) 60 Common Fields: Administration, Flight Crew Ops, Hab Ops\nKnow (Choose One) 30 Common Fields: Botany, Chemistry, Engineering, Physics"
   },
@@ -19,10 +19,10 @@
       "Interface": 40,
       "Kinesics": 30,
       "Persuade": 20,
-      "Pilot: Ground": 20,
+      "Pilot Ground": 20,
       "Program": 20,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Know (Choose One) 60 Common Fields: Celebrity Gossip, Pop Culture, Sports\nKnow (Choose One) 30 Common Fields: Economics, Education, Psychology"
   },
@@ -34,8 +34,8 @@
       "Persuade": 40,
       "Program": 30,
       "Research": 40,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Know (Choose One) 60 Common Fields: Accounting, Data Processing, Freelancing\nKnow (Choose One) 30 Common Fields: Craft Beers, Martian Techno, Sports"
   },
@@ -47,10 +47,10 @@
       "Kinesics": 50,
       "Persuade": 30,
       "Provoke": 30,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
-    "Notes": "Know (Choose One) 60 Common Fields: Fine Art, Hypercorp Politics, Stock Market\nKnow (Choose One)30 Common Fields: Economics, Law, Political Science"
+    "Notes": "Know (Choose One) 60 Common Fields: Fine Art, Hypercorp Politics, Stock Market\nKnow (Choose One) 30 Common Fields: Economics, Law, Political Science"
   },
   "Indenture": {
     "Description": "With nothing to lose, you sold yourself into a work contract for the off-world hypercorps.",
@@ -59,9 +59,9 @@
       "Free Fall": 40,
       "Interface": 40,
       "Perceive": 20,
-      "Hardware: (Choose One)": 50,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Hardware Choice 50": 50,
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Hardware: (Choose One) 50 Common Fields: Groundcraft, Industrial, Robotics\nKnow (Choose One) 60 Common Fields: Asteroid Mining, Habitat Ops, Terraforming\nKnow (Choose One) 30 Common Fields: Black Markets, Gambling, XP Dealers"
   },
@@ -72,8 +72,8 @@
       "Interface": 50,
       "Program": 50,
       "Research": 20,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Know (Choose One) 60 Common Fields: Accounting, Administration, System Administration\nKnow (Choose One) 30 Common Fields: Computer Science, Cryptography, Psychometrics"
   },
@@ -82,12 +82,12 @@
     "Skills": {
       "Free Fall": 40,
       "Guns": 20,
-      "Medicine: Paramedic": 20,
+      "Medicine Paramedic": 20,
       "Survival": 20,
-      "Hardware: (Choose One)": 40,
-      "Pilot: (Choose One)": 30,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Hardware Choice 40": 40,
+      "Pilot Choice 30": 30,
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Robotics\nPilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space\nKnow (Choose One) 60 Common Fields: Flight Crew Ops, Gas Mining, Habitat Ops\nKnow (Choose One) 30 Common Fields: Bioconservativism, Conspiracies, Religion"
   },
@@ -99,8 +99,8 @@
       "Kinesics": 40,
       "Perceive": 20,
       "Psi": 50,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Know (Choose One) 60 Common Fields: Biology, Psychology, Sociology\nKnow (Choose One) 30 Common Fields: Privacy, Serial Killers, Mind Hacks"
   },
@@ -113,10 +113,10 @@
       "Kinesics": 40,
       "Perceive": 20,
       "Persuade": 20,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
-    "Notes": "Know (Choose One)  60 Common Fields: Black Markets, Drugs, Triads\nKnow (Choose One) 30 Common Fields: Con Artistry, Police Ops, Smuggling"
+    "Notes": "Know (Choose One) 60 Common Fields: Black Markets, Drugs, Triads\nKnow (Choose One) 30 Common Fields: Con Artistry, Police Ops, Smuggling"
   },
   "Uplift": {
     "Description": "You are an uplift: the latest generation of bonobo, cetacean, chimpanzee, corvid, gorilla, neanderthal, octopus, orangutan, or parrot raised to human levels of intelligence.",
@@ -127,8 +127,8 @@
       "Perceive": 40,
       "Provoke": 20,
       "Survival": 20,
-      "Know: (Choose One)": 60,
-      "Know: (Choose One)": 30
+      "Know Choice 60": 60,
+      "Know Choice 30": 30
     },
     "Notes": "Know (Choose One) 60 Common Fields: Uplift Culture, Uplift Rights\nKnow (Choose One) 30 Common Fields: Genetics, Sociology, Zoology"
   },
