@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 from PyPDF2 import PdfReader, PdfWriter
 from PyPDF2.generic import NameObject, BooleanObject
 
@@ -143,7 +144,7 @@ EXACT_MAP = {
     "Derived Stats.Stress Taken": "Stress Taken",
     "Derived Stats.Traumas Taken": "Traumas Taken",
 
-    # Reputation (no Rep E if your template lacks it)
+    # Reputation
     "Reputation Scores.c-rep": "Rep C",
     "Reputation Scores.f-rep": "Rep F",
     "Reputation Scores.g-rep": "Rep G",
@@ -187,16 +188,36 @@ EXACT_MAP = {
     "Focus Skills.Melee": "Melee",
 }
 
-# ---- formatter for Know names ----
-import re
+# ---- formatter for Know names: ALWAYS "Knowledge (...)" ----
 def format_know_label(label: str) -> str:
-    m = re.match(r"\s*Faction\s*Knowledge\s*\((.+)\)\s*$", label, re.I)
+    t = re.sub(r'\s+', ' ', str(label)).strip()
+
+    # 1) Faction Knowledge (X) / Faction Knowledge: X / Knowledge (Faction: X)
+    m = re.match(r'^(?:Faction\s+)?Knowledge\s*[\(:]\s*(.+?)\)?$', t, re.I)
     if m:
-        return f"Faction: {m.group(1)}"
-    m = re.match(r"\s*Knowledge\s*\((.+)\)\s*$", label, re.I)
+        inner = m.group(1).strip()
+        if not inner.lower().startswith('faction:'):
+            # Heuristic for common faction terms to add "Faction:"
+            if re.match(r'^(Mercurial|Titanian|Jovian|Anarchist|Autonomist|Criminal|Hypercorp|Inner|Outer|Sifter)\b', inner, re.I):
+                inner = f'Faction: {inner}'
+        return f'Knowledge ({inner})'
+
+    # 2) Knowledge (X)
+    m = re.match(r'^Knowledge\s*\((.+?)\)$', t, re.I)
     if m:
-        return m.group(1)
-    return label
+        return f'Knowledge ({m.group(1).strip()})'
+
+    # 3) Know/Knowledge: X  → Knowledge (X)
+    m = re.match(r'^(?:Know|Knowledge)\s*[:\-]\s*(.+)$', t, re.I)
+    if m:
+        return f'Knowledge ({m.group(1).strip()})'
+
+    # 4) Bare "Faction: X" → Knowledge (Faction: X)
+    if t.lower().startswith('faction:'):
+        return f'Knowledge ({t})'
+
+    # 5) Fallback: wrap whatever topic we got
+    return f'Knowledge ({t})'
 
 def enable_need_appearances(writer: PdfWriter, reader: PdfReader):
     try:
@@ -238,8 +259,8 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
             missing_pdf.append(pdf_field)
             continue
         writer.update_page_form_field_values(page0, {pdf_field: src[src_key]})
-        
-# 2.5) Aptitude checks = aptitude * 3  (CogCheck/IntCheck/RefCheck/SavCheck/SomCheck/WillCheck)
+
+    # 1.5) Aptitude checks = aptitude * 3
     def to_int(s):
         try:
             return int(str(s).strip())
@@ -252,7 +273,7 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
         "Aptitudes.REF": ("RefCheck",),
         "Aptitudes.SAV": ("SavCheck",),
         "Aptitudes.SOM": ("SomCheck",),
-        "Aptitudes.WIL": ("WillCheck",),  # your dump showed WillCheck existing
+        "Aptitudes.WIL": ("WillCheck",),
     }
 
     for src_key, pdf_checks in CHECK_FIELDS.items():
@@ -264,7 +285,6 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
             if pdf_field in fields:
                 writer.update_page_form_field_values(page0, {pdf_field: check_val})
 
-
     # 2) Background paragraph to Notes (if present)
     if bg_desc and "Notes" in fields:
         writer.update_page_form_field_values(page0, {"Notes": bg_desc})
@@ -275,6 +295,7 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
     medicine = []
     exotic = []
     know = []
+
     for k, v in src.items():
         if not k.startswith("Focus Skills."):
             continue
@@ -316,6 +337,11 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
         set_field(f"Total Exotic {i}", val)
 
     # Knowledge 1..6 — write NAME (left) and numeric TOTAL (right)
+    if debug and know:
+        print("[DEBUG] Knowledge labels going into PDF:")
+        for i, (label, val) in enumerate(know[:6], 1):
+            print(f"  {i}. '{label}' -> '{format_know_label(label)}' = {val}")
+
     for i, (label, val) in enumerate(know[:6], start=1):
         set_field(f"Know Name {i}", format_know_label(label))
         set_field(f"Know Total {i}", val)
@@ -325,16 +351,18 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
 
     if missing_src:
         print("Note: these source keys weren't in the text (skipped):")
-        for k in missing_src: print("  -", k)
+        for k in missing_src:
+            print("  -", k)
     if missing_pdf:
         print("Note: these PDF fields weren't found (skipped):")
-        for v in missing_pdf: print("  -", v)
+        for v in missing_pdf:
+            print("  -", v)
     print(f"✅ Saved: {output_path}")
 
 # ---------------------------
 # CLI
 # ---------------------------
-if __name__ == "__main__":
+def main():
     if len(sys.argv) not in (2, 3):
         print("Usage:")
         print("  python3 fill_ep2_character.py <character_name> [--debug]")
@@ -351,8 +379,6 @@ if __name__ == "__main__":
     os.makedirs(characters_dir, exist_ok=True)
 
     # Resolve txt_path:
-    # - if user passed a .txt path, use it as-is
-    # - otherwise, treat it as a character name inside characters_dir
     if arg.lower().endswith(".txt"):
         txt_path = os.path.abspath(arg)
         char_name = os.path.splitext(os.path.basename(txt_path))[0]
@@ -379,3 +405,5 @@ if __name__ == "__main__":
         print("ERROR during fill:", e)
         sys.exit(1)
 
+if __name__ == "__main__":
+    main()

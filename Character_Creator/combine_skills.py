@@ -17,7 +17,7 @@ CATEGORY_POOLS = {
     "Medicine": ["Biotech", "Forensics", "Paramedic", "Psychosurgery", "Veterinary"],
 }
 
-# Acceptable tokens in "Base Field" space-form seen in your JSON (e.g., "Pilot Ground", "Medicine Paramedic")
+# Acceptable tokens in "Base Field" space-form seen in your JSON
 VALID_FIELDS = {
     "Hardware": set(CATEGORY_POOLS["Hardware"]),
     "Pilot": set(["Air", "Ground", "Nautical", "Space", "Exotic", "Exotic Vehicle", "Groundcraft"]),
@@ -28,14 +28,17 @@ VALID_FIELDS = {
 def _normalize_skill_key(s: str) -> str:
     s = s.strip()
 
-    # Expand Know -> Knowledge
-    if s.lower().startswith("know"):
-        # "Know Choice 60" should be resolved upstream; here handle e.g. "Know Admin"
-        s = s.replace("Know", "Knowledge", 1).replace("know", "Knowledge", 1)
+    # Only expand the whole word "Know" at the start, never "Knowledge"
+    s = re.sub(r'^know\b', 'Knowledge', s, count=1, flags=re.I)
 
-    # Already parenthesized
+    # Already parenthesized — normalize base if it's Knowledge
     if "(" in s and ")" in s:
-        return s
+        base, field = s.split("(", 1)
+        base = base.strip()
+        field = field.strip(" )")
+        if base.lower().startswith("knowledge"):
+            return f"Knowledge ({field})"
+        return f"{base} ({field})"
 
     # Colon form: "Base: Field" -> "Base (Field)"
     if ":" in s:
@@ -45,23 +48,24 @@ def _normalize_skill_key(s: str) -> str:
             base = "Knowledge"
         return f"{base} ({field})"
 
-    # Space form (seen in your Backgrounds, e.g., "Pilot Ground", "Medicine Paramedic")
+    # Space form (seen in your Backgrounds, e.g., "Pilot Ground")
     parts = s.split()
     if len(parts) >= 2:
         base = parts[0]
         field = " ".join(parts[1:])
-        # Handle "Faction Knowledge (...)" gracefully
         if base == "Faction" and parts[1] == "Knowledge":
-            return s  # this one already has parentheses later when created
-        # Accept only known bases here
+            return f"Knowledge (Faction: {' '.join(parts[2:])})"
         for candidate in ("Hardware", "Pilot", "Medicine", "Knowledge"):
             if base.lower() == candidate.lower():
-                # If it's Knowledge, allow any field label
                 if candidate == "Knowledge" or (VALID_FIELDS[candidate] and field in VALID_FIELDS[candidate]):
                     return f"{candidate} ({field})"
 
-    # Bare categories handled later
+    # Bare "Knowledge" with no subtype — leave as-is
+    if s.lower() == "knowledge":
+        return "Knowledge"
+
     return s
+
 
 def combine_skills(lm, background_skills, career_skills, interest_skills, faction_name, aptitudes, choice_skills_list=None):
     background_skills = background_skills or {}
@@ -69,7 +73,7 @@ def combine_skills(lm, background_skills, career_skills, interest_skills, factio
     interest_skills = interest_skills or {}
     choice_skills_list = choice_skills_list or []
 
-    # Resolve (Choose One) placeholders across all sources (Background/Career/Interest)
+    # Resolve (Choose One) placeholders
     if choice_skills_list:
         background_skills = fill_skill_placeholders(background_skills, choice_skills_list)
         career_skills = fill_skill_placeholders(career_skills, choice_skills_list)
@@ -91,7 +95,7 @@ def combine_skills(lm, background_skills, career_skills, interest_skills, factio
             skill = _normalize_skill_key(raw_skill)
             combined[skill] = combined.get(skill, 0) + val
 
-    # If any bare categories remain, assign a random valid subtype
+    # Assign subtypes to bare categories
     for base in ("Hardware", "Pilot", "Medicine"):
         if base in combined:
             pool = CATEGORY_POOLS.get(base, [])
@@ -99,11 +103,11 @@ def combine_skills(lm, background_skills, career_skills, interest_skills, factio
                 chosen = random.choice(pool)
                 combined[f"{base} ({chosen})"] = combined.pop(base)
 
-    # Add faction knowledge (already normalized)
+    # Add faction knowledge
     faction_skill = f"Knowledge (Faction: {faction_name})"
     combined[faction_skill] = combined.get(faction_skill, 0) + 30
 
-    # Apply aptitude bases (create default key if none matched)
+    # Apply aptitude bases
     for skill_prefix, apt in STANDARD_SKILLS.items():
         if "x2" in apt:
             base_apt = apt.replace("x2", "")
@@ -117,7 +121,6 @@ def combine_skills(lm, background_skills, career_skills, interest_skills, factio
                 combined[skill] += base_val
                 matched = True
         if not matched:
-            # For subtyped families, prefer a deterministic first pool entry; otherwise the bare name
             if skill_prefix in CATEGORY_POOLS:
                 default_field = CATEGORY_POOLS[skill_prefix][0]
                 key = f"{skill_prefix} ({default_field})"
@@ -125,7 +128,7 @@ def combine_skills(lm, background_skills, career_skills, interest_skills, factio
                 key = skill_prefix
             combined[key] = combined.get(key, 0) + base_val
 
-    # Cap and redistribute overflow
+    # Cap at 80 and redistribute overflow
     sorted_skills = sorted(combined.items(), key=lambda x: x[1], reverse=True)
     skills_dict = dict(sorted_skills)
 
@@ -150,10 +153,11 @@ def combine_skills(lm, background_skills, career_skills, interest_skills, factio
             if overflow_pool <= 0:
                 break
 
-    # Final normalization pass (idempotent)
+    # Final normalization pass + safety net against any lingering "Knowledgeledge"
     formatted_skills = {}
     for k, v in skills_dict.items():
         nk = _normalize_skill_key(k)
+        nk = re.sub(r'^knowledge(?:ledge|knowledge)\b', 'Knowledge', nk, flags=re.I)
         formatted_skills[nk] = max(v, formatted_skills.get(nk, 0))
 
     return formatted_skills
