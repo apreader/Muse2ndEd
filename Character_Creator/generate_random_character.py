@@ -1,19 +1,18 @@
 import random
-import re
 
 from .generate_aptitudes import generate_aptitudes
 from .select_languages import select_languages
 from .combine_skills import combine_skills
-from .save_character_to_file import save_character_to_file
-from library_manager import LibraryManager
 from .generate_reputation import generate_reputation
+from library_manager import LibraryManager
 
-# --- EP2 minimal helpers (safe to add) ---
+
+# --- Minimal helpers (no behavior changes) -----------------------------------
 def __ep2_norm(s):
     return (s or "").strip()
 
 def __ep2_pick_profession_pack(career_name, lm):
-    packs = lm.get_library("Gear_Pack_Library") or {}
+    packs = getattr(lm, "get_library", lambda _n: None)("Gear_Pack_Library") or {}
     if not career_name or not packs:
         return None
     if career_name in packs:
@@ -25,48 +24,22 @@ def __ep2_pick_profession_pack(career_name, lm):
     return None
 
 def __ep2_choose_gear_packs(character, lm):
-    # Only the profession pack for now (no campaign pack yet).
+    # Only the profession-based pack for now (names only; unpacking elsewhere)
     career = __ep2_norm(character.get("Career") or character.get("Profession"))
     chosen = []
     prof = __ep2_pick_profession_pack(career, lm)
     if prof:
         chosen.append(prof)
     return chosen
-# --- end helpers ---
-
-
-def parse_choice_skills(notes_str):
-    """
-    Parses Background 'Notes' lines like:
-      Hardware: (Choose One) 40 Common Fields: Aerospace, Electronics, Industrial
-      Pilot: (Choose One) 30 Common Fields: Air, Ground, Nautical, Space
-      Know (Choose One) 60 Common Fields: Administration, Flight Crew Ops, Hab Ops
-    Returns a list of dicts: {"SkillCategory", "Rating", "CommonFields"}
-    """
-    choice_skills = []
-    pattern = re.compile(
-        r"(\w+):?\s*\(Choose One\)\s+(\d+)\s+Common Fields:?\s*(.+)", re.IGNORECASE
-    )
-    for match in pattern.finditer(notes_str or ""):
-        cat = match.group(1)
-        rating = int(match.group(2))
-        fields = [f.strip() for f in match.group(3).split(",")]
-        choice_skills.append({
-            "SkillCategory": cat,       # "Hardware" | "Pilot" | "Know" | "Medicine" (if present)
-            "Rating": rating,
-            "CommonFields": fields
-        })
-    return choice_skills
-
 
 def _harvest_structured_choices(*sources):
     """
-    Pulls structured choice blocks from career/interest dicts, e.g.:
+    Pull structured choice blocks from career/interest dicts, e.g.:
       "Pilot Choices":   {"Points": 30, "Common Fields": ["Air","Ground","Nautical","Space"]}
       "Hardware Choices":{"Points": 40, "Common Fields": ["Aerospace","Electronics","Industrial"]}
       "Medicine Choices":{"Points": 20, "Common Fields": ["Biotech","Paramedic","Psychosurgery", ...]}
       "Know Choices":    [ {"Points": 60, "Common Fields": [...]}, {"Points": 30, "Common Fields": [...]} ]
-    Normalizes to the same shape as parse_choice_skills output.
+    Returns list of {"SkillCategory","Rating","CommonFields"} like the background “ChoiceSkills”.
     """
     out = []
     mapping = {
@@ -78,7 +51,6 @@ def _harvest_structured_choices(*sources):
         if not isinstance(src, dict):
             continue
 
-        # Single-block choices for Pilot/Hardware/Medicine
         for key, category in mapping.items():
             block = src.get(key)
             if isinstance(block, dict):
@@ -91,7 +63,6 @@ def _harvest_structured_choices(*sources):
                         "CommonFields": [str(f).strip() for f in fields]
                     })
 
-        # Possibly multiple Know choices
         klist = src.get("Know Choices")
         if isinstance(klist, list):
             for block in klist:
@@ -106,6 +77,7 @@ def _harvest_structured_choices(*sources):
                         "CommonFields": [str(f).strip() for f in fields]
                     })
     return out
+# -----------------------------------------------------------------------------
 
 
 def generate_random_character(char_name, lm: LibraryManager):
@@ -142,8 +114,8 @@ def generate_random_character(char_name, lm: LibraryManager):
     moxie = {"SAV": aptitudes["SAV"], "WIL": aptitudes["WIL"], "REP": 0}
     vigor = {"REF": aptitudes["REF"], "SOM": aptitudes["SOM"]}
 
-    # 1) Parse Background note-based choices (Know/Hardware/Pilot/etc.)
-    choice_skills = parse_choice_skills(background_data.get("Notes", ""))
+    # 1) Use pre-parsed background choice skills (added by LibraryManager)
+    choice_skills = background_data.get("ChoiceSkills", [])
 
     # 2) Harvest structured choices from Career and Interest
     choice_skills += _harvest_structured_choices(career_data, interest_data)
@@ -173,7 +145,7 @@ def generate_random_character(char_name, lm: LibraryManager):
         is_uplift=(morph_category.lower() == "uplift")
     )
 
-    # Build the character dict FIRST
+    # Build the character dict
     character = {
         "Name": char_name,
         "Aliases": [],
@@ -198,7 +170,7 @@ def generate_random_character(char_name, lm: LibraryManager):
         "Insight": insight,
         "Moxie": moxie,
         "Vigor": vigor,
-        # DO NOT set "Flex" here; we set it in the EP2 block below.
+        # Flex is set below (default 1); keep Ego Flex separate if you use both
         "Wound Threshold": 6,
         "Durability": morph_data.get("DUR", 30),
         "Death Rating": morph_data.get("DR", 45),
@@ -211,10 +183,10 @@ def generate_random_character(char_name, lm: LibraryManager):
         "Derived Stats": derived,
         "Final Skills": final_skills,
         "Reputation": reputation,
-        # "Starting Rez" and "Gear Packs" are added below.
+        # "Starting Rez" and "Gear Packs" added below
     }
 
-    # --- EP2: Steps 1–3 (non-destructive) ---
+    # --- Steps 1–3 (non-destructive) -----------------------------------------
     # 1) Flex rating (default 1 if not already set upstream)
     try:
         character["Flex"] = max(0, int(character.get("Flex", 1)))
@@ -224,12 +196,12 @@ def generate_random_character(char_name, lm: LibraryManager):
     # 2) Starting Rez
     character["Starting Rez"] = 15
 
-    # 3) Gear Packs (names only; no unpacking yet)
+    # 3) Gear Packs (names only; do not overwrite if already set)
     if not character.get("Gear Packs"):
         try:
             character["Gear Packs"] = __ep2_choose_gear_packs(character, lm)
         except Exception:
             character["Gear Packs"] = character.get("Gear Packs", [])
-    # --- end EP2: Steps 1–3 ---
+    # -------------------------------------------------------------------------
 
     return character

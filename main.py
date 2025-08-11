@@ -56,27 +56,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-SKILL_APTITUDE_MAP = {
-    "Athletics": "SOM",
-    "Deceive": "SAV",
-    "Fray": "REF",
-    "Free Fall": "SOM",
-    "Guns": "REF",
-    "Hardware": "COG",
-    "Infosec": "COG",
-    "Infiltrate": "REF",
-    "Interface": "COG",
-    "Kinesics": "SAV",
-    "Medicine": "COG",
-    "Melee": "SOM",
-    "Perceive": "INT",
-    "Persuade": "SAV",
-    "Pilot": "REF",
-    "Program": "COG",
-    "Provoke": "SAV",
-    "Psi": "WIL",
-    "Research": "INT",
-    "Survival": "INT",
-}
