@@ -1,7 +1,28 @@
 import os
-import re
+
+def _flatten_reputation_for_pdf(character):
+    """
+    Ensure top-level PDF field names like 'Reputation Scores.c-rep' exist.
+    Also normalize common aliases so '@-rep' is always present.
+    """
+    rep = character.get("Reputation", {}) or {}
+
+    # Normalize aliases to canonical '@-rep' if it's missing
+    if "@-rep" not in rep:
+        for alias in ("@rep", "a-rep", "arep", "A-Rep", "A Rep", "e-rep"):
+            if alias in rep:
+                rep["@-rep"] = rep[alias]
+                break
+
+    # Emit canonical keys expected by the PDF filler
+    for key in ["c-rep", "f-rep", "g-rep", "i-rep", "r-rep", "x-rep", "@-rep"]:
+        character[f"Reputation Scores.{key}"] = int(rep.get(key, 0))
+
 
 def save_character_to_file(character, lm=None):
+    # Make sure PDF filler can find the expected reputation fields
+    _flatten_reputation_for_pdf(character)
+
     folder = "characters"
     if not os.path.exists(folder):
         os.makedirs(folder)
@@ -39,10 +60,19 @@ def save_character_to_file(character, lm=None):
         for key, value in character.get("Derived Stats", {}).items():
             f.write(f"  {key}: {value}\n")
 
-        # Reputation
+        # Reputation (normalized + canonical order)
         f.write("\nReputation Scores:\n")
-        for key, value in character.get("Reputation", {}).items():
-            f.write(f"  {key}: {value}\n")
+        rep_src = dict(character.get("Reputation", {}) or {})
+
+        # Normalize aliases so the TXT always has '@-rep'
+        if "@-rep" not in rep_src:
+            for alias in ("@rep", "a-rep", "arep", "A-Rep", "A Rep", "e-rep"):
+                if alias in rep_src:
+                    rep_src["@-rep"] = rep_src[alias]
+                    break
+
+        for key in ["c-rep", "f-rep", "g-rep", "i-rep", "r-rep", "x-rep", "@-rep"]:
+            f.write(f"  {key}: {int(rep_src.get(key, 0))}\n")
 
         # Skills
         f.write("\nFocus Skills:\n")
@@ -51,14 +81,15 @@ def save_character_to_file(character, lm=None):
 
         # Morph
         f.write(f"\nMorph: {character.get('Morph', '')} ({character.get('Morph Category', '')})\n")
+
+        # Collect notes text (write once at the end)
+        notes = ""
         if 'Notes' in character:
-            notes = character['Notes']
-            if isinstance(notes, list):
-                notes = "\n".join(str(n).strip() for n in notes if n)
+            raw_notes = character['Notes']
+            if isinstance(raw_notes, list):
+                notes = "\n".join(str(n).strip() for n in raw_notes if n)
             else:
-                notes = str(notes).strip()
-            if notes:
-                f.write(notes + "\n")
+                notes = str(raw_notes).strip()
 
         f.write(f"Damage Taken: {character.get('Damage Taken', 0)}\n")
         f.write(f"Wounds Taken: {character.get('Wounds Taken', 0)}\n")
@@ -79,6 +110,21 @@ def save_character_to_file(character, lm=None):
         f.write(f"\nMovement Rate: {character.get('Movement Rate', '')}\n")
         f.write("Ware: " + ", ".join(character.get("Ware", [])) + "\n")
 
-        # Final Notes
+        # --- EP2 TXT additions: Steps 1–3 ---
+        # Flex and Starting Rez
+        f.write(f"\nFlex: {character.get('Flex', 1)}\n")
+        f.write(f"Starting Rez: {character.get('Starting Rez', 15)}\n")
+
+        # Gear Packs (names only; print [None] if empty)
+        packs = character.get("Gear Packs") or []
+        f.write("\nGear Packs:\n")
+        if packs:
+            for p in packs:
+                f.write(f"  - {p}\n")
+        else:
+            f.write("  [None]\n")
+        # --- end EP2 TXT additions ---
+
+        # Final Notes (single place to print notes)
         if notes:
-            f.write("Notes:\n" + notes + "\n")
+            f.write("\nNotes:\n" + notes + "\n")
