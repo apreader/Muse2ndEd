@@ -4,9 +4,6 @@
 # Ignore all text files
 *.txt
 
-#Ignore Libary Folder
-Libraries/
-
 #python
 __pycache__/
 *.pyc
