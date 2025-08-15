@@ -11,25 +11,63 @@ from library_manager import LibraryManager
 def __ep2_norm(s):
     return (s or "").strip()
 
-def __ep2_pick_profession_pack(career_name, lm):
-    packs = getattr(lm, "get_library", lambda _n: None)("Gear_Pack_Library") or {}
-    if not career_name or not packs:
+def __ep2_keynorm(s: str) -> str:
+    """Aggressive, case-insensitive normalizer for fuzzy matches."""
+    import re
+    return re.sub(r"[^a-z0-9]+", "", (s or "").lower())
+
+def __ep2_pick_profession_pack(career_name, lm: LibraryManager):
+    """
+    Find the canonical Profession pack name for the given career, using the actual
+    structure of Gear_Pack_Library.json: { "Professions": { "<Career>": [items...] }, ... }.
+
+    Returns the canonical key (e.g., "Mindhacker", "Techie"), or None if not found.
+    """
+    packs_root = getattr(lm, "get_library", lambda _n: None)("Gear_Pack_Library")
+    if not career_name or not isinstance(packs_root, dict):
         return None
-    if career_name in packs:
+
+    profs = packs_root.get("Professions", {})
+    if not isinstance(profs, dict) or not profs:
+        return None
+
+    # 1) Exact key match (case sensitive)
+    if career_name in profs:
         return career_name
+
+    # 2) Exact (case-insensitive)
     low = career_name.lower()
-    for k in packs.keys():
+    for k in profs.keys():
         if k.lower() == low:
             return k
+
+    # 3) Aggressive normalization equality
+    needle = __ep2_keynorm(career_name)
+    for k in profs.keys():
+        if __ep2_keynorm(k) == needle:
+            return k
+
+    # 4) Substring/contains heuristic (both ways)
+    for k in profs.keys():
+        kn = __ep2_keynorm(k)
+        if needle and (needle in kn or kn in needle):
+            return k
+
     return None
 
-def __ep2_choose_gear_packs(character, lm):
-    # Only the profession-based pack for now (names only; unpacking elsewhere)
+def __ep2_choose_gear_packs(character: dict, lm: LibraryManager):
+    """
+    Choose Career/Profession pack names (names only — items are expanded elsewhere).
+    Guarantees at least the Career pack if it exists in the JSON.
+    """
     career = __ep2_norm(character.get("Career") or character.get("Profession"))
     chosen = []
     prof = __ep2_pick_profession_pack(career, lm)
     if prof:
         chosen.append(prof)
+
+    # If somehow nothing matched (e.g., custom career), leave as empty list;
+    # your postprocessor hook will still append Equipment from other sources.
     return chosen
 
 def _harvest_structured_choices(*sources):
@@ -155,6 +193,7 @@ def generate_random_character(char_name, lm: LibraryManager):
         "Background": background_name,
         "Background Data": background_data,
         "Career": career_name,
+        "Career Data": career_data,
         "Interest": interest_name,
         "Interest Data": interest_data,
         "Faction": faction_name,
@@ -199,7 +238,9 @@ def generate_random_character(char_name, lm: LibraryManager):
     # 3) Gear Packs (names only; do not overwrite if already set)
     if not character.get("Gear Packs"):
         try:
-            character["Gear Packs"] = __ep2_choose_gear_packs(character, lm)
+            packs = __ep2_choose_gear_packs(character, lm)
+            # Always ensure at least the Career pack is included if available
+            character["Gear Packs"] = packs if isinstance(packs, list) else []
         except Exception:
             character["Gear Packs"] = character.get("Gear Packs", [])
     # -------------------------------------------------------------------------

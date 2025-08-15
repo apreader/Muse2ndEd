@@ -1,0 +1,501 @@
+{
+  "CHEMICALS": [
+    {
+      "Name": "Atropine",
+      "Complexity/GP": "Min/1",
+      "Description": "Antidote against nerve agents."
+    },
+    {
+      "Name": "DMSO",
+      "Complexity/GP": "Min/1",
+      "Description": "Carries other chemicals through the skin."
+    },
+    {
+      "Name": "Liquid Thermite",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Gel that burns, inflicting DV 3d10 + 10 [26] per turn for 3 turns."
+    },
+    {
+      "Name": "NotWater",
+      "Complexity/GP": "Min/1",
+      "Description": "Liquid fire retardant that does not get things wet."
+    },
+    {
+      "Name": "Scrapper\u2019s Gel",
+      "Complexity/GP": "Min/1",
+      "Description": "Gel that burns, inflicting DV 2d10 + 5 [16] per turn for 3 turns."
+    },
+    {
+      "Name": "Slip",
+      "Complexity/GP": "Min/1",
+      "Description": "Frictionless liquid. REF Check to walk across, SOM Check to hold on to, \u201330 to grapple."
+    },
+    {
+      "Name": "Tracker Dye",
+      "Complexity/GP": "Min/1",
+      "Description": "Visible at other wavelengths."
+    }
+  ],
+  "COGNITIVE DRUGS": [
+    {
+      "Name": "Drive",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Mod/2",
+      "Description": "+1 Insight."
+    },
+    {
+      "Name": "Fokus",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u2014/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "Enhanced Behavior: Obsessive (2), reduce timeframes 25%."
+    },
+    {
+      "Name": "Klar",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u2014/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "+10 Perceive, no distraction modifiers."
+    },
+    {
+      "Name": "Neem",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u2014/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "+20 COG Check for recall of memories learned while on Neem."
+    }
+  ],
+  "COMBAT DRUGS": [
+    {
+      "Name": "Aggro",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "15 minutes",
+      "Addiction Mod/Type": "+10/Physical",
+      "Complexity/GP": "Min/1",
+      "Description": "+20 Provoke to intimidate/taunt, \u201320 other social tests."
+    },
+    {
+      "Name": "Brutalitea",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Physical",
+      "Complexity/GP": "Min/1",
+      "Description": "+5 DUR, +1 WT, +8 DR."
+    },
+    {
+      "Name": "Grin",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "3 hours",
+      "Addiction Mod/Type": "\u201310/Physical",
+      "Complexity/GP": "Min/1",
+      "Description": "Ignore 1 wound."
+    },
+    {
+      "Name": "Kick",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201310/Physical",
+      "Complexity/GP": "Min/1",
+      "Description": "+1 Vigor."
+    },
+    {
+      "Name": "MRDR",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201320/Physical",
+      "Complexity/GP": "Maj/2 R/3",
+      "Description": "+2 Vigor, ignore 1 wound, Enhanced Behavior: Aggression (2), \u201320 social tests, WIL Checks will jumpiness."
+    },
+    {
+      "Name": "Phlo",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "3 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Maj/3",
+      "Description": "+1 Vigor, can use Vigor twice on same test."
+    },
+    {
+      "Name": "Rev",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201320/Physical",
+      "Complexity/GP": "\u2014",
+      "Description": "Short recharge takes only a complex action."
+    }
+  ],
+  "HEALTH DRUGS": [
+    {
+      "Name": "Bananas Furiosas",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/1",
+      "Description": "Reduces severity of radiation exposure."
+    },
+    {
+      "Name": "Comfort",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "+5 LUC, +1 TT, +5 IR."
+    }
+  ],
+  "NANODRUGS": [
+    {
+      "Name": "Freeq",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/1",
+      "Description": "Use Perceive to detect near-field electromagnetic emissions."
+    },
+    {
+      "Name": "Gravy",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "1 day",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/1",
+      "Description": "Reduce penalties for high-gravity acclimation by 20."
+    },
+    {
+      "Name": "Meds",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "1 day",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Mod/2",
+      "Description": "Heals 1d10 [6] damage per hour or 1 wound per day."
+    },
+    {
+      "Name": "Persona",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/1",
+      "Description": "Acquire Enhanced Behavior (2) trait."
+    },
+    {
+      "Name": "Retcon",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "Permanent",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Erases last 48 hours of memories."
+    },
+    {
+      "Name": "Schizo",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "3 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/R/1",
+      "Description": "Mental Disorder: Schizophrenia, Enhanced Behavior: Violent (2), SV 1d10 [6]."
+    },
+    {
+      "Name": "Xsense",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "1 day",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/1",
+      "Description": "Acquire new sense or other organ function."
+    }
+  ],
+  "NARCOALGORITHMS": [
+    {
+      "Name": "DDR",
+      "Type": "Electronic",
+      "Application": "App",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u2014/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "Dancing, \u201320 actions, WIL Check to override."
+    },
+    {
+      "Name": "Linkstate",
+      "Type": "Electronic",
+      "Application": "App",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "Samples memories from others."
+    },
+    {
+      "Name": "Randomizer",
+      "Type": "Electronic",
+      "Application": "App",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u2014/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "Randomizes emotions. +10 or \u201310 social skills (50/50 each turn)."
+    }
+  ],
+  "PETALS": [
+    {
+      "Name": "Inquisitive Green",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/R/1",
+      "Description": "Narrative hallucinogen, green becomes sapient."
+    },
+    {
+      "Name": "Soul Stave",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/R/1",
+      "Description": "Narrative hallucinogen, find magic item forks."
+    },
+    {
+      "Name": "The Creeps",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/R/1",
+      "Description": "Narrative hallucinogen, phantom limb mystery."
+    }
+  ],
+  "PSI DRUGS": [
+    {
+      "Name": "Inhibitor",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "6 hours",
+      "Addiction Mod/Type": "+20/Mental",
+      "Complexity/GP": "Maj/3",
+      "Description": "\u201330 Psi, \u201320 WIL Check or lose psi abilities."
+    },
+    {
+      "Name": "Psi-Opener",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Rare/\u2014",
+      "Description": "Effects of 1 specific psi-chi sleight. SV 1d6."
+    },
+    {
+      "Name": "Psike-Out",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Maj/R/3",
+      "Description": "+10 Psi skill."
+    },
+    {
+      "Name": "Psi-Kick",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Rare/\u2014",
+      "Description": "Effects of 1 specific psi-gamma sleight. SV 1d10 + 2."
+    }
+  ],
+  "RECREATIONAL": [
+    {
+      "Name": "Buzz",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "36 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Hallucinations, \u201330 suggestive SAV/WIL Checks."
+    },
+    {
+      "Name": "Mono no Aware",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "Meditative, +10 Art skills."
+    },
+    {
+      "Name": "Orbital Hash",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "3 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Min/1",
+      "Description": "Ignore 1 trauma, \u201310 Know Tests/memory-related COG Checks."
+    },
+    {
+      "Name": "TGS",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "3 hours",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Mod/2",
+      "Description": "Ignore 1 trauma and 1 wound, +10 WIL check, Enhanced Behavior: Serene (2)."
+    }
+  ],
+  "SOCIAL DRUGS": [
+    {
+      "Name": "Blab",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u2014",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Neural Damage: Logorrhea, \u201330 Deceive, \u201330 SAV/WIL Checks vs. interrogation."
+    },
+    {
+      "Name": "Hither",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Physical",
+      "Complexity/GP": "Min/1",
+      "Description": "+10 seduction Provoke, Enhanced Behavior: Aroused (2)."
+    },
+    {
+      "Name": "Juice",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "1 hour",
+      "Addiction Mod/Type": "\u201320/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "+30 SAV/WIL Checks vs. fear/negative emotions, Enhanced Behavior: Happy (3)."
+    },
+    {
+      "Name": "Nofux",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Mod/2",
+      "Description": "+1 Moxie."
+    },
+    {
+      "Name": "Stiff",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "8 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "+10 SAV/WIL Checks vs. Persuade/Provoke, Enhanced Behavior: Stubborn (Level 2)."
+    },
+    {
+      "Name": "Tongzhi",
+      "Type": "Biochem",
+      "Application": "Any",
+      "Duration": "12 hours",
+      "Addiction Mod/Type": "\u201310/Mental",
+      "Complexity/GP": "Min/1",
+      "Description": "+10 Kinesics, +10 Persuade towards common interests, Enhanced Behavior: Cooperative (2)."
+    }
+  ],
+  "TOXINS": [
+    {
+      "Name": "BTX\u00b2",
+      "Type": "Biochem",
+      "Application": "D, Inj, O",
+      "Duration": "3 turns/1 hour",
+      "Complexity/GP": "Maj/R/3",
+      "Description": "DV 2d10 +3 [21] for 3 turns, SOM Check or immobilized for 1 hour."
+    },
+    {
+      "Name": "CR Gas",
+      "Type": "Biochem",
+      "Application": "D, Inh",
+      "Duration": "20 minutes",
+      "Complexity/GP": "Min/R/1",
+      "Description": "DV 1d6 [4], \u201330 Perceive, \u201320 all other actions."
+    },
+    {
+      "Name": "Flight",
+      "Type": "Biochem",
+      "Application": "Inh",
+      "Duration": "1 hour",
+      "Complexity/GP": "Min/R/1",
+      "Description": "SV 1d10 [6], \u201330 resist intimidation/fear effects."
+    },
+    {
+      "Name": "Nervex",
+      "Type": "Biochem",
+      "Application": "D, Inh, Inj, O",
+      "Duration": "10 minutes",
+      "Complexity/GP": "Min/R/1",
+      "Description": "\u201320 actions, SOM Check vs. incapacitation, death."
+    },
+    {
+      "Name": "Oxytocin-A",
+      "Type": "Biochem",
+      "Application": "D, Inh, Inj",
+      "Duration": "2 hours",
+      "Complexity/GP": "Min/R/1",
+      "Description": "Trusting, \u201330 WIL Checks/Kinesics Tests where trust is a factor."
+    },
+    {
+      "Name": "Twitch",
+      "Type": "Biochem",
+      "Application": "D, Inh, Inj, O",
+      "Duration": "10 minutes",
+      "Complexity/GP": "Min/R/1",
+      "Description": "\u201320 actions, SOM Check vs. incapacitation."
+    }
+  ],
+  "NANOTOXINS": [
+    {
+      "Name": "Disruptor",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "8 hours",
+      "Complexity/GP": "Maj/R/3",
+      "Description": "Cumulative \u20135 to actions per hour; incapacitation."
+    },
+    {
+      "Name": "Necrosis",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "1 minute",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "DV 1d6 [4] per turn."
+    },
+    {
+      "Name": "Neuropath",
+      "Type": "Nano",
+      "Application": "D, Inj, O",
+      "Duration": "8 hours",
+      "Complexity/GP": "Mod/R/2",
+      "Description": "Agony, \u201330 actions, WIL Check vs. incapacitation."
+    },
+    {
+      "Name": "Nutcracker",
+      "Type": "Nano",
+      "Application": "Inj, O",
+      "Duration": "6 hours",
+      "Complexity/GP": "Maj/R/3",
+      "Description": "Destroys cortical stack."
+    }
+  ]
+}
