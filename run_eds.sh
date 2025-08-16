@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in {1..100}
+for i in {1..10}
 do
-  python3 main.py "Ed$i" > /dev/null 2>&1
+  python3 main.py "Ed$i" --pdf > /dev/null 2>&1
 done

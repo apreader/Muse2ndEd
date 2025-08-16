@@ -47,6 +47,15 @@ def main():
             return
 
         try:
+            print(f"[pdf] Preparing equipment block …")
+            try:
+                # Append rich equipment block into the TXT (in place)
+                from Character_Creator.equipment_postprocess import append_equipment_to_txt
+                characters_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "characters")
+                txt_path = os.path.join(characters_dir, f"{char_name}.txt")
+                append_equipment_to_txt(txt_path, os.path.join(os.path.dirname(os.path.abspath(__file__)), "libraries"), inplace=True)
+            except Exception as e:
+                print(f"[pdf] Warning: equipment block not appended: {e}")
             print(f"[pdf] Filling PDF for {char_name} …")
             # We taught the fill script to accept just the character name and find ../../characters/<name>.txt
             subprocess.run([sys.executable, fill_script, char_name], check=True)

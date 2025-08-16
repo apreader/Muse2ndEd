@@ -1,7 +1,7 @@
+
 import sys
 import os
 import datetime
-import subprocess
 from PyQt5 import QtWidgets, QtCore
 
 from muse_parser import parse_character_txt, serialize_character_txt
@@ -11,12 +11,12 @@ from systems.remorphing import remorph_roll, remorph_outcome_summary
 from systems.pools import list_pools, spend_pool, get_pool, set_pool
 from systems.combat import build_attack_target, resolve_attack_vs_defense, apply_damage_after_armor, apply_damage_to_character
 
-# --- Generator imports ---
+# --- NEW: generator imports ---
 from library_manager import LibraryManager
 from Character_Creator.generate_random_character import generate_random_character
 from Character_Creator.save_character_to_file import save_character_to_file
 
-
+# --- NEW: simple dialog for generation ---
 class GenerateDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -37,32 +37,70 @@ class GenerateDialog(QtWidgets.QDialog):
     def values(self):
         return self.name_edit.text().strip(), self.cb_pdf.isChecked()
 
-
+# --- NEW: helpers ---
 def _safe_save_character(char, lm):
-    """Support both save_character_to_file(char) and save_character_to_file(char, lm)."""
     try:
         save_character_to_file(char, lm)
     except TypeError:
         save_character_to_file(char)
 
-
-def _run_cli_pdf(name: str) -> bool:
-    """Invoke the same CLI path you use: python3 main.py "<Name>" --pdf.
-    Returns True if the expected PDF appears in characters/, else False.
+def _try_export_pdf_from_parsed(parsed_character, name_hint):
+    """Export a PDF using the parsed dict (the same object the GUI uses).
+    Returns output path on success else None.
     """
-    out_pdf = os.path.join(os.getcwd(), "characters", f"{name}_EP2.pdf")
-    try:
-        if os.path.exists(out_pdf):
-            try:
-                os.remove(out_pdf)
-            except Exception:
-                pass
-        cmd = ["python3", "main.py", name, "--pdf"]
-        subprocess.run(cmd, cwd=os.getcwd(), check=False)
-        return os.path.exists(out_pdf)
-    except Exception:
-        return False
+    out_dir = os.path.join(os.getcwd(), "characters")
+    os.makedirs(out_dir, exist_ok=True)
+    out_pdf = os.path.join(out_dir, f"{name_hint}_EP2.pdf")
 
+    # Likely template locations
+    template_candidates = [
+        os.path.join(os.getcwd(), "Character_Creator", "pdf_conversion", "EP2FormFill.pdf"),
+        os.path.join(os.getcwd(), "pdfs", "EP2FormFill.pdf"),
+    ]
+    template_pdf = None
+    for p in template_candidates:
+        if os.path.exists(p):
+            template_pdf = p
+            break
+
+    try:
+        import importlib.util
+        mod_path = os.path.join(os.getcwd(), "Character_Creator", "pdf_conversion", "fill_ep2_character.py")
+        spec = importlib.util.spec_from_file_location("ep2_fill", mod_path)
+        if not spec or not spec.loader:
+            return None
+        ep2_fill = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ep2_fill)
+
+        # Candidate callables
+        candidates = []
+        for name in ["fill_ep2_character", "export_to_pdf", "fill_character_pdf", "export_character_pdf", "generate_pdf", "main"]:
+            fn = getattr(ep2_fill, name, None)
+            if callable(fn):
+                candidates.append(fn)
+
+        # Try signatures that use the parsed structure
+        attempts = []
+        attempts.append(((parsed_character,), {}))
+        attempts.append(((parsed_character, out_pdf), {}))
+        if template_pdf:
+            attempts.append(((parsed_character, template_pdf, out_pdf), {}))
+            attempts.append(((), {"character": parsed_character, "template_pdf": template_pdf, "out_pdf": out_pdf}))
+        attempts.append(((), {"character": parsed_character, "out_pdf": out_pdf}))
+
+        for fn in candidates:
+            for args, kwargs in attempts:
+                try:
+                    fn(*args, **kwargs)
+                    if os.path.exists(out_pdf):
+                        return out_pdf
+                except TypeError:
+                    continue
+                except Exception:
+                    continue
+    except Exception:
+        pass
+    return None
 
 class PoolSpendDialog(QtWidgets.QDialog):
     """Popup to optionally spend pools after seeing a roll (post-roll options)."""
@@ -71,20 +109,22 @@ class PoolSpendDialog(QtWidgets.QDialog):
         self.setWindowTitle("Modify Outcome?")
         self.setModal(True)
         self.character = character
+        self.result = None
 
         v = QtWidgets.QVBoxLayout(self)
         v.addWidget(QtWidgets.QLabel(f"Modify the outcome of {context_label}? (spend 1 point)"))
 
         pools = list_pools(character)
-        self.cb_plus20 = QtWidgets.QCheckBox("+20 to target (pre-roll)")
+        self.cb_plus20 = QtWidgets.QCheckBox("+20 to target (counts as pre-roll)")
         self.cb_reroll = QtWidgets.QCheckBox("Reroll d100")
         self.cb_flip = QtWidgets.QCheckBox("Flip tens/ones")
-        self.cb_upgrade = QtWidgets.QCheckBox("Upgrade one tier")
-        self.cb_neg_crit_fail = QtWidgets.QCheckBox("Negate critical failure")
+        self.cb_upgrade = QtWidgets.QCheckBox("Upgrade one tier (success→crit, failure→success)")
+        self.cb_negate_crit_fail = QtWidgets.QCheckBox("Negate critical failure (downgrade to normal failure)")
 
-        for cb in [self.cb_plus20, self.cb_reroll, self.cb_flip, self.cb_upgrade, self.cb_neg_crit_fail]:
+        for cb in [self.cb_plus20, self.cb_reroll, self.cb_flip, self.cb_upgrade, self.cb_negate_crit_fail]:
             v.addWidget(cb)
 
+        # Pool selection (radio)
         self.pool_group = QtWidgets.QButtonGroup(self)
         pool_row = QtWidgets.QHBoxLayout()
         pool_row.addWidget(QtWidgets.QLabel("Pay with:"))
@@ -103,6 +143,7 @@ class PoolSpendDialog(QtWidgets.QDialog):
         v.addWidget(btns)
 
     def get_selection(self):
+        # Determine which pool was selected
         pool_name = None
         if self.rb_insight.isChecked(): pool_name = "Insight"
         elif self.rb_moxie.isChecked(): pool_name = "Moxie"
@@ -114,12 +155,11 @@ class PoolSpendDialog(QtWidgets.QDialog):
             "reroll": self.cb_reroll.isChecked(),
             "flip": self.cb_flip.isChecked(),
             "upgrade": self.cb_upgrade.isChecked(),
-            "neg_crit_fail": self.cb_neg_crit_fail.isChecked(),
+            "neg_crit_fail": self.cb_negate_crit_fail.isChecked(),
         }
         if any(actions.values()) and pool_name:
             return pool_name, actions
         return None, actions
-
 
 class EP2eGUI(QtWidgets.QMainWindow):
     def __init__(self):
@@ -133,35 +173,44 @@ class EP2eGUI(QtWidgets.QMainWindow):
         self.tabs = QtWidgets.QTabWidget()
         self.setCentralWidget(self.tabs)
 
+        # Overview
         self.overview_text = QtWidgets.QTextEdit()
         self.overview_text.setReadOnly(True)
         self.tabs.addTab(self.overview_text, "Overview")
 
+        # Skill Rolls
         self.skill_tab = QtWidgets.QWidget(); self._init_skill_tab()
         self.tabs.addTab(self.skill_tab, "Skill Rolls")
 
+        # Stress Tests
         self.stress_tab = QtWidgets.QWidget(); self._init_stress_tab()
         self.tabs.addTab(self.stress_tab, "Stress Tests")
 
+        # Remorphing
         self.remorph_tab = QtWidgets.QWidget(); self._init_remorph_tab()
         self.tabs.addTab(self.remorph_tab, "Remorphing")
 
+        # Combat
         self.combat_tab = QtWidgets.QWidget(); self._init_combat_tab()
         self.tabs.addTab(self.combat_tab, "Combat (Basic)")
 
+        # Log
         self.log_text = QtWidgets.QTextEdit(); self.log_text.setReadOnly(True)
         self.tabs.addTab(self.log_text, "Session Log")
 
+        # Menu
         menubar = self.menuBar()
         file_menu = menubar.addMenu("File")
         load_action = QtWidgets.QAction("Load Character…", self); load_action.triggered.connect(self.load_character)
         save_action = QtWidgets.QAction("Save Session As…", self); save_action.triggered.connect(self.save_session_as)
+        # NEW
         gen_action = QtWidgets.QAction("Generate Random Character…", self); gen_action.triggered.connect(self.generate_random_character_action)
         file_menu.addAction(gen_action)
         file_menu.addAction(load_action); file_menu.addAction(save_action)
 
         self.statusBar().showMessage("Ready")
 
+    # ---------- UI Builders ----------
     def _init_skill_tab(self):
         L = QtWidgets.QVBoxLayout(); self.skill_tab.setLayout(L)
         row = QtWidgets.QHBoxLayout(); L.addLayout(row)
@@ -191,6 +240,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
 
     def _init_combat_tab(self):
         L = QtWidgets.QVBoxLayout(); self.combat_tab.setLayout(L)
+        # Attack inputs
         atk_row = QtWidgets.QHBoxLayout(); L.addLayout(atk_row)
         self.cb_melee = QtWidgets.QRadioButton("Melee"); self.cb_ranged = QtWidgets.QRadioButton("Ranged"); self.cb_ranged.setChecked(True)
         atk_row.addWidget(self.cb_ranged); atk_row.addWidget(self.cb_melee)
@@ -206,6 +256,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         for w in [QtWidgets.QLabel("Atk Mod:"), self.spin_atk_mod, self.chk_aim, self.chk_cover, rb_single, rb_burst, rb_auto]:
             mod_row.addWidget(w)
 
+        # Defense inputs
         def_row = QtWidgets.QHBoxLayout(); L.addLayout(def_row)
         self.chk_defend = QtWidgets.QCheckBox("Defender Reacts")
         self.def_skill = QtWidgets.QComboBox()
@@ -213,6 +264,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         for w in [self.chk_defend, QtWidgets.QLabel("Defense skill:"), self.def_skill, QtWidgets.QLabel("Def Mod:"), self.spin_def_mod]:
             def_row.addWidget(w)
 
+        # Damage & armor
         dmg_row = QtWidgets.QHBoxLayout(); L.addLayout(dmg_row)
         self.spin_dv = QtWidgets.QSpinBox(); self.spin_dv.setRange(0,200); self.spin_dv.setValue(10)
         self.spin_armor = QtWidgets.QSpinBox(); self.spin_armor.setRange(0,50)
@@ -220,10 +272,14 @@ class EP2eGUI(QtWidgets.QMainWindow):
         for w in [QtWidgets.QLabel("Base DV:"), self.spin_dv, QtWidgets.QLabel("Target Armor:"), self.spin_armor, QtWidgets.QLabel("AP:"), self.spin_ap]:
             dmg_row.addWidget(w)
 
-        self.btn_attack = QtWidgets.QPushButton("Resolve Attack"); L.addWidget(self.btn_attack)
+        # Buttons
+        btn_row = QtWidgets.QHBoxLayout(); L.addLayout(btn_row)
+        self.btn_attack = QtWidgets.QPushButton("Resolve Attack"); btn_row.addWidget(self.btn_attack)
         self.btn_attack.clicked.connect(self.resolve_attack)
+
         self.combat_log = QtWidgets.QTextEdit(); self.combat_log.setReadOnly(True); L.addWidget(self.combat_log)
 
+    # ---------- File ops ----------
     def load_character(self):
         start_dir = os.path.join(os.getcwd(), "characters")
         path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Open Character", start_dir, "Text Files (*.txt)")
@@ -248,6 +304,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         self.log(f"Session saved to {path}")
         QtWidgets.QMessageBox.information(self, "Saved", f"Session saved:\n{path}")
 
+    # ---------- NEW: Generate + optional PDF ----------
     def generate_random_character_action(self):
         dlg = GenerateDialog(self)
         if dlg.exec_() != QtWidgets.QDialog.Accepted:
@@ -256,10 +313,12 @@ class EP2eGUI(QtWidgets.QMainWindow):
         if not name:
             return
         try:
-            lm = LibraryManager(); lm.load_all_libraries()
+            lm = LibraryManager()
+            lm.load_all_libraries()
             char = generate_random_character(name, lm)
             _safe_save_character(char, lm)
 
+            # Load into GUI immediately (parsed representation)
             path = os.path.join(os.getcwd(), "characters", f"{name}.txt")
             if not os.path.exists(path):
                 raise FileNotFoundError(f"Expected character file not found: {path}")
@@ -268,46 +327,37 @@ class EP2eGUI(QtWidgets.QMainWindow):
             self.refresh_overview()
             self.populate_skills()
 
+            # Optional PDF using the parsed dict to match your existing filler expectations
             if want_pdf:
-                ok = _run_cli_pdf(name)
-                if ok:
-                    QtWidgets.QMessageBox.information(self, "Generated", f"Character '{name}' generated and loaded.\nPDF exported to characters/{name}_EP2.pdf")
+                pdf_out = _try_export_pdf_from_parsed(self.character, name)
+                if pdf_out:
+                    QtWidgets.QMessageBox.information(self, "Generated", f"Character '{name}' generated and loaded.\nPDF exported:\n{pdf_out}")
                 else:
-                    QtWidgets.QMessageBox.warning(
-                        self,
-                        "Generated (PDF failed)",
-                        f"Character '{name}' generated and loaded, but PDF export did not complete. "
-                        f'Try running from CLI:  python3 main.py "{name}" --pdf'
-                    )
+                    QtWidgets.QMessageBox.warning(self, "Generated (PDF failed)", f"Character '{name}' generated and loaded, but PDF export did not complete. Check fill_ep2_character.py.")
             else:
                 QtWidgets.QMessageBox.information(self, "Generated", f"Character '{name}' generated and loaded.")
             self.log(f"Generated character '{name}'")
         except Exception as e:
             QtWidgets.QMessageBox.critical(self, "Generation Failed", f"{type(e).__name__}: {e}")
 
+    # ---------- Helpers ----------
     def refresh_overview(self):
-        if not self.character:
-            self.overview_text.clear(); return
+        if not self.character: self.overview_text.clear(); return
         parts = []
-        parts.append("Aptitudes:"); [parts.append(f"  {k}: {v}") for k,v in self.character.get("Aptitudes",{}).items()]
-        parts.append("\nSkills:")
-        for k, v in sorted(self.character.get("Skills",{}).items()):
-            if isinstance(v, int):
-                parts.append(f"  {k}: {v}")
-        parts.append("\nOther Stats:"); [parts.append(f"  {k}: {v}") for k,v in self.character.get("Other Stats",{}).items()]
+        parts.append("Aptitudes:"); [parts.append(f"  {k}: {v}") for k,v in self.character["Aptitudes"].items()]
+        parts.append("\nSkills:");   [parts.append(f"  {k}: {self.character['Skills'][k]}") for k in sorted(self.character["Skills"].keys())]
+        parts.append("\nOther Stats:"); [parts.append(f"  {k}: {v}") for k,v in self.character["Other Stats"].items()]
         self.overview_text.setPlainText("\n".join(parts))
 
     def populate_skills(self):
         self.skill_select.clear(); self.def_skill.clear(); self.skill_attack.clear()
         if not self.character: return
-        skills = [k for k,v in self.character.get("Skills",{}).items() if isinstance(v, int)]
-        skills.sort()
+        skills = sorted(self.character["Skills"].keys())
         self.skill_select.addItems(skills)
-        self.def_skill.addItems([s for s in skills if s.lower() in ("fray","athletics","melee")])
-        self.skill_attack.addItems([s for s in skills if s.lower() in ("guns","melee")])
+        self.def_skill.addItems(skills + ["Fray"] if "Fray" not in skills else skills)
+        self.skill_attack.addItems(skills)
 
-    def log(self, msg):
-        self.log_text.append(msg)
+    def log(self, msg): self.log_text.append(msg)
 
     def prompt_pool_spend(self, context_label):
         dlg = PoolSpendDialog(self.character, self, context_label)
@@ -318,11 +368,12 @@ class EP2eGUI(QtWidgets.QMainWindow):
                 return pool_name, actions
         return None, {"plus20":False,"reroll":False,"flip":False,"upgrade":False,"neg_crit_fail":False}
 
+    # ---------- Rolls ----------
     def roll_skill(self):
         if not self.character:
             QtWidgets.QMessageBox.warning(self, "No character", "Load a character first."); return
         skill = self.skill_select.currentText()
-        base = self.character.get("Skills",{}).get(skill, 0)
+        base = self.character["Skills"].get(skill, 0)
         mod = self.mod_input.value()
         pool_used, actions = self.prompt_pool_spend(f"Skill: {skill}")
         if actions["plus20"]:
@@ -334,7 +385,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         if actions["reroll"]:
             tens, ones, roll_val = roll_d100()
         out = evaluate_roll(roll_val, target)
-        if actions["neg_crit_fail"] and out.get("tier") == "critical_failure":
+        if actions["neg_crit_fail"] and out["tier"] == "critical_failure":
             out["tier"] = "failure"; out["label"] = "FAILURE"
         if actions["upgrade"]:
             order = ["critical_failure","failure","success","critical_success"]
@@ -349,15 +400,15 @@ class EP2eGUI(QtWidgets.QMainWindow):
             "failure": "Task failed — no progress or flawed result.",
             "critical_failure": "Severe error — things get worse or a complication occurs.",
         }
-        summary = summaries.get(out.get("tier"), "")
-        line = f"{skill} | Target {target} | Roll {display} → {out.get('label','')} — {summary}"
+        summary = summaries[out["tier"]]
+        line = f"{skill} | Target {target} | Roll {display} → {out['label']} — {summary}"
         self.skill_result.append(line); self.log(line)
 
     def apply_stress_roll(self):
         if not self.character:
             QtWidgets.QMessageBox.warning(self, "No character", "Load a character first."); return
         stress = self.stress_amount.value()
-        apt = self.character.get("Aptitudes",{}).get("WIL", 0)
+        apt = self.character["Aptitudes"].get("WIL", 0)
         mod = 0
         pool_used, actions = self.prompt_pool_spend("Stress Test (WIL×3)")
         if actions["plus20"]:
@@ -369,7 +420,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         if actions["reroll"]:
             tens, ones, roll_val = roll_d100()
         out = evaluate_roll(roll_val, target)
-        if actions["neg_crit_fail"] and out.get("tier") == "critical_failure":
+        if actions["neg_crit_fail"] and out["tier"] == "critical_failure":
             out["tier"] = "failure"; out["label"] = "FAILURE"
         if actions["upgrade"]:
             order = ["critical_failure","failure","success","critical_success"]
@@ -392,7 +443,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         if actions["plus20"]:
             mod += 20
         tens, ones, roll_val = roll_d100()
-        apt = self.character.get("Aptitudes",{})
+        apt = self.character["Aptitudes"]
         if test == "Integration":
             target = max(0, min(99, apt.get("SOM",0)*3 + mod))
         else:
@@ -402,7 +453,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
         if actions["reroll"]:
             tens, ones, roll_val = roll_d100()
         out = evaluate_roll(roll_val, target)
-        if actions["neg_crit_fail"] and out.get("tier") == "critical_failure":
+        if actions["neg_crit_fail"] and out["tier"] == "critical_failure":
             out["tier"] = "failure"; out["label"] = "FAILURE"
         if actions["upgrade"]:
             order = ["critical_failure","failure","success","critical_success"]
@@ -414,11 +465,12 @@ class EP2eGUI(QtWidgets.QMainWindow):
         line = f"{test} | Target {target} | Roll {display} → {out['label']} — {summary}"
         self.remorph_result.append(line); self.log(line)
 
+    # ---------- Combat ----------
     def resolve_attack(self):
         if not self.character:
             QtWidgets.QMessageBox.warning(self, "No character", "Load a character first."); return
         atk_skill_name = self.skill_attack.currentText()
-        atk_base = self.character.get("Skills",{}).get(atk_skill_name, 0)
+        atk_base = self.character["Skills"].get(atk_skill_name, 0)
         atk_mod = self.spin_atk_mod.value()
         if self.chk_aim.isChecked(): atk_mod += 10
         if self.chk_cover.isChecked(): atk_mod -= 10
@@ -437,7 +489,7 @@ class EP2eGUI(QtWidgets.QMainWindow):
             t_tens, t_ones, t_val = roll_d100()
         atk_target = max(0, min(99, atk_base + atk_mod))
         att_out = evaluate_roll(t_val, atk_target)
-        if actions["neg_crit_fail"] and att_out.get("tier") == "critical_failure":
+        if actions["neg_crit_fail"] and att_out["tier"] == "critical_failure":
             att_out["tier"] = "failure"; att_out["label"] = "FAILURE"
         if actions["upgrade"]:
             order = ["critical_failure","failure","success","critical_success"]
@@ -447,37 +499,32 @@ class EP2eGUI(QtWidgets.QMainWindow):
         defended = False; def_out = None; def_line = ""
         if self.chk_defend.isChecked():
             def_skill_name = self.def_skill.currentText()
-            def_base = self.character.get("Skills",{}).get(def_skill_name, 0)
+            def_base = self.character["Skills"].get(def_skill_name, 0)
             def_mod = self.spin_def_mod.value()
             d_tens, d_ones, d_val = roll_d100()
             def_target = max(0, min(99, def_base + def_mod))
             def_out = evaluate_roll(d_val, def_target)
-            defended = def_out.get("success") and (not att_out.get("success") or (d_val <= def_target and d_val > t_val))
-            def_line = f" | Defense {def_skill_name} T{def_target} Roll {d_val//10}{d_val%10} → {def_out.get('label','')}"
+            defended = (def_out["success"] and (not att_out["success"] or d_val <= def_target and d_val > t_val))
+            def_line = f" | Defense {def_skill_name} T{def_target} Roll {d_val//10}{d_val%10} → {def_out['label']}"
 
-        line = f"Attack {atk_skill_name} T{atk_target} Roll {t_val//10}{t_val%10} → {att_out.get('label','')}"
+        line = f"Attack {atk_skill_name} T{atk_target} Roll {t_val//10}{t_val%10} → {att_out['label']}"
         if def_line: line += def_line
-        if att_out.get("success") and not defended:
+        if att_out["success"] and not defended:
             base_dv = self.spin_dv.value()
             armor = self.spin_armor.value()
             ap = self.spin_ap.value()
             after = apply_damage_after_armor(base_dv, armor, ap)
             state = apply_damage_to_character(self.character, after)
             self.refresh_overview()
-            if isinstance(state, dict):
-                line += f" | HIT for {after} after armor"
-                if "total_damage" in state and "wounds" in state and "state" in state:
-                    line += f" → Total {state['total_damage']}, Wounds {state['wounds']} ({state['state']})"
+            line += f" | HIT for {after} after armor → Total {state['total_damage']}, Wounds {state['wounds']} ({state['state']})"
         else:
             line += " | MISS"
         self.combat_log.append(line); self.log(line)
-
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
     w = EP2eGUI(); w.show()
     sys.exit(app.exec_())
-
 
 if __name__ == "__main__":
     main()
