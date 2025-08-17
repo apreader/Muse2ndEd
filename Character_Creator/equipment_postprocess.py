@@ -125,6 +125,39 @@ def _format_equipment_block(grouped: Dict[str, List[str]], packs_with_sources: L
 def append_equipment_to_txt(txt_path: str, libraries_path: str = "libraries", inplace: bool = True, out_path: str = None) -> str:
     # Auto-suggest packs from character identity (Background/Career/Faction/Morph/Interest/Campaign)
     suggestions = suggest_packs_for_character(txt_path, libraries_dir=libraries_path)
+    # --- Enrich weapons & armor and mirror minimal keys for PDF ---
+    try:
+        grouped, packs = aggregate_equipment(txt_path, libraries_dir=libraries_path, selected_packs=set(suggestions))
+        details = _load_all_library_items(libraries_path)
+        enriched = _enrich_weapons_and_armor(grouped, details)
+    except Exception:
+        enriched = {}
+
+    # Build 'Weapon 1.*' and 'Armor.*' lines (top-level keys), outside any sections
+    top_level_lines = []
+    # Insert top-level keys for PDF consumption (if any)
+    if top_level_lines:
+        for _ln in top_level_lines:
+            lines.append(_ln)
+        lines.append("")
+    if enriched.get("weapons"):
+        w1 = enriched["weapons"][0]
+        top_level_lines.append(f"Weapon 1.Name: {w1.get('name','')}")
+        top_level_lines.append(f"Weapon 1.DV: {w1.get('dv','')}")
+        top_level_lines.append(f"Weapon 1.Modes: {w1.get('firing_modes','')}")
+        top_level_lines.append(f"Weapon 1.Ammo: {w1.get('ammo','')}")
+        if len(enriched["weapons"]) > 1:
+            w2 = enriched["weapons"][1]
+            top_level_lines.append(f"Weapon 2.Name: {w2.get('name','')}")
+            top_level_lines.append(f"Weapon 2.DV: {w2.get('dv','')}")
+            top_level_lines.append(f"Weapon 2.Modes: {w2.get('firing_modes','')}")
+            top_level_lines.append(f"Weapon 2.Ammo: {w2.get('ammo','')}")
+    if enriched.get("armor"):
+        a = enriched["armor"]
+        top_level_lines.append(f"Armor.Name: {a.get('name','')}")
+        top_level_lines.append(f"Armor.EK: {a.get('energy',0)} / {a.get('kinetic',0)}")
+
+
     # ensure at least one pack: prefer Career if selector didn't find any
     selected = {name for (name, _src) in suggestions}
     grouped, packs = aggregate_equipment(txt_path, libraries_path, selected_packs=selected)
@@ -147,6 +180,95 @@ def append_equipment_to_txt(txt_path: str, libraries_path: str = "libraries", in
             dst.write(cleaned.rstrip() + "\n\n" + block)
         return out_path
 
+
+def _parse_int_from_str(val):
+    try:
+        if isinstance(val, int):
+            return val
+        if not isinstance(val, str):
+            return 0
+        s = val.strip()
+        s = s.replace("+","")
+        return int(s)
+    except Exception:
+        return 0
+
+def _enrich_weapons_and_armor(grouped: Dict[str, List[str]], details: Dict[str, Dict]) -> Dict[str, Dict]:
+    """
+    Returns a dict with keys:
+      - 'weapons': list of dicts [{name, category, dv, ap, ammo, firing_modes, range, traits}]
+      - 'armor': dict {name, energy, kinetic, armor_type, mods_applied: [names]}
+    """
+    enriched = {"weapons": [], "armor": None}
+
+    # Build quick lookups for armor types and mods
+    armor_type_names = set()
+    armor_mod_names = set()
+    for nm, d in details.items():
+        if d.get("_source_file") == "wlibrary_armor_types.json":
+            armor_type_names.add(nm)
+        if d.get("_source_file") == "wlibrary_armor_mods.json":
+            armor_mod_names.add(nm)
+
+    # Weapons from grouped catalog
+    for nm in grouped.get("Weapons", []):
+        d = details.get(nm, {})
+        if not d:
+            continue
+        # Heuristic: treat as weapon if it has obvious weapon fields
+        if any(k in d for k in ("Damage","Firing Modes","Ammo","Range")) and nm not in armor_type_names and nm not in armor_mod_names:
+            category = (d.get("Category") or d.get("_weapon_category") or "").lower()
+            dv = d.get("Damage", "")
+            ap = d.get("AP", "") if isinstance(d.get("AP",""), str) else ""
+            fm = d.get("Firing Modes", "")
+            ammo = d.get("Ammo", "")
+            rng = d.get("Range", "")
+            traits = []
+            if d.get("Notes"):
+                traits.append(d["Notes"])
+            enriched["weapons"].append({
+                "name": nm,
+                "category": category,
+                "dv": dv,
+                "ap": ap,
+                "ammo": ammo,
+                "firing_modes": fm,
+                "range": rng,
+                "traits": traits,
+            })
+
+    # Armor: pick first seen armor type in the assembled items
+    all_items = []
+    for lst in grouped.values():
+        all_items.extend(lst)
+
+    base_armor_name = None
+    for nm in all_items:
+        if nm in armor_type_names:
+            base_armor_name = nm
+            break
+
+    if base_armor_name:
+        base = details.get(base_armor_name, {}) or {}
+        e = _parse_int_from_str(base.get("Energy"))
+        k = _parse_int_from_str(base.get("Kinetic"))
+        mods_applied = []
+        # Apply any armor mods present in the full items list
+        for nm in all_items:
+            if nm in armor_mod_names:
+                md = details.get(nm, {}) or {}
+                e += _parse_int_from_str(md.get("Energy"))
+                k += _parse_int_from_str(md.get("Kinetic"))
+                mods_applied.append(nm)
+        enriched["armor"] = {
+            "name": base_armor_name,
+            "energy": e,
+            "kinetic": k,
+            "armor_type": base.get("Ware Type", "-"),
+            "mods_applied": mods_applied,
+        }
+
+    return enriched
 def main():
     ap = argparse.ArgumentParser(description="Append grouped Equipment section to a Muse TXT")
     ap.add_argument("txt_path")

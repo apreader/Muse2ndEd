@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 from PyPDF2 import PdfReader, PdfWriter
 
 # Allow both "python fill_ep2_character.py" and module mode
@@ -54,8 +55,8 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
 
     if debug:
         keys = sorted(fields.keys())
-        print(f"[DEBUG] Found {len(keys)} PDF fields in {os.path.basename(pdf_path)} (first 40 shown):")
-        for i, n in enumerate(keys[:40], 1):
+        print(f"[DEBUG] Found {len(keys)} PDF fields in {os.path.basename(pdf_path)} (first 60 shown):")
+        for i, n in enumerate(keys[:60], 1):
             print(f"  {i:2d}. {n}")
         print("")
 
@@ -158,6 +159,109 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
         set_field(f"Know Apt {i}", apt)
         set_field(f"Know Total {i}", tot)
 
+    # =====================================================================
+    # Gear Packs → PDF ("Gear Pack 1..4") — Append-only, presence-checked
+    # =====================================================================
+    def _parse_gear_packs_from_txt(path):
+        """
+        Open the raw TXT and extract the list of pack names under:
+        Equipment:
+          Gear Packs:
+            <pack 1>
+            <pack 2>
+            ...
+        Case-insensitive headers; preserves pack name casing for display.
+        Stops at blank line or when indentation falls back to the Gear Packs: level.
+        """
+        packs = []
+        try:
+            with open(path, "r", encoding="utf-8-sig") as f:
+                lines = f.read().splitlines()
+        except Exception:
+            return packs
+
+        def indent(s):
+            return len(s) - len(s.lstrip(" "))
+
+        equip_idx = None
+        for idx, raw in enumerate(lines):
+            if raw.strip().lower() == "equipment:":
+                equip_idx = idx
+                break
+        if equip_idx is None:
+            return packs
+
+        # Find "Gear Packs:" after "Equipment:"
+        gp_idx = None
+        gp_indent = None
+        for j in range(equip_idx + 1, len(lines)):
+            s = lines[j]
+            st = s.strip()
+            if not st:
+                continue
+            # if we encounter a new top-level (no indent) header before finding Gear Packs, keep scanning
+            if st.endswith(":") and ":" not in st[:-1]:
+                hdr = st[:-1].strip().lower()
+                if hdr == "gear packs":
+                    gp_idx = j
+                    gp_indent = indent(s)
+                    break
+            # Non-header content inside Equipment we just skip until we find Gear Packs
+        if gp_idx is None:
+            return packs
+
+        # Collect subsequent indented non-empty lines
+        for k in range(gp_idx + 1, len(lines)):
+            raw = lines[k]
+            st = raw.strip()
+            if not st:
+                break  # blank line ends the block
+            if indent(raw) <= gp_indent:
+                break  # indentation outdented => new section
+            # strip leading bullets/dashes and whitespace
+            name = re.sub(r'^[\-\*\u2022]+\s*', '', st)
+            if name:
+                packs.append(name)
+
+        return packs
+
+    def _resolve_gp_field(slot_num, field_keys):
+        """
+        Resolve the actual PDF field name for the given slot by trying
+        candidate variants; returns None if none exist in the PDF.
+        """
+        candidates = (
+            f"Gear Pack {slot_num}",
+            f"Gear Pack{slot_num}",
+            f"GearPack {slot_num}",
+            f"GearPack{slot_num}",
+        )
+        for cand in candidates:
+            if cand in field_keys:
+                return cand
+        return None
+
+    gear_packs = _parse_gear_packs_from_txt(txt_path)
+    if debug:
+        if gear_packs:
+            print("[DEBUG] Gear Packs detected: " + " | ".join(gear_packs[:4]))
+        else:
+            print("[DEBUG] Gear Packs detected: <none>")
+
+    # Write up to first 4 packs if both pack and field are present
+    if gear_packs:
+        resolved = []
+        for i in range(1, 5):
+            field_name = _resolve_gp_field(i, fields.keys())
+            if i - 1 < len(gear_packs) and field_name:
+                writer.update_page_form_field_values(page0, {field_name: gear_packs[i - 1]})
+            resolved.append((i, field_name))
+        if debug:
+            mapping_str = ", ".join(
+                f"#{i}→{repr(fn) if fn else '<skipped>'}" for i, fn in resolved
+            )
+            print(f"[DEBUG] Pack→Field: {mapping_str}")
+
     # ---- Write output ----
     with open(output_path, "wb") as f:
         writer.write(f)
@@ -170,7 +274,72 @@ def fill_pdf_exact(txt_path, pdf_path, output_path, debug=False):
         print("Note: these PDF fields weren't found (skipped):")
         for v in missing_pdf:
             print("  -", v)
+    
+    # ---- Weapons/Armor fields (append-only, presence-checked) ----
+    # Source: mirror keys added into TXT by equipment_postprocess.append_equipment_to_txt
+    def _maybe_set(field_name, value):
+        if field_name in fields and value is not None and value != "":
+            writer.update_page_form_field_values(page0, {field_name: value})
+
+    # Weapon 1
+    if "Weapon 1.Name" in src:
+        _maybe_set("Weapon 1 Name", src.get("Weapon 1.Name"))
+    if "Weapon 1.DV" in src:
+        _maybe_set("DV1", src.get("Weapon 1.DV"))
+    if "Weapon 1.Modes" in src:
+        _maybe_set("Firing Mode 1", src.get("Weapon 1.Modes"))
+    if "Weapon 1.Ammo" in src:
+        _maybe_set("Ammo 1", src.get("Weapon 1.Ammo"))
+
+    # Weapon 2
+    if "Weapon 2.Name" in src:
+        _maybe_set("Weapon 2 Name", src.get("Weapon 2.Name"))
+    if "Weapon 2.DV" in src:
+        _maybe_set("DV2", src.get("Weapon 2.DV"))
+    if "Weapon 2.Modes" in src:
+        _maybe_set("Firing Mode 2", src.get("Weapon 2.Modes"))
+    if "Weapon 2.Ammo" in src:
+        _maybe_set("Ammo 2", src.get("Weapon 2.Ammo"))
+
+    # Armor
+    if "Armor.Name" in src:
+        _maybe_set("Armor", src.get("Armor.Name"))
+    if "Armor.EK" in src:
+        _maybe_set("Energy / Kinetic", src.get("Armor.EK"))
+
+    # ---- Weapons/Armor fields (append-only, presence-checked) ----
+    # Source: mirror keys added into TXT by equipment_postprocess.append_equipment_to_txt
+    def _maybe_set(field_name, value):
+        if field_name in fields and value is not None and value != "":
+            writer.update_page_form_field_values(page0, {field_name: value})
+
+    # Weapon 1
+    if "Weapon 1.Name" in src:
+        _maybe_set("Weapon 1 Name", src.get("Weapon 1.Name"))
+    if "Weapon 1.DV" in src:
+        _maybe_set("DV1", src.get("Weapon 1.DV"))
+    if "Weapon 1.Modes" in src:
+        _maybe_set("Firing Mode 1", src.get("Weapon 1.Modes"))
+    if "Weapon 1.Ammo" in src:
+        _maybe_set("Ammo 1", src.get("Weapon 1.Ammo"))
+
+    # Weapon 2
+    if "Weapon 2.Name" in src:
+        _maybe_set("Weapon 2 Name", src.get("Weapon 2.Name"))
+    if "Weapon 2.DV" in src:
+        _maybe_set("DV2", src.get("Weapon 2.DV"))
+    if "Weapon 2.Modes" in src:
+        _maybe_set("Firing Mode 2", src.get("Weapon 2.Modes"))
+    if "Weapon 2.Ammo" in src:
+        _maybe_set("Ammo 2", src.get("Weapon 2.Ammo"))
+
+    # Armor
+    if "Armor.Name" in src:
+        _maybe_set("Armor", src.get("Armor.Name"))
+    if "Armor.EK" in src:
+        _maybe_set("Energy / Kinetic", src.get("Armor.EK"))
     print(f"✅ Saved: {output_path}")
+
 
 # ---------------------------
 # CLI
