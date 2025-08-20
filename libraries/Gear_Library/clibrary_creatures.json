@@ -84,28 +84,156 @@
     "Category": "Smart Animals",
     "Entries": [
       {
-        "Name": "Guard Dog"
+        "Name": "Guard Dog",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 0,
+          "AV": 4,
+          "WT/DUR/DR": "3/15/23",
+          "TT/LUC/IR": "4/20/40"
+        },
+        "Movement": "Walker 4/12",
+        "Notes": "Ware: Claws, Cyberbrain, Enhanced Hearing, Enhanced Smell, Enhanced Vision, Muscle Augmentation, Reflex Boosters\nSkills: Athletics 30, Fray 40, Melee 50, Perceive 40, Provoke 40 (intimidate 40)"
       },
       {
-        "Name": "Police Baboon"
+        "Name": "Police Baboon",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 2,
+          "AV": 6,
+          "WT/DUR/DR": "6/30/45",
+          "TT/LUC/IR": "2/10/20"
+        },
+        "Movement": "Walker 4/20",
+        "Notes": "Ware: Bioweave, Cold Tolerance, Enhanced Vision, Enhanced Respiration, Neurachem, Toxin Filters\nSkills: Athletics 50, Fray 40, Melee 50, Perceive 40, Provoke 40 (intimidate 50)"
       },
       {
-        "Name": "Rust Hound"
+        "Name": "Rust Hound",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 2,
+          "AV": 6,
+          "WT/DUR/DR": "6/30/45",
+          "TT/LUC/IR": "2/10/20"
+        },
+        "Movement": "Walker 4/20",
+        "Notes": "Ware: Bioweave, Cold Tolerance, Enhanced Respiration, Enhanced Smell, Toxin Filters\nSkills: Athletics 60, Fray 40, Infiltrate 30, Melee 50"
       },
       {
-        "Name": "Smart Hawk"
+        "Name": "Smart Hawk",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 0,
+          "AV": 1,
+          "WT/DUR/DR": "3/15/23",
+          "TT/LUC/IR": "2/10/20"
+        },
+        "Movement": "Winged 8/32",
+        "Notes": "Ware: Claws, Cyberbrain, Enhanced Vision, Prehensile Feet\nSkills: Athletics 60, Fray 30, Infiltrate 50, Perceive 40"
       },
       {
-        "Name": "Smart Monkey"
+        "Name": "Smart Monkey",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 0,
+          "AV": 2,
+          "WT/DUR/DR": "3/15/23",
+          "TT/LUC/IR": "4/20/40"
+        },
+        "Movement": "Walker 4/12",
+        "Notes": "Ware: Bioware, Cyberbrain, Enhanced Smell, Grip Pads\nSkills: Athletics 50, Fray 40, Infiltrate 40, Melee 40, Perceive 40"
       },
       {
-        "Name": "Smart Raccoon"
+        "Name": "Smart Raccoon",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 0,
+          "AV": 2,
+          "WT/DUR/DR": "3/15/23",
+          "TT/LUC/IR": "4/20/40"
+        },
+        "Movement": "Walker 4/12",
+        "Notes": "Ware: Bioware, Cyberbrain, Enhanced Smell, Grip Pads\nSkills: Athletics 50, Fray 40, Infiltrate 40, Melee 40, Perceive 40"
       },
       {
-        "Name": "Smart Rat"
+        "Name": "Smart Rat",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 0,
+          "AV": 1,
+          "WT/DUR/DR": "0/4/8",
+          "TT/LUC/IR": "2/10/20"
+        },
+        "Movement": "Walker 4/8",
+        "Notes": "Ware: Enhanced Smell, Grip Pads\nSkills: Athletics 30, Fray 40, Infiltrate 60, Melee 30, Perceive 40"
       },
       {
-        "Name": "Swarm Cat"
+        "Name": "Swarm Cat",
+        "Complexity/GP": "Min/1",
+        "Stats": {
+          "COG": 5,
+          "INT": 5,
+          "REF": 15,
+          "SAV": 5,
+          "SOM": 15,
+          "WIL": 5,
+          "INIT": 5,
+          "TP": 0,
+          "AV": 2,
+          "WT/DUR/DR": "3/15/23",
+          "TT/LUC/IR": "4/20/40"
+        },
+        "Movement": "Walker 4/12",
+        "Notes": "Ware: Bioware, Cyberbrain, Enhanced Smell, Grip Pads\nSkills: Athletics 50, Fray 40, Infiltrate 40, Melee 40, Perceive 40"
       }
     ]
   },

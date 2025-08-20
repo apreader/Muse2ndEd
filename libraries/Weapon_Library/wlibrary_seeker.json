@@ -1,0 +1,56 @@
+[
+  {
+    "Name": "Disposable Launcher",
+    "Damage": "",
+    "Firing Modes": "SS",
+    "Ammo": "1 Standard",
+    "Range": "300",
+    "Complexity/GP": "As Missile",
+    "Notes": "Long, No Close, Single-Use, Two-Handed"
+  },
+  {
+    "Name": "Seeker Armband",
+    "Damage": "",
+    "Firing Modes": "SS",
+    "Ammo": "4 Micro",
+    "Range": "75",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "No Point-Blank"
+  },
+  {
+    "Name": "Seeker Pistol",
+    "Damage": "",
+    "Firing Modes": "SA",
+    "Ammo": "8 Micro",
+    "Range": "75",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "No Point-Blank"
+  },
+  {
+    "Name": "Seeker Rifle",
+    "Damage": "",
+    "Firing Modes": "SA",
+    "Ammo": "12 Micro",
+    "Range": "75",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "No Close, Long, Two-Handed"
+  },
+  {
+    "Name": "Seeker Rifle (Mini)",
+    "Damage": "",
+    "Firing Modes": "SA",
+    "Ammo": "6 Mini",
+    "Range": "150",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "No Close, Long, Two-Handed"
+  },
+  {
+    "Name": "Underbarrel Seeker",
+    "Damage": "",
+    "Firing Modes": "SA",
+    "Ammo": "6 Micro",
+    "Range": "75",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "No Close, Two-Handed"
+  }
+]

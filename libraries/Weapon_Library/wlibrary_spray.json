@@ -1,0 +1,74 @@
+[
+  {
+    "Name": "Buzzer",
+    "Damage": "As swarm",
+    "Firing Modes": "SS",
+    "Ammo": "3",
+    "Range": "15",
+    "Complexity/GP": "As specialized hive",
+    "Notes": "Long, Two-Handed"
+  },
+  {
+    "Name": "Freezer",
+    "Damage": "\u2014",
+    "Firing Modes": "SS",
+    "Ammo": "20",
+    "Range": "15",
+    "Complexity/GP": "Mod/2",
+    "Notes": "Entangling, Long, Two-Handed"
+  },
+  {
+    "Name": "Plasma Rifle",
+    "Damage": "4d10 + 10 [32]",
+    "Firing Modes": "SA",
+    "Ammo": "6",
+    "Range": "25",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "Armor-Piercing, Long, Two-Handed"
+  },
+  {
+    "Name": "Shard Pistol",
+    "Damage": "2d6 + 6 [13]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "100",
+    "Range": "25",
+    "Complexity/GP": "Min/R/1",
+    "Notes": "Concealable"
+  },
+  {
+    "Name": "Shredder",
+    "Damage": "2d10 + 6 [17]",
+    "Firing Modes": "SA/BF/FA",
+    "Ammo": "100",
+    "Range": "25",
+    "Complexity/GP": "Mod/R/2",
+    "Notes": "Two-Handed"
+  },
+  {
+    "Name": "Sprayer",
+    "Damage": "As payload",
+    "Firing Modes": "SS",
+    "Ammo": "15",
+    "Range": "15",
+    "Complexity/GP": "Min/1",
+    "Notes": "Long, Two-Handed"
+  },
+  {
+    "Name": "Torch",
+    "Damage": "3d10 [16]",
+    "Firing Modes": "SS",
+    "Ammo": "20",
+    "Range": "15",
+    "Complexity/GP": "Maj/R/3",
+    "Notes": "Long, Two-Handed"
+  },
+  {
+    "Name": "Vortex Ring Gun",
+    "Damage": "1d6 [3]",
+    "Firing Modes": "SA",
+    "Ammo": "20",
+    "Range": "15",
+    "Complexity/GP": "Min/1",
+    "Notes": "Knockdown, Long, Stun, Two-Handed"
+  }
+]

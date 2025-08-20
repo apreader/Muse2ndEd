@@ -14,8 +14,6 @@ from Character_Creator.gear_pack_selector import suggest_packs_for_character
 # Keys are LOWERCASE; incoming names are lowercased before lookup.
 # -----------------------------------------------------------------------------
 CSV_HARDCODED_MAP: Dict[str, str] = {
-    "creepy bot": "Creepy",
-    "servitor bot": "Servitor",
     "archive": "Portable SolArchive",
     "private server": "Private Server",
     "scout nanoswarm": "Scout Swarm",
@@ -49,40 +47,17 @@ def _one_line(s: Optional[str]) -> str:
     return re.sub(r"\s+", " ", str(s).replace("\\n", " ").replace("\\t", " ")).strip()
 
 def _desc_from_fields(d: Dict) -> str:
-    # Prefer common descriptive fields first (Apps, Meds, Bots, Gear).
-    preferred_keys = [
-        "Description","Long","Short",
-        "Effects","Effect","Use","Usage","Function","Functions","Action",
-        "Duration","Onset","Application","Addiction","Side Effects",
-        "Bonuses","Modifier","Notes"
-    ]
-    for key in preferred_keys:
+    # Prefer Description; else synthesize from typical stats/notes.
+    for key in ("Description","Long","Short","Effects","Bonuses","Use","Usage","Function","Functions","Notes"):
         v = d.get(key)
         if isinstance(v, (str,int,float)) and str(v).strip():
             return _one_line(v)
         if isinstance(v, list) and v:
             return _one_line(", ".join(str(x) for x in v))
-
-    # Otherwise synthesize from common stats
     bits = []
     for k in ("Movement","Size","Armor","Complexity/GP","WT","DUR","DR","Rating","Capacity","Damage","Firing Modes","Range","Ammo"):
         if d.get(k):
             bits.append(f"{k.split(' (')[0]} {d[k]}")
-
-    # If still thin, add up to 8 scalar fields not already used (excluding noisy/meta ones).
-    if len(bits) < 2:
-        exclude = set(preferred_keys) | {"Name","Category","_source_file","Ware Type"}
-        extras = []
-        for k, v in d.items():
-            if k in exclude or isinstance(v, (list, dict)) or not str(v).strip():
-                continue
-            if k in ("Energy","Kinetic"):  # handled elsewhere for armor line
-                continue
-            extras.append(f"{k}: {v}")
-            if len(extras) >= 8:
-                break
-        bits.extend(extras)
-
     return _one_line("; ".join(bits))
 
 def _collect_library_items(libraries_dir: str) -> Dict[str, Dict]:
