@@ -25,13 +25,19 @@ CSV_HARDCODED_MAP: Dict[str, str] = {
     "assault rifle railgun": "Assault Rifle",
     "smart hawk": "Smart Hawk",
     "enhanced security": "Enhanced Security",
+    # --- Apps normalization (sheet uses "... App")
     "exploit app": "Exploit",
     "spoofer app": "Spoofer",
     "psychosurgery app": "Psychosurgery",
+    # ---
     "simulspace": "Simulspace",
     "microcar": "Microcar",
     "dino pet": "Dino Pet",
     "shredder": "Shredder",  # present in wlibrary_spray.json
+
+    # Optional “stubborn” chem lines with doses (kept tiny, generic logic handles most)
+    "meds (5 doses)": "Meds",
+    "stiff (5 doses)": "Stiff",
 }
 
 SECTION_HEADER = "\nEquipment:\n"
@@ -48,12 +54,41 @@ def _one_line(s: Optional[str]) -> str:
         return ""
     return re.sub(r"\s+", " ", str(s).replace("\\n", " ").replace("\\t", " ")).strip()
 
+# ---- Apps/Chems-focused helpers (tiny, local) --------------------------------
+_DOSE_RE = re.compile(
+    r"""\s*\(\s*(\d+)\s*(?:dose|doses|shot|shots|rd|rds|round|rounds)\s*\)\s*$""",
+    re.IGNORECASE,
+)
+
+def _strip_dose_suffix(name: str) -> str:
+    """Remove terminal '(5 doses|3 shots|10 rds|30 rounds)' if present."""
+    return _DOSE_RE.sub("", name).strip()
+
+def _strip_trailing_parens(name: str) -> str:
+    """Remove any single trailing parenthetical '(... )'."""
+    return re.sub(r"\s*\([^()]*\)\s*$", "", name).strip()
+
+def _strip_app_suffix(name: str) -> str:
+    """Turn 'Exploit App' -> 'Exploit' for lookup."""
+    if name.lower().endswith(" app"):
+        return name[:-4].strip()
+    return name
+
+def _ci_lookup(details: Dict[str, Dict], candidate: str) -> Optional[str]:
+    """Case-insensitive exact-key resolver returning the true library key."""
+    low = candidate.lower()
+    for k in details.keys():
+        if k.lower() == low:
+            return k
+    return None
+# -----------------------------------------------------------------------------
+
 def _desc_from_fields(d: Dict) -> str:
     # Prefer common descriptive fields first (Apps, Meds, Bots, Gear).
     preferred_keys = [
         "Description","Long","Short",
         "Effects","Effect","Use","Usage","Function","Functions","Action",
-        "Duration","Onset","Application","Addiction","Side Effects",
+        "Duration","Onset","Application","Addiction","Addiction Mod/Type","Side Effects",
         "Bonuses","Modifier","Notes"
     ]
     for key in preferred_keys:
@@ -120,30 +155,92 @@ def _collect_library_items(libraries_dir: str) -> Dict[str, Dict]:
     return details
 
 def _resolve_library_name(raw_name: str, details: Dict[str, Dict]) -> str:
-    """Resolve a sheet item to an exact library name using ONLY:
-       1) Hard-coded CSV mapping (lowercased key)
-       2) Exact match fallback
-       No fuzzy logic, no guessing.
+    """Resolve a sheet item to a library name with minimal, targeted normalization.
+       Order:
+         1) CSV hard map (lowercase key)
+         2) Exact match
+         3) Strip dose suffix '(5 doses|3 shots|10 rds|30 rounds)' and try
+         4) Generic trailing parenthetical strip and try
+         5) Strip ' App' suffix and try
+         6) Case-insensitive exact match attempts for each candidate
+       If unresolved, return the original (do not drop the item).
     """
     if not isinstance(raw_name, str):
         return raw_name
-    s = raw_name.strip()
+    s = _one_line(raw_name)
     if not s:
         return s
 
-    key = s.lower()
     # 1) CSV hard map
-    mapped = CSV_HARDCODED_MAP.get(key)
+    mapped = CSV_HARDCODED_MAP.get(s.lower().strip())
     if mapped:
-        return mapped if mapped in details else s
+        # Use mapping only if the target exists; otherwise continue resolution.
+        if mapped in details:
+            return mapped
+        ci = _ci_lookup(details, mapped)
+        if ci:
+            return ci
 
-    # 2) Exact match (including dose suffixes etc.)
-    return s if s in details else s
+    # 2) Exact match (verbatim)
+    if s in details:
+        return s
+    ci = _ci_lookup(details, s)
+    if ci:
+        return ci
 
-def _format_item_line(display_name: str, lib: Dict) -> str:
+    # 3) Dose/rounds suffix strip
+    s_dose = _strip_dose_suffix(s)
+    if s_dose and s_dose != s:
+        if s_dose in details:
+            return s_dose
+        ci = _ci_lookup(details, s_dose)
+        if ci:
+            return ci
+
+    # 4) Generic trailing parens
+    s_paren = _strip_trailing_parens(s_dose)
+    if s_paren and s_paren != s and s_paren != s_dose:
+        if s_paren in details:
+            return s_paren
+        ci = _ci_lookup(details, s_paren)
+        if ci:
+            return ci
+
+    # 5) " App" suffix
+    s_app = _strip_app_suffix(s_paren)
+    if s_app and s_app not in (s, s_dose, s_paren):
+        if s_app in details:
+            return s_app
+        ci = _ci_lookup(details, s_app)
+        if ci:
+            return ci
+
+    # 6) Final CI check on original (covers weird whitespace/case)
+    ci = _ci_lookup(details, s)
+    if ci:
+        return ci
+
+    # Unresolved: return original name (kept visible)
+    return s
+
+def _format_item_line(display_name: str, lib: Dict, original_name: Optional[str] = None) -> str:
+    """Format a line for the TXT. If original_name carried a dose/rounds suffix, re-append it.
+       Anchor-limited change: only affects number-of-doses style suffixes for med/chem items.
+    """
+    suffix = ""
+    if isinstance(original_name, str):
+        # Only preserve explicit dose/rounds patterns (e.g., "(5 doses)", "(30 rounds)")
+        m = _DOSE_RE.search(original_name.strip())
+        if m:
+            suffix = " " + m.group(0)
+
+    # Unknown library entry: keep the line, mark as missing (short placeholder per anchor).
+    if not lib:
+        return f"{display_name}{suffix} — [MISSING ENTRY]"
+
     # Weapon stats?
     if any(k in lib for k in ("Damage","Firing Modes","Ammo","Range")):
-        bits = [display_name]
+        bits = [f"{display_name}{suffix}"]
         if lib.get("Damage"): bits.append(f"DV {lib['Damage']}")
         if lib.get("Firing Modes"): bits.append(f"FM {lib['Firing Modes']}")
         if lib.get("Range"): bits.append(f"Rng {lib['Range']}")
@@ -153,7 +250,7 @@ def _format_item_line(display_name: str, lib: Dict) -> str:
     # Armor shorthand?
     if "Energy" in lib or "Kinetic" in lib:
         e = lib.get("Energy"); k = lib.get("Kinetic")
-        bits = [display_name]
+        bits = [f"{display_name}{suffix}"]
         if e is not None and k is not None:
             bits.append(f"Armor E{e}/K{k}")
         elif e is not None:
@@ -164,7 +261,7 @@ def _format_item_line(display_name: str, lib: Dict) -> str:
         return " — ".join([bits[0], ", ".join(bits[1:])]) if len(bits) > 1 else bits[0]
     # Generic description
     desc = lib.get("Description")
-    return f"{display_name} — {desc}" if desc else display_name
+    return f"{display_name}{suffix} — {desc}" if desc else f"{display_name}{suffix}"
 
 def _build_equipment_block(grouped: Dict[str, List[str]], packs_with_sources: List[Tuple[str,str]], libraries_dir: str) -> str:
     details = _collect_library_items(libraries_dir)
@@ -187,7 +284,9 @@ def _build_equipment_block(grouped: Dict[str, List[str]], packs_with_sources: Li
         for it in items:
             lib_name = _resolve_library_name(it, details)
             lib = details.get(lib_name, {})
-            lines.append(f"    { _format_item_line(lib_name if lib else it, lib) }")
+            # Show the resolved canonical name if found; otherwise the original.
+            display = lib_name if lib else it
+            lines.append(f"    { _format_item_line(display, lib, original_name=it) }")
     lines.append("")
     return "\n".join(lines)
 
